@@ -1,9 +1,35 @@
 /* ------------------------- */
+/*  Custom Properties        */
+/* ------------------------- */
+
+:root {
+/* colors */
+/* hsl(var(--clr-name)) */
+--clr-dark: 345 6% 13%;
+--clr-light: 0 0% 98%;
+--clr-white: 0 0% 100%;
+--clr-orange: 21 100% 50%;
+--clr-gray: 0 0% 28%;
+--clr-red: 3 73% 59%;
+
+/* background: var(--gradient-orange); 
+   se usa webkit para integrarlo en otros elementos html
+ */
+--gradient-orange: linear-gradient(180deg, #FF8645 0%, #FF5900 100%);
+}
+
+
+/* ------------------------- */
 /*  Reset                    */
 /* ------------------------- */
 
-/* Box sizing */
+/* Extension size */
+html {
+  width: 375px;
+  height: 584px;
+}
 
+/* Box sizing */
 *,
 *::before,
 *::after {
@@ -11,7 +37,6 @@
 }
 
 /* Remove default margin */
-
 body,
 h1,
 h2,
@@ -28,8 +53,7 @@ picture {
 /* Set up the body */
 body {
   line-height: 1.5;
-  width: 375px;
-  height: 584px;
+  min-height: 100vh;
 }
 
 /* Makes images easier to work with */
@@ -79,20 +103,14 @@ select {
   max-width: 80rem;
 }
 
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0,0,0,0);
-  white-space: nowrap; /* added line */
-  border: 0;
-}
+/* colors */
 
+.bg-light { background-color: hsl(var(--clr-light));}
+.text-dark { color: hsl(var(--clr-dark));}
 
-.box {
-  background-color: lightblue;
-  padding: 3rem;
+.text-gradient-orange {
+  background: var(--gradient-orange);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }

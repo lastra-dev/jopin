@@ -1,8 +1,8 @@
 function App() {
   return (
-    <div class="container">
+    <div className="container">
       <center>
-        <h1>JOPIN</h1>
+        <h1 className="text-gradient-orange">JOPIN</h1>
       </center>
     </div>
   );

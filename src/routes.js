@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { MemoryRouter, Routes, Route } from "react-router-dom";
 import WelcomeScreen from "./screens/WelcomeScreen";
 import LoginScreen from "./screens/LoginScreen";
 import HomeScreen from "./screens/HomeScreen";
@@ -8,7 +8,7 @@ import SettingsScreen from "./screens/SettingsScreen";
 
 export const AppRoutes = () => {
   return (
-    <BrowserRouter>
+    <MemoryRouter>
       <Routes>
         <Route path="/" element={<WelcomeScreen />} />
         <Route path="/LoginScreen" element={<LoginScreen />} />
@@ -16,6 +16,6 @@ export const AppRoutes = () => {
         <Route path="/AddScreen" element={<AddScreen />} />
         <Route path="/SettingsScreen" element={<SettingsScreen />} />
       </Routes>
-    </BrowserRouter>
+    </MemoryRouter>
   );
 };

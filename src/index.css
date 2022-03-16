@@ -3,21 +3,31 @@
 /* ------------------------- */
 
 :root {
-/* colors */
-/* hsl(var(--clr-name)) */
---clr-dark: 345 6% 13%;
---clr-light: 0 0% 98%;
---clr-white: 0 0% 100%;
---clr-orange: 21 100% 50%;
---clr-gray: 0 0% 28%;
---clr-red: 3 73% 59%;
+  /* colors */
+  /* hsl(var(--clr-name)) */
+  --clr-dark: 345 6% 13%;
+  --clr-light: 0 0% 98%;
+  --clr-white: 0 0% 100%;
+  --clr-orange: 21 100% 50%;
+  --clr-gray: 0 0% 28%;
+  --clr-red: 3 73% 59%;
 
-/* background: var(--gradient-orange); 
+  /*
+  background: var(--gradient-orange); 
    se usa webkit para integrarlo en otros elementos html
- */
---gradient-orange: linear-gradient(180deg, #FF8645 0%, #FF5900 100%);
-}
+  */
+  --gradient-orange: linear-gradient(180deg, #ff8645 0%, #ff5900 100%);
 
+  /* font-sizes */
+  --fs-300: 0.75rem;
+  --fs-400: 0.875rem;
+  --fs-500: 1rem;
+  --fs-600: 1.25rem;
+  --fs-700: 1.5rem;
+
+  /* font families */
+  --ff-poppins: "Poppins", sans-serif;
+}
 
 /* ------------------------- */
 /*  Reset                    */
@@ -52,6 +62,10 @@ picture {
 
 /* Set up the body */
 body {
+  font-family: var(--ff-poppins);
+  font-size: var(--fs-400);
+  color: hsl(var(--clr-dark));
+  background-color: hsl(var(--clr-light));
   line-height: 1.5;
   min-height: 100vh;
 }
@@ -105,8 +119,24 @@ select {
 
 /* colors */
 
-.bg-light { background-color: hsl(var(--clr-light));}
-.text-dark { color: hsl(var(--clr-dark));}
+/* backgrounds */
+
+.bg-light {
+  background-color: hsl(var(--clr-light));
+}
+.bg-white {
+  background-color: hsl(var(--clr-white));
+}
+.bg-gray {
+  background-color: hsl(var(--clr-gray));
+}
+
+
+/* text */
+
+.text-dark {
+  color: hsl(var(--clr-dark));
+}
 
 .text-gradient-orange {
   background: var(--gradient-orange);
@@ -114,3 +144,27 @@ select {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
+.text-red {
+  color: hsl(var(--clr-red));
+}
+
+.text-gray {
+  color: hsl(var(--clr-gray));
+}
+
+/* border */
+
+.border-orange {
+  border-color: var(--clr-orange);
+}
+
+/* typography */
+
+.ff-poppins { font-family: var(--ff-poppins); }
+
+.fs-300 { font-size: var(--fs-300);}
+.fs-400 { font-size: var(--fs-400);}
+.fs-500 { font-size: var(--fs-500);}
+.fs-600 { font-size: var(--fs-600);}
+.fs-700 { font-size: var(--fs-700);}

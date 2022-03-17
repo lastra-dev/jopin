@@ -6,20 +6,17 @@ const WelcomeScreen = () => {
   return (
     <div>
       <NavBar />
-      <div className="flex" style={{ flexDirection: "column" }}>
+      <div className="flex">
         <img
           src={welcomeImg}
           alt="Welcome"
           className="center-img"
           style={{ marginTop: "50px" }}
         />
-        <div
-          className="fs-700"
-          style={{ textAlign: "center", fontWeight: "500", marginTop: "58px" }}
-        >
+        <div className="title">
           Bienvenido
         </div>
-        <div className="fs-400" style={{ textAlign: "center" }}>
+        <div className="subtitle">
           Basta de pedir enlaces, deja que lo <br></br> hagamos por ti.
         </div>
         <button

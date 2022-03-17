@@ -112,6 +112,7 @@ button:focus {
 .flex {
   display: flex;
   gap: var(--gap, 1em);
+  flex-direction: column;
 }
 
 .grid {
@@ -142,7 +143,6 @@ button:focus {
 .bg-gray {
   background-color: hsl(var(--clr-gray));
 }
-
 
 /* text */
 
@@ -189,13 +189,25 @@ button:focus {
 
 /* typography */
 
-.ff-poppins { font-family: var(--ff-poppins); }
+.ff-poppins {
+  font-family: var(--ff-poppins);
+}
 
-.fs-300 { font-size: var(--fs-300);}
-.fs-400 { font-size: var(--fs-400);}
-.fs-500 { font-size: var(--fs-500);}
-.fs-600 { font-size: var(--fs-600);}
-.fs-700 { font-size: var(--fs-700);}
+.fs-300 {
+  font-size: var(--fs-300);
+}
+.fs-400 {
+  font-size: var(--fs-400);
+}
+.fs-500 {
+  font-size: var(--fs-500);
+}
+.fs-600 {
+  font-size: var(--fs-600);
+}
+.fs-700 {
+  font-size: var(--fs-700);
+}
 
 /* buttons */
 
@@ -207,9 +219,23 @@ button:focus {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.common-btn{
+.common-btn {
   background: var(--gradient-orange);
   border: none;
   border-radius: 6px;
   color: hsl(var(--clr-light));
+}
+
+/* titles and subtitles */
+
+.title {
+  font-size: var(--fs-700);
+  text-align: center;
+  font-weight: 500;
+  margin-top: 58px;
+}
+
+.subtitle {
+  font-size: var(--fs-400);
+  text-align: center;
 }

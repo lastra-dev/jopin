@@ -229,6 +229,7 @@ button:focus {
   border: none;
   border-radius: 6px;
   color: hsl(var(--clr-light));
+  font-weight: 500;
 }
 
 /* titles and subtitles */

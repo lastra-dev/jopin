@@ -3,10 +3,8 @@
 }
 
 button {
-  padding: 10.5px 73.5px 10.5px 73.5px;
-  margin-left: 69px;
-  margin-right: 69px;
-  margin-top: 18px;
+  padding: 10.5px 73.5px;
+  margin: 18px 69px 0;
 }
 
 .center-img {

@@ -1,11 +1,39 @@
 import React from "react";
+import NavBar from "../../components/NavBar";
+import welcomeImg from "../../assets/images/welcome-img.svg";
 
 const WelcomeScreen = () => {
   return (
-    <div className="container">
-      <center>
-        <h1 className="text-gradient-orange">JOPIN</h1>
-      </center>
+    <div>
+      <NavBar />
+      <div className="flex" style={{ flexDirection: "column" }}>
+        <img
+          src={welcomeImg}
+          alt="Welcome"
+          className="center-img"
+          style={{ marginTop: "50px" }}
+        />
+        <div
+          className="fs-700"
+          style={{ textAlign: "center", fontWeight: "500", marginTop: "58px" }}
+        >
+          Bienvenido
+        </div>
+        <div className="fs-400" style={{ textAlign: "center" }}>
+          Basta de pedir enlaces, deja que lo <br></br> hagamos por ti.
+        </div>
+        <button
+          className="common-btn btn-shadow fs-500"
+          style={{
+            padding: "10.5px 73.5px 10.5px 73.5px",
+            marginLeft: "69px",
+            marginRight: "69px",
+            marginTop: "10px",
+          }}
+        >
+          COMENZAR
+        </button>
+      </div>
     </div>
   );
 };

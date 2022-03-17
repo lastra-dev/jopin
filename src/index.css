@@ -37,6 +37,7 @@
 html {
   width: 375px;
   height: 584px;
+  /* background-color: black; */
 }
 
 /* Box sizing */
@@ -62,12 +63,13 @@ picture {
 
 /* Set up the body */
 body {
+  padding-top: 10px;
   font-family: var(--ff-poppins);
   font-size: var(--fs-400);
   color: hsl(var(--clr-dark));
   background-color: hsl(var(--clr-light));
   line-height: 1.5;
-  min-height: 100vh;
+  min-height: 100%;
 }
 
 /* Makes images easier to work with */
@@ -112,6 +114,9 @@ button:focus {
 .flex {
   display: flex;
   gap: var(--gap, 1em);
+}
+
+.column {
   flex-direction: column;
 }
 
@@ -219,7 +224,7 @@ button:focus {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.common-btn {
+.primary-btn {
   background: var(--gradient-orange);
   border: none;
   border-radius: 6px;
@@ -232,7 +237,6 @@ button:focus {
   font-size: var(--fs-700);
   text-align: center;
   font-weight: 500;
-  margin-top: 58px;
 }
 
 .subtitle {

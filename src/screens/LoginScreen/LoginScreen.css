@@ -1,0 +1,22 @@
+.login-img {
+    margin: 32px 64px 24px;
+}
+
+.login-btn {
+    padding: 8px 72px;
+    margin: 24px 0 16px;
+}
+
+.input {
+    padding: 4px;
+    width: 256px;
+}
+
+.label {
+    text-align: left;
+    margin-left: 56px;
+}
+
+.mt-8 {
+    margin-top: 8px;
+}

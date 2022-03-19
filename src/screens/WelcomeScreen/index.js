@@ -11,7 +11,7 @@ const WelcomeScreen = () => {
         <img
           src={welcomeImg}
           alt="Welcome"
-          className="center-img welcome-img"
+          className="center welcome-img"
         />
         <p className="title welcome-title">Bienvenido</p>
         <p className="subtitle text-gray">

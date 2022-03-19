@@ -11,13 +11,13 @@ const WelcomeScreen = () => {
         <img
           src={welcomeImg}
           alt="Welcome"
-          className="center-img"
+          className="center-img welcome-img"
         />
-        <p className="title">Bienvenido</p>
+        <p className="title welcome-title">Bienvenido</p>
         <p className="subtitle text-gray">
           Basta de pedir enlaces, deja que lo<br></br>hagamos por ti.
         </p>
-        <button className="primary-btn btn-shadow fs-500">COMENZAR</button>
+        <button className="primary-btn btn-shadow fs-500 start-button">COMENZAR</button>
       </div>
     </div>
   );

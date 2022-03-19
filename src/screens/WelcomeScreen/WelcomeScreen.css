@@ -1,12 +1,12 @@
-.title {
-  margin-top: 30px;
+.welcome-title {
+  margin-top: 32px;
 }
 
-button {
-  padding: 10.5px 73.5px;
-  margin: 18px 69px 0;
+.start-button {
+  padding: 8px 72px;
+  margin: 16px 64px 0;
 }
 
-.center-img {
-  margin-top: 45px;
+.welcome-img {
+  margin-top: 40px;
 }

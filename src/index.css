@@ -27,6 +27,9 @@
 
   /* font families */
   --ff-poppins: "Poppins", sans-serif;
+
+  /* misc */
+  --corner-radius: 6px;
 }
 
 /* ------------------------- */
@@ -35,9 +38,9 @@
 
 /* Extension size */
 html {
-  width: 375px;
+  width: 360px;
   height: 584px;
-  /* background-color: black; */
+  background-color: black;
 }
 
 /* Box sizing */
@@ -63,7 +66,7 @@ picture {
 
 /* Set up the body */
 body {
-  padding-top: 10px;
+  padding-top: 8px;
   font-family: var(--ff-poppins);
   font-size: var(--fs-400);
   color: hsl(var(--clr-dark));
@@ -185,7 +188,7 @@ button:focus {
 }
 
 .rounded-border {
-  border-radius: 6px;
+  border-radius: var(--corner-radius);
 }
 
 .no-border {
@@ -227,7 +230,7 @@ button:focus {
 .primary-btn {
   background: var(--gradient-orange);
   border: none;
-  border-radius: 6px;
+  border-radius: var(--corner-radius);
   color: hsl(var(--clr-light));
   font-weight: 500;
 }

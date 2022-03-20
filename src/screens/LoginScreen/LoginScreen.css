@@ -1,22 +1,29 @@
 .login-img {
-    margin: 32px 64px 24px;
+  margin: 32px 64px 24px;
 }
 
 .login-btn {
-    padding: 8px 72px;
-    margin: 24px 0 16px;
+  padding: 8px 72px;
+  margin: 24px 0 16px;
 }
 
 .input {
-    padding: 4px;
-    width: 256px;
+  padding: 4px;
+  width: 256px;
+  border-color: hsl(var(--clr-dark));
+}
+
+.input:hover {
+  padding: 4px;
+  width: 256px;
+  border-color: hsl(var(--clr-orange));
 }
 
 .label {
-    text-align: left;
-    margin-left: 56px;
+  text-align: left;
+  margin-left: 56px;
 }
 
 .mt-8 {
-    margin-top: 8px;
+  margin-top: 8px;
 }

@@ -187,6 +187,10 @@ button:focus {
   border-color: var(--clr-orange);
 }
 
+.border-dark {
+  border-color: var(--clr-dark);
+}
+
 .rounded-border {
   border-radius: var(--corner-radius);
 }

@@ -7,16 +7,19 @@
   margin: 24px 0 16px;
 }
 
+.login-btn:focus {
+  outline: 2px solid hsl(var(--clr-dark));
+}
+
 .input {
   padding: 4px;
   width: 256px;
-  border-color: hsl(var(--clr-dark));
+  border: 1px solid hsl(var(--clr-dark));
 }
 
-.input:hover {
-  padding: 4px;
-  width: 256px;
-  border-color: hsl(var(--clr-orange));
+.input:focus {
+  border-color: transparent;
+  outline: 2px solid hsl(var(--clr-orange));
 }
 
 .label {

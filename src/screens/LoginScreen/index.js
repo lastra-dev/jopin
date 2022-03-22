@@ -13,11 +13,12 @@ const LoginScreen = () => {
           alt="A person sitting on the window"
           className="center login-img"
         />
-        <form style={{textAlign: "center"}}>
+        <form style={{ textAlign: "center" }}>
           <p className="label fs-300">Usuario</p>
-          <input className="rounded-border input" type={"text"}></input>
+          <input name={"username"} spellCheck={"false"} autoComplete={"off"}
+            autoFocus className="rounded-border input" type={"text"}></input>
           <p className="label fs-300 mt-8">Contraseña</p>
-          <input className="rounded-border input" type={"password"}></input>
+          <input name={"password"} className="rounded-border input" type={"password"}></input>
           <button className="primary-btn btn-shadow fs-500 login-btn">INICIAR SESIÓN</button>
           <p className="subtitle text-gray">Ingresa utilizando tu cuenta IEST.</p>
         </form>

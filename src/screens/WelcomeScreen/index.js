@@ -9,7 +9,11 @@ const WelcomeScreen = () => {
     <div>
       <NavBar />
       <div className="flex column">
-        <img src={welcomeImg} alt="Welcome" className="center welcome-img" />
+        <img
+          src={welcomeImg}
+          alt="Two people chatting"
+          className="center welcome-img"
+        />
         <p className="title welcome-title">Bienvenido</p>
         <p className="subtitle text-gray">
           Basta de pedir enlaces, deja que lo<br></br>hagamos por ti.

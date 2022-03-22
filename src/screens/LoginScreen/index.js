@@ -2,6 +2,7 @@ import React from "react";
 import NavBar from "../../components/NavBar";
 import LoginImg from "../../assets/images/login-img.svg";
 import PrimaryButton from "../../components/PrimaryButton";
+import TextInput from "../../components/TextInput";
 import "./LoginScreen.css";
 
 const LoginScreen = () => {
@@ -12,24 +13,22 @@ const LoginScreen = () => {
         <img
           src={LoginImg}
           alt="A person sitting on the window"
-          className="center login-img"
+          className="center login-img-margin"
         />
         <form style={{ textAlign: "center" }}>
-          <p className="label fs-300">Usuario</p>
-          <input
-            name={"username"}
-            spellCheck={"false"}
-            autoComplete={"off"}
-            autoFocus
-            className="rounded-border input"
-            type={"text"}
-          ></input>
-          <p className="label fs-300 mt-8">Contraseña</p>
-          <input
-            name={"password"}
-            className="rounded-border input"
-            type={"password"}
-          ></input>
+          <TextInput
+            name="username"
+            spellCheck="false"
+            autoComplete="off"
+            autoFocus="on"
+            label="Usuario"
+          />
+          <TextInput
+            name="password"
+            label="Contraseña"
+            type="password"
+            className="mt-8"
+          />
           <PrimaryButton className="login-btn-spacing" text="INICIAR SESIÓN" />
           <p className="subtitle text-gray">
             Ingresa utilizando tu cuenta IEST.

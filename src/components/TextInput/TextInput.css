@@ -1,0 +1,15 @@
+.label {
+  text-align: left;
+  margin-left: 56px;
+}
+
+.input {
+  padding: 4px;
+  width: 256px;
+  border: 1px solid hsl(var(--clr-dark));
+}
+
+.input:focus {
+  border-color: transparent;
+  outline: 2px solid hsl(var(--clr-orange));
+}

@@ -10,8 +10,8 @@ export const AppRoutes = () => {
   return (
     <MemoryRouter>
       <Routes>
-        {/* <Route path="/" element={<WelcomeScreen />} /> */}
-        {/* <Route path="/LoginScreen" element={<LoginScreen />} /> */}
+        {/*<Route path="/" element={<WelcomeScreen />} />*/}
+        <Route path="/LoginScreen" element={<LoginScreen />} />
         <Route path="/" element={<LoginScreen />} />
         <Route path="/HomeScreen" element={<HomeScreen />} />
         <Route path="/AddScreen" element={<AddScreen />} />

@@ -2,13 +2,9 @@
   margin: 32px 64px 24px;
 }
 
-.login-btn {
+.login-btn-spacing {
   padding: 8px 72px;
   margin: 24px 0 16px;
-}
-
-.login-btn:focus {
-  outline: 2px solid hsl(var(--clr-dark));
 }
 
 .input {

@@ -1,0 +1,11 @@
+.primary-btn {
+  background: var(--gradient-orange);
+  border: none;
+  border-radius: var(--corner-radius);
+  color: hsl(var(--clr-light));
+  font-weight: 500;
+}
+
+.primary-btn:focus {
+  outline: 2px solid hsl(var(--clr-dark));
+}

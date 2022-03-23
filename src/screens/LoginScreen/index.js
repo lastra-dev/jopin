@@ -3,9 +3,17 @@ import NavBar from "../../components/NavBar";
 import LoginImg from "../../assets/images/login-img.svg";
 import PrimaryButton from "../../components/PrimaryButton";
 import TextInput from "../../components/TextInput";
+import { useNavigate } from "react-router-dom";
 import "./LoginScreen.css";
 
 const LoginScreen = () => {
+  let navigate = useNavigate();
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    navigate("/HomeScreen", { replace: true });
+  };
+
   return (
     <div>
       <NavBar />
@@ -15,7 +23,7 @@ const LoginScreen = () => {
           alt="A person sitting on the window"
           className="center login-img-margin"
         />
-        <form style={{ textAlign: "center" }}>
+        <form onSubmit={handleSubmit} style={{ textAlign: "center" }}>
           <TextInput
             name="username"
             spellCheck="false"

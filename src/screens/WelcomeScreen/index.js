@@ -2,9 +2,12 @@ import React from "react";
 import NavBar from "../../components/NavBar";
 import welcomeImg from "../../assets/images/welcome-img.svg";
 import PrimaryButton from "../../components/PrimaryButton";
+import { useNavigate } from "react-router-dom";
 import "./WelcomeScreen.css";
 
 const WelcomeScreen = () => {
+  let navigate = useNavigate();
+
   return (
     <div>
       <NavBar />
@@ -18,7 +21,13 @@ const WelcomeScreen = () => {
         <p className="subtitle text-gray">
           Basta de pedir enlaces, deja que lo<br></br>hagamos por ti.
         </p>
-        <PrimaryButton className="start-button" text="COMENZAR" />
+        <PrimaryButton
+          className="start-button"
+          text="COMENZAR"
+          onClick={() => {
+            navigate("/LoginScreen", { replace: true });
+          }}
+        />
       </div>
     </div>
   );

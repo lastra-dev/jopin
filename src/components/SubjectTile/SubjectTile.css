@@ -1,0 +1,19 @@
+.tile {
+  align-items: center;
+  justify-content: center;
+}
+
+.subject {
+  padding: 16px;
+  border: 1.5px solid;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+}
+
+.subject-name {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  font-weight: 500;
+}

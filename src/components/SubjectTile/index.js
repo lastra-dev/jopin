@@ -1,32 +1,12 @@
 import React from "react";
+import './SubjectTile.css'
 
 const SubjectTile = (props) => {
   return (
-    <div
-      className='flex'
-      style={{ alignItems: "center", justifyContent: "center" }}
-    >
+    <div className='flex tile'>
       <p>{props.hour}</p>
-
-      <div
-        className='border-dark rounded-border flex'
-        style={{
-          padding: "16px",
-          border: "1.5px solid",
-          alignItems: "center",
-          justifyContent: "center",
-          width: "200px",
-          textOverflow: "ellipsis",
-        }}
-      >
-        <div
-          style={{
-            textOverflow: "ellipsis",
-            overflow: "hidden",
-            whiteSpace: "nowrap",
-            fontWeight: 500,
-          }}
-        >
+      <div className='border-dark rounded-border flex subject'>
+        <div className='subject-name'>
           {props.name}
         </div>
         <input type='checkbox'></input>

@@ -1,0 +1,15 @@
+.home-screen-navbar {
+  justify-content: space-between;
+  margin: 0 24px;
+}
+
+.tiles {
+  margin-top: 24px;
+  gap: 1.5rem;
+}
+
+.weekday {
+  margin-top: 40px;
+  align-items: center;
+  justify-content: center;
+}

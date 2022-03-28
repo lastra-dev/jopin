@@ -4,29 +4,20 @@ import SettingBtn from "../../components/SettingBtn";
 import NavBar from "../../components/NavBar";
 import { ArrowLeft, ArrowRight } from "../../components/Arrows";
 import SubjectTile from "../../components/SubjectTile";
+import './HomeScreen.css';
 
 const HomeScreen = () => {
   return (
     <div>
-      <div
-        className='flex'
-        style={{ justifyContent: "space-between", margin: "0 24px" }}
-      >
+      <div className='flex home-screen-navbar' >
         <AddSubject /> <NavBar /> <SettingBtn />
       </div>
-      <div
-        className='flex'
-        style={{
-          marginTop: "40px",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
+      <div className='flex weekday' >
         <ArrowLeft />
         <p className='title'>Lunes</p>
         <ArrowRight />
       </div>
-      <div style={{ marginTop: "24px", gap: "1.5rem" }} className='flex column'>
+      <div className='flex column tiles'>
         <SubjectTile hour='10:00 am' name='Materia de Rellenoooooooooooooooo' />
         <SubjectTile hour='10:00 am' name='Materia de Rellenoooooooooooooooo' />
         <SubjectTile hour='10:00 am' name='Materia de Rellenoooooooooooooooo' />

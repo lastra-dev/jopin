@@ -1,5 +1,5 @@
 import React from "react";
-import NavBar from "../../components/NavBar";
+import AppTitle from "../../components/AppTitle";
 import welcomeImg from "../../assets/images/welcome-img.svg";
 import PrimaryButton from "../../components/PrimaryButton";
 import { useNavigate } from "react-router-dom";
@@ -10,7 +10,7 @@ const WelcomeScreen = () => {
 
   return (
     <div>
-      <NavBar />
+      <AppTitle />
       <div className="flex column">
         <img
           src={welcomeImg}

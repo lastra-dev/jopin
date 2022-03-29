@@ -1,6 +1,6 @@
 import React from "react";
 
-const NavBar = () => {
+const AppTitle = () => {
   return (
     <div>
       <center>
@@ -10,4 +10,4 @@ const NavBar = () => {
   );
 };
 
-export default NavBar;
+export default AppTitle;

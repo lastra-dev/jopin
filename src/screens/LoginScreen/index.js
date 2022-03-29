@@ -1,5 +1,5 @@
 import React from "react";
-import NavBar from "../../components/NavBar";
+import AppTitle from "../../components/AppTitle";
 import LoginImg from "../../assets/images/login-img.svg";
 import PrimaryButton from "../../components/PrimaryButton";
 import TextInput from "../../components/TextInput";
@@ -16,7 +16,7 @@ const LoginScreen = () => {
 
   return (
     <div>
-      <NavBar />
+      <AppTitle />
       <div className="flex column">
         <img
           src={LoginImg}

@@ -1,7 +1,7 @@
 import React from "react";
 import AddSubject from "../../components/AddSubject";
 import SettingBtn from "../../components/SettingBtn";
-import NavBar from "../../components/NavBar";
+import AppTitle from "../../components/AppTitle";
 import { ArrowLeft, ArrowRight } from "../../components/Arrows";
 import SubjectTile from "../../components/SubjectTile";
 import './HomeScreen.css';
@@ -10,7 +10,7 @@ const HomeScreen = () => {
   return (
     <div>
       <div className='flex home-screen-navbar'>
-        <AddSubject /> <NavBar /> <SettingBtn />
+        <AddSubject /> <AppTitle /> <SettingBtn />
       </div>
       <hr></hr>
       <div className='flex weekday' >

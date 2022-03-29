@@ -1,13 +1,14 @@
 .tile {
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
+  margin: 0 24px;
 }
 
 .subject {
   padding: 16px;
   border: 2px solid;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   width: 224px;
 }
 

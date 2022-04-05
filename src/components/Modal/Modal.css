@@ -6,6 +6,7 @@
   height: 100vh;
   z-index: 20;
   background-color: rgba(0, 0, 0, 0.50);
+  animation: fade 300ms ease-out forwards;
 }
 
 .modal {
@@ -29,11 +30,18 @@
 
 @keyframes slide-up {
   from {
+    transform: translateY(14rem);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade {
+  from {
     opacity: 0;
-    transform: translateY(3rem);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
   }
 }

@@ -247,3 +247,7 @@ button:focus {
   font-size: var(--fs-400);
   text-align: center;
 }
+
+.navbar-title {
+  margin-left: 64px;
+}

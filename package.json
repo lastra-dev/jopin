@@ -11,6 +11,7 @@
     "react-router-dom": "^6.2.2",
     "react-scripts": "^5.0.0",
     "react-switch": "^6.0.0",
+    "react-weekdays-input": "^1.2.22",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

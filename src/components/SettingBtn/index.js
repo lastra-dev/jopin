@@ -1,12 +1,19 @@
 import React from "react";
 import settingBtn from "../../assets/images/setting-btn.svg";
+import { useNavigate } from "react-router-dom";
 
 const SettingBtn = () => {
-    return (
-        <div>
-            <img src={settingBtn}></img>
-        </div>
-    );
+  let navigate = useNavigate();
+
+  return (
+    <div
+      onClick={() => {
+        navigate("/SettingsScreen");
+      }}
+    >
+      <img src={settingBtn}></img>
+    </div>
+  );
 };
 
 export default SettingBtn;

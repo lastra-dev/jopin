@@ -1,0 +1,12 @@
+.setting-screen-navbar {
+    justify-content: space-between;
+    margin: 0 24px;
+  }
+
+.setting-text-align {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 24px;
+  margin-right: 16px
+}
+

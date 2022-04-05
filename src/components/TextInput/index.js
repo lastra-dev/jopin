@@ -3,8 +3,8 @@ import "./TextInput.css";
 
 const TextInput = (props) => {
   return (
-    <div>
-      <p className={`label fs-300 ${props.className}`}>{props.label}</p>
+    <div className={props.className}>
+      <p className={`label fs-300`}>{props.label}</p>
       <input
         name={props.name}
         className="rounded-border input"

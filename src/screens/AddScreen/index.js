@@ -18,7 +18,7 @@ const AddScreen = () => {
         <TextInput label="Enlace" />
         <TextInput label="Horario" type="time" />
         <Weekdays />
-        <PrimaryButton className="add-btn-spacing btn-shadow" text="AGREGAR" />
+        <PrimaryButton className="add-btn-spacing" text="AGREGAR" />
       </form>
       <img
         className="center"

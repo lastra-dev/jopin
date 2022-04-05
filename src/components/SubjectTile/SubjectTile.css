@@ -5,6 +5,7 @@
 }
 
 .subject {
+  cursor: pointer;
   padding: 16px;
   border: 2px solid;
   align-items: center;

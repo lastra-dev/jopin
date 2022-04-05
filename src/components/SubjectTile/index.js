@@ -12,8 +12,8 @@ const SubjectTile = (props) => {
   return (
     <div className='flex tile'>
       <p>{props.hour}</p>
-      <div className='border-dark rounded-border flex subject'>
-        <div className='subject-name'>
+      <div id="subject" onClick={props.onClick} className='border-dark rounded-border flex subject'>
+        <div id="subject-name" className='subject-name' >
           {props.name}
         </div>
         < ToggleSwitch checked={checked} onChange={handleChecked} />

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Back from "../../components/Back";
 import Title from "../../components/Title";
 import TitleSettings from "../../components/TitleSettings";
-import "./SettingScreen.css";
+import "./SettingsScreen.css";
 import ToggleSwitch from "../../components/ToggleSwitch";
 import { SettingArrow } from "../../components/Arrows";
 

@@ -4,18 +4,18 @@ import SettingBtn from "../../components/SettingBtn";
 import AppTitle from "../../components/AppTitle";
 import { ArrowLeft, ArrowRight } from "../../components/Arrows";
 import SubjectTile from "../../components/SubjectTile";
-import AlertDialog from "../../components/AlertDialog";
+import Modal from "../../components/Modal";
 import "./HomeScreen.css";
 
 const HomeScreen = () => {
-  const [alertIsShown, setAlertIsShown] = useState(false);
+  const [modalIsShown, setModalIsShown] = useState(false);
 
-  const showAlertHandler = () => {
-    setAlertIsShown(true);
+  const showModal = () => {
+    setModalIsShown(true);
   };
 
-  const hideAlertHandler = () => {
-    setAlertIsShown(false);
+  const hideModal = () => {
+    setModalIsShown(false);
   };
 
   return (
@@ -23,12 +23,12 @@ const HomeScreen = () => {
       <div className="flex home-screen-navbar">
         <AddSubject /> <AppTitle /> <SettingBtn />
       </div>
-      {alertIsShown && (
-        <AlertDialog
+      {modalIsShown && (
+        <Modal
           title="Eliminar Clase"
           text="¿Deseas eliminar la clase?"
           submitBtnMsg="ACEPTAR"
-          onClose={hideAlertHandler}
+          onClose={hideModal}
         />
       )}
       <div className="flex weekday">
@@ -45,7 +45,7 @@ const HomeScreen = () => {
         <SubjectTile hour="4:00 pm" name="Desarrollo de aplicaciones web II" />
         <SubjectTile hour="5:30 pm" name="Desarrollo de Software" />
         <SubjectTile hour="7:00 pm" name="Redes Avanzadas" />
-        <p onClick={showAlertHandler}> show alert </p>
+        <p onClick={showModal}> show modal </p>
       </div>
     </div>
   );

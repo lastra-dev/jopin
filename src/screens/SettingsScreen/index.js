@@ -14,11 +14,8 @@ const SettingsScreen = () => {
   };
   return (
     <div>
-      <div
-        className='flex setting-screen-navbar'
-        style={{ alignItems: "center" }}
-      >
-        <Back /> <Title text='Ajustes' /> <p></p>
+      <div className='flex setting-screen-navbar' >
+        <Back /> <Title className="settings-title" text='Ajustes' />
       </div>
 
       <div style={{ marginTop: "48px" }}>
@@ -29,7 +26,7 @@ const SettingsScreen = () => {
           style={{ alignItems: "center" }}
         >
           Modo Intrusivo
-          <ToggleSwitch checked={checked} onChange={handleChecked} />
+          <ToggleSwitch small="true" checked={checked} onChange={handleChecked} />
         </div>
         <hr></hr>
       </div>

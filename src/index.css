@@ -251,3 +251,11 @@ button:focus {
 .navbar-title {
   margin-left: 64px;
 }
+
+/* hr */
+
+hr {
+  margin: 4px 0;
+  border: none;
+  border-top: 1.5px solid hsl(var(--clr-gray));
+}

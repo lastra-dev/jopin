@@ -1,7 +1,11 @@
 .setting-screen-navbar {
-    justify-content: space-between;
+    align-items: center;
     margin: 0 24px;
   }
+
+.settings-title {
+  margin-left: 100px;
+}
 
 .setting-text-align {
   display: flex;

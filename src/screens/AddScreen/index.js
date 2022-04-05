@@ -9,15 +9,11 @@ import "./AddScreen.css";
 const AddScreen = () => {
   return (
     <div>
-      <div className="flex add-screen-navbar" style={{ alignItems: "center" }}>
-        {/* NOTA: <p></p> necesario para alinear los elementos (buscar una mejor forma) */}
-        <Back /> <Title text="Agregar Clase" /> <p></p>
+      <div className="flex add-screen-navbar">
+        <Back /> <Title className="navbar-title" text="Agregar Clase" />
       </div>
       <hr></hr>
-      <form
-        className="flex column"
-        style={{ textAlign: "center", marginTop: "32px", gap: "0.5rem" }}
-      >
+      <form className="flex column add-form">
         <TextInput label="Nombre" />
         <TextInput label="Enlace" />
         <TextInput label="Horario" type="time" />
@@ -26,6 +22,7 @@ const AddScreen = () => {
       <img
         className="center"
         src={addIllustration}
+        alt="Two persons on their laptops"
         style={{ marginTop: "8px" }}
       />
     </div>

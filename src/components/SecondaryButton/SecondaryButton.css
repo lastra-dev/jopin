@@ -1,0 +1,11 @@
+.secondary-btn {
+  background: none;
+  outline: 1px solid hsl(var(--clr-orange));
+  border-radius: var(--corner-radius);
+  color: hsl(var(--clr-orange));
+  font-weight: 500;
+}
+
+.secondary-btn:focus {
+  outline: 2px solid hsl(var(--clr-dark));
+}

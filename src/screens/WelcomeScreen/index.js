@@ -22,7 +22,7 @@ const WelcomeScreen = () => {
           Basta de pedir enlaces, deja que lo<br></br>hagamos por ti.
         </p>
         <PrimaryButton
-          className="start-button"
+          className="start-button btn-shadow"
           text="COMENZAR"
           onClick={() => {
             navigate("/LoginScreen", { replace: true });

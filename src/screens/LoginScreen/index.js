@@ -37,7 +37,10 @@ const LoginScreen = () => {
             type="password"
             className="mt-8"
           />
-          <PrimaryButton className="login-btn-spacing" text="INICIAR SESIÓN" />
+          <PrimaryButton
+            className="login-btn-spacing btn-shadow"
+            text="INICIAR SESIÓN"
+          />
           <p className="subtitle text-gray">
             Ingresa utilizando tu cuenta IEST.
           </p>

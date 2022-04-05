@@ -3,6 +3,7 @@ import Back from "../../components/Back";
 import Title from "../../components/Title";
 import TextInput from "../../components/TextInput";
 import PrimaryButton from "../../components/PrimaryButton";
+import Weekdays from "../../components/Weekdays";
 import addIllustration from "../../assets/images/addIllustration.svg";
 import "./AddScreen.css";
 
@@ -17,6 +18,7 @@ const AddScreen = () => {
         <TextInput label="Nombre" />
         <TextInput label="Enlace" />
         <TextInput label="Horario" type="time" />
+        <Weekdays />
         <PrimaryButton className="add-btn-spacing btn-shadow" text="AGREGAR" />
       </form>
       <img

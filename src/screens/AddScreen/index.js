@@ -13,7 +13,6 @@ const AddScreen = () => {
       <div className="flex add-screen-navbar">
         <Back /> <Title className="navbar-title" text="Agregar Clase" />
       </div>
-      <hr></hr>
       <form className="flex column add-form">
         <TextInput label="Nombre" />
         <TextInput label="Enlace" />

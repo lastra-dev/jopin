@@ -23,7 +23,6 @@ const HomeScreen = () => {
       <div className="flex home-screen-navbar">
         <AddSubject /> <AppTitle /> <SettingBtn />
       </div>
-      <hr></hr>
       {alertIsShown && (
         <AlertDialog
           title="Eliminar Clase"

@@ -1,7 +1,7 @@
 import React from "react";
-import "./TextInput.css";
+import "./Input.css";
 
-const TextInput = (props) => {
+const Input = (props) => {
   return (
     <div className={props.className}>
       <p className={`label fs-300`}>{props.label}</p>
@@ -17,4 +17,4 @@ const TextInput = (props) => {
   );
 };
 
-export default TextInput;
+export default Input;

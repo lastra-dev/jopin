@@ -1,7 +1,7 @@
 import React from "react";
 import Back from "../../components/Back";
 import { Title } from "../../components/Titles";
-import TextInput from "../../components/TextInput";
+import Input from "../../components/Input";
 import PrimaryButton from "../../components/PrimaryButton";
 import Weekdays from "../../components/Weekdays";
 import addIllustration from "../../assets/images/addIllustration.svg";
@@ -14,9 +14,9 @@ const AddScreen = () => {
         <Back /> <Title className="navbar-title fw-500" text="Agregar Clase" />
       </div>
       <form className="flex column add-form">
-        <TextInput label="Nombre" />
-        <TextInput label="Enlace" />
-        <TextInput label="Horario" type="time" />
+        <Input label="Nombre" />
+        <Input label="Enlace" />
+        <Input label="Horario" type="time" />
         <Weekdays />
         <PrimaryButton className="add-btn-spacing" text="AGREGAR" />
       </form>

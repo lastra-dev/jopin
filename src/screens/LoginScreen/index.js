@@ -2,7 +2,7 @@ import React from "react";
 import { AppTitle } from "../../components/Titles";
 import LoginImg from "../../assets/images/login-img.svg";
 import PrimaryButton from "../../components/PrimaryButton";
-import TextInput from "../../components/TextInput";
+import Input from "../../components/Input";
 import { useNavigate } from "react-router-dom";
 import "./LoginScreen.css";
 
@@ -23,14 +23,14 @@ const LoginScreen = () => {
           className="center login-img-margin"
         />
         <form onSubmit={handleSubmit} className="text-center">
-          <TextInput
+          <Input
             name="username"
             spellCheck="false"
             autoComplete="off"
             autoFocus="on"
             label="Usuario"
           />
-          <TextInput
+          <Input
             name="password"
             label="Contraseña"
             type="password"

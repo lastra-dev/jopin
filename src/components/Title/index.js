@@ -4,9 +4,7 @@ const Title = (props) => {
   return (
     <div>
       <center>
-        <p className={`fs-600 ${props.className}`} style={{ fontWeight: 500 }}>
-          {props.text}
-        </p>
+        <p className={`fs-600 ${props.className}`}>{props.text}</p>
       </center>
     </div>
   );

@@ -11,7 +11,7 @@ const AddScreen = () => {
   return (
     <div>
       <div className="flex add-screen-navbar">
-        <Back /> <Title className="navbar-title" text="Agregar Clase" />
+        <Back /> <Title className="navbar-title fw-500" text="Agregar Clase" />
       </div>
       <form className="flex column add-form">
         <TextInput label="Nombre" />
@@ -24,7 +24,6 @@ const AddScreen = () => {
         className="center"
         src={addIllustration}
         alt="Two persons on their laptops"
-        style={{ marginTop: "8px" }}
       />
     </div>
   );

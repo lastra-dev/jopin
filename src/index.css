@@ -225,6 +225,13 @@ button:focus {
   font-size: var(--fs-700);
 }
 
+.fw-500 {
+  font-weight: 500;
+}
+.fw-600 {
+  font-weight: 600;
+}
+
 /* buttons */
 
 .btn-orange-bg {

@@ -7,10 +7,9 @@
   margin-left: 100px;
 }
 
-.setting-text-align {
+.option-align {
   display: flex;
   justify-content: space-between;
-  margin-left: 24px;
-  margin-right: 16px
+  margin: 0 16px 0 24px;
 }
 

@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
-import { WeekdaysInput } from 'react-weekdays-input';
+import React, { useState } from "react";
+import { WeekdaysInput } from "react-weekdays-input";
 
 const Weekdays = (props) => {
-  const [value, setValue] = useState([0, 0, 1, 0, 0, 1, 0]); 
+  const [value, setValue] = useState([0, 0, 0, 0, 0, 0, 0]);
 
   return (
     <div>
@@ -10,20 +10,20 @@ const Weekdays = (props) => {
       <WeekdaysInput
         value={value}
         onChange={(value) => setValue(value)}
-        days ={['L', 'M', 'X', 'J', 'V', 'S', 'D']}
+        days={["L", "M", "X", "J", "V", "S", "D"]}
         dayStyle={{
-          padding: '4px 9px',
-          margin: '4px',
-          borderRadius: '6px',
-          border: '1px solid #474747'
+          padding: "4px 9px",
+          margin: "4px",
+          borderRadius: "6px",
+          border: "1px solid #474747",
         }}
         activeDayStyle={{
-          backgroundColor: '#474747',
-          color: 'white',
+          backgroundColor: "#474747",
+          color: "white",
         }}
       />
     </div>
   );
-}
+};
 
 export default Weekdays;

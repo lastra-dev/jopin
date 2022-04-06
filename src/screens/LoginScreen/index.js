@@ -9,8 +9,7 @@ import "./LoginScreen.css";
 const LoginScreen = () => {
   let navigate = useNavigate();
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = () => {
     navigate("/HomeScreen", { replace: true });
   };
 
@@ -23,7 +22,7 @@ const LoginScreen = () => {
           alt="A person sitting on the window"
           className="center login-img-margin"
         />
-        <form onSubmit={handleSubmit} style={{ textAlign: "center" }}>
+        <form onSubmit={handleSubmit} className="text-center">
           <TextInput
             name="username"
             spellCheck="false"

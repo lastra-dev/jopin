@@ -1,5 +1,5 @@
 import React from "react";
-import AppTitle from "../../components/AppTitle";
+import { AppTitle } from "../../components/Titles";
 import welcomeImg from "../../assets/images/welcome-img.svg";
 import PrimaryButton from "../../components/PrimaryButton";
 import { useNavigate } from "react-router-dom";

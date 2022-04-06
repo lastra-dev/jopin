@@ -1,6 +1,6 @@
 import React from "react";
 import Back from "../../components/Back";
-import Title from "../../components/Title";
+import { Title } from "../../components/Titles";
 import TextInput from "../../components/TextInput";
 import PrimaryButton from "../../components/PrimaryButton";
 import Weekdays from "../../components/Weekdays";

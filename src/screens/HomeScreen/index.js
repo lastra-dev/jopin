@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import AddButton from "../../components/AddButton";
 import SettingBtn from "../../components/SettingBtn";
-import AppTitle from "../../components/AppTitle";
+import { AppTitle } from "../../components/Titles";
 import { ArrowLeft, ArrowRight } from "../../components/Arrows";
 import SubjectTile from "../../components/SubjectTile";
 import Modal from "../../components/Modal";

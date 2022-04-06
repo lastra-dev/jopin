@@ -1,5 +1,5 @@
 import React from "react";
-import AppTitle from "../../components/AppTitle";
+import { AppTitle } from "../../components/Titles";
 import LoginImg from "../../assets/images/login-img.svg";
 import PrimaryButton from "../../components/PrimaryButton";
 import TextInput from "../../components/TextInput";

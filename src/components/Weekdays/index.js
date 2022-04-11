@@ -5,7 +5,7 @@ const Weekdays = (props) => {
   const [value, setValue] = useState([0, 0, 0, 0, 0, 0, 0]);
 
   return (
-    <div>
+    <>
       <p className={`label fs-300 ${props.className}`}>Días</p>
       <WeekdaysInput
         value={value}
@@ -22,7 +22,7 @@ const Weekdays = (props) => {
           color: "white",
         }}
       />
-    </div>
+    </>
   );
 };
 

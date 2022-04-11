@@ -14,7 +14,7 @@ const LoginScreen = () => {
   };
 
   return (
-    <div>
+    <>
       <AppTitle />
       <div className="flex column">
         <img
@@ -45,7 +45,7 @@ const LoginScreen = () => {
           </p>
         </form>
       </div>
-    </div>
+    </>
   );
 };
 

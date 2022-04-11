@@ -20,7 +20,7 @@ const HomeScreen = () => {
   };
 
   return (
-    <div>
+    <>
       <div className="flex home-screen-navbar">
         <AddButton /> <AppTitle /> <SettingBtn />
       </div>
@@ -57,7 +57,7 @@ const HomeScreen = () => {
           name="Redes Avanzadas"
         />
       </div>
-    </div>
+    </>
   );
 };
 

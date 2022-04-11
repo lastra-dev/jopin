@@ -6,7 +6,7 @@ import "./SettingsScreen.css";
 
 const SettingsScreen = () => {
   return (
-    <div>
+    <>
       <div className="flex setting-screen-navbar">
         <Back /> <Title className="settings-title fw-500" text="Ajustes" />
       </div>
@@ -27,7 +27,7 @@ const SettingsScreen = () => {
         <OptionTile first="true" text="Restablecer horarios" />
         <OptionTile className="text-red" text="Cerrar Sesión" />
       </div>
-    </div>
+    </>
   );
 };
 

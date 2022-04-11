@@ -9,7 +9,7 @@ const WelcomeScreen = () => {
   let navigate = useNavigate();
 
   return (
-    <div>
+    <>
       <AppTitle />
       <div className="flex column">
         <img
@@ -29,7 +29,7 @@ const WelcomeScreen = () => {
           }}
         />
       </div>
-    </div>
+    </>
   );
 };
 

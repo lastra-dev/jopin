@@ -9,7 +9,7 @@ import "./AddScreen.css";
 
 const AddScreen = () => {
   return (
-    <div>
+    <>
       <div className="flex add-screen-navbar">
         <Back /> <Title className="navbar-title fw-500" text="Agregar Clase" />
       </div>
@@ -25,7 +25,7 @@ const AddScreen = () => {
         src={addIllustration}
         alt="Two persons on their laptops"
       />
-    </div>
+    </>
   );
 };
 

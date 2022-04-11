@@ -4,27 +4,15 @@ import arrowRightImg from "../../assets/images/arrow-right.svg";
 import settingArrowImg from "../../assets/images/setting-arrow-btn.svg";
 
 const ArrowLeft = () => {
-  return (
-    <div>
-      <img src={arrowLeftImg}></img>
-    </div>
-  );
+  return <img src={arrowLeftImg}></img>;
 };
 
 const ArrowRight = () => {
-  return (
-    <div>
-      <img src={arrowRightImg}></img>
-    </div>
-  );
+  return <img src={arrowRightImg}></img>;
 };
 
 const SettingArrow = () => {
-  return (
-    <div>
-      <img src={settingArrowImg}></img>
-    </div>
-  );
+  return <img src={settingArrowImg}></img>;
 };
 
 export { ArrowLeft, ArrowRight, SettingArrow };

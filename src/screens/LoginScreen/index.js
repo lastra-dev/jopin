@@ -16,33 +16,31 @@ const LoginScreen = () => {
   return (
     <>
       <AppTitle />
-      <div className="flex column">
+      <div className='flex column'>
         <img
           src={LoginImg}
-          alt="A person sitting on the window"
-          className="center login-img-margin"
+          alt='A person sitting on the window'
+          className='center login-img-margin'
         />
-        <form onSubmit={handleSubmit} className="text-center">
+        <form onSubmit={handleSubmit} className='text-center'>
           <Input
-            name="username"
-            spellCheck="false"
-            autoComplete="off"
-            autoFocus="on"
-            label="Usuario"
+            name='username'
+            spellCheck='false'
+            autoComplete='off'
+            autoFocus='on'
+            label='Username'
           />
           <Input
-            name="password"
-            label="Contraseña"
-            type="password"
-            className="mt-8"
+            name='password'
+            label='Password'
+            type='password'
+            className='mt-8'
           />
           <PrimaryButton
-            className="login-btn-spacing btn-shadow"
-            text="INICIAR SESIÓN"
+            className='login-btn-spacing btn-shadow login-btn'
+            text='LOG IN'
           />
-          <p className="subtitle text-gray">
-            Ingresa utilizando tu cuenta IEST.
-          </p>
+          <p className='subtitle text-gray'></p>
         </form>
       </div>
     </>

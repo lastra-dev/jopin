@@ -6,13 +6,13 @@ const Weekdays = (props) => {
 
   return (
     <>
-      <p className={`label fs-300 ${props.className}`}>Días</p>
+      <p className={`label fs-300 ${props.className}`}>Days</p>
       <WeekdaysInput
         value={value}
         onChange={(value) => setValue(value)}
-        days={["L", "M", "X", "J", "V", "S", "D"]}
+        days={["MO", "TU", "WE", "TH", "FR", "SA", "SU"]}
         dayStyle={{
-          padding: "4px 9px",
+          padding: "4px 4px",
           margin: "4px",
           borderRadius: "6px",
           border: "1px solid #474747",

@@ -7,6 +7,10 @@
   margin: 24px 0 16px;
 }
 
+.login-btn {
+  width: 256px;
+}
+
 .mt-8 {
   margin-top: 8px;
 }

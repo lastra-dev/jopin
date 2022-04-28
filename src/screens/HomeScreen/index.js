@@ -21,40 +21,40 @@ const HomeScreen = () => {
 
   return (
     <>
-      <div className="flex home-screen-navbar">
+      <div className='flex home-screen-navbar'>
         <AddButton /> <AppTitle /> <SettingBtn />
       </div>
       {modalIsShown && <Modal onClose={hideModal} />}
-      <div className="flex weekday">
+      <div className='flex weekday'>
         <ArrowLeft />
-        <p className="title">Lunes</p>
+        <p className='title'>Monday</p>
         <ArrowRight />
       </div>
-      <div className="flex column tiles">
+      <div className='flex column tiles'>
         <SubjectTile
           onClick={showModal}
-          hour="10:00 am"
-          name="Sistemas Operativos I"
+          hour='10:00 am'
+          name='Sistemas Operativos I'
         />
         <SubjectTile
           onClick={showModal}
-          hour="1:00 pm"
-          name="Tratamiento estadístico de la información"
+          hour='1:00 pm'
+          name='Tratamiento estadístico de la información'
         />
         <SubjectTile
           onClick={showModal}
-          hour="4:00 pm"
-          name="Desarrollo de aplicaciones web II"
+          hour='4:00 pm'
+          name='Desarrollo de aplicaciones web II'
         />
         <SubjectTile
           onClick={showModal}
-          hour="5:30 pm"
-          name="Desarrollo de Software"
+          hour='5:30 pm'
+          name='Desarrollo de Software'
         />
         <SubjectTile
           onClick={showModal}
-          hour="7:00 pm"
-          name="Redes Avanzadas"
+          hour='7:00 pm'
+          name='Redes Avanzadas'
         />
       </div>
     </>

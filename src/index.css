@@ -11,6 +11,7 @@
   --clr-orange: 21 100% 50%;
   --clr-gray: 0 0% 28%;
   --clr-red: 3 73% 59%;
+  --clr-amin: 272 76% 53%;
 
   /*
   background: var(--gradient-orange); 
@@ -152,6 +153,10 @@ button:focus {
   background-color: hsl(var(--clr-gray));
 }
 
+.bg-amin {
+  background-color: hsl(var(--clr-amin));
+}
+
 /* text */
 
 .text-dark {
@@ -180,7 +185,9 @@ button:focus {
 .text-orange {
   color: hsl(var(--clr-orange));
 }
-
+.text-amin {
+  color: hsl(var(--clr-amin));
+}
 .text-center {
   text-align: center;
 }
@@ -193,6 +200,10 @@ button:focus {
 
 .border-dark {
   border-color: var(--clr-dark);
+}
+
+.border-amin {
+  border-color: var(--clr-amin);
 }
 
 .rounded-border {

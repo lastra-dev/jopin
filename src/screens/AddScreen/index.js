@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Back from "../../components/Back";
 import { Title } from "../../components/Titles";
 import Input from "../../components/Input";
@@ -10,6 +11,7 @@ import Entry from "../../models/Entry";
 import "./AddScreen.css";
 
 const AddScreen = () => {
+  const navigate = useNavigate();
   const [name, setName] = useState('');
   const [URL, setURL] = useState('');
   const [hour, setHour] = useState('');
@@ -21,8 +23,9 @@ const AddScreen = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const entry = new Entry(0, name, URL, hour, days);
-    EntryStorage.add(0, entry);
+    const entry = new Entry(name, URL, hour, days);
+    EntryStorage.add(entry);
+    navigate(-1);
   }
 
   return (

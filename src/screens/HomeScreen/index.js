@@ -26,8 +26,7 @@ const HomeScreen = () => {
   };
 
   const fetchEntries = () => {
-    const fetchedEntries = EntryStorage.getAll();
-    setEntries([fetchedEntries]);
+    setEntries(EntryStorage.getAll());
   }
 
   const renderedEntries = entries.map((entry, index) => (
@@ -51,7 +50,7 @@ const HomeScreen = () => {
         <ArrowRight />
       </div>
       <div className="flex column tiles">
-        {fetchEntries.length > 0 ? renderedEntries : null}
+        {entries.length > 0 ? renderedEntries : null}
       </div>
     </>
   );

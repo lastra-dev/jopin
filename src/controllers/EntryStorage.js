@@ -1,5 +1,4 @@
 import Entry from "../models/Entry";
-import crypto from "crypto";
 
 class EntryStorage {
   static add(entry) {
@@ -7,7 +6,8 @@ class EntryStorage {
       throw "Error: Expected an instanceof Entry.";
     }
 
-    const id = crypto.randomUUID();
+    // NOTE: Use this until we get ID's from the DB.
+    const id = Math.floor(Math.random() * 100).toString();
     const jsonEntry = JSON.stringify(entry);
     localStorage.setItem(id, jsonEntry);
 

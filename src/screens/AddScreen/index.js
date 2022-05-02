@@ -4,7 +4,7 @@ import { Title } from "../../components/Titles";
 import Input from "../../components/Input";
 import PrimaryButton from "../../components/PrimaryButton";
 import Weekdays from "../../components/Weekdays";
-import addIllustration from "../../assets/images/addIllustration.svg";
+import AddImageWatch from "../../assets/images/add-img-watch.svg";
 import EntryStorage from '../../controllers/EntryStorage';
 import Entry from "../../models/Entry";
 import "./AddScreen.css";
@@ -38,9 +38,9 @@ const AddScreen = () => {
         <PrimaryButton className="add-btn-spacing" text="ADD" onClick={(e) => { handleSubmit(e) }} />
       </form>
       <img
-        className="center"
-        src={addIllustration}
-        alt="Two persons on their laptops"
+        className='center'
+        src={AddImageWatch}
+        alt='Two persons on their laptops'
       />
     </>
   );

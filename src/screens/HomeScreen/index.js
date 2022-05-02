@@ -26,13 +26,13 @@ const HomeScreen = () => {
   };
 
   const fetchEntries = () => {
-    const fetchedEntries = EntryStorage.get(0);
+    const fetchedEntries = EntryStorage.getAll();
     setEntries([fetchedEntries]);
   }
 
-  const renderedEntries = entries.map((entry) => (
+  const renderedEntries = entries.map((entry, index) => (
     < EntryTile
-      key={entry.id}
+      key={index}
       hour={entry.hour}
       name={entry.name}
       onClick={showModal}
@@ -41,17 +41,17 @@ const HomeScreen = () => {
 
   return (
     <>
-      <div className="flex home-screen-navbar">
+      <div className='flex home-screen-navbar'>
         <AddButton /> <AppTitle /> <SettingBtn />
       </div>
       {modalIsShown && <Modal onClose={hideModal} />}
-      <div className="flex weekday">
+      <div className='flex weekday'>
         <ArrowLeft />
-        <p className="title">Lunes</p>
+        <p className='title'>Monday</p>
         <ArrowRight />
       </div>
       <div className="flex column tiles">
-        {renderedEntries}
+        {fetchEntries.length > 0 ? renderedEntries : null}
       </div>
     </>
   );

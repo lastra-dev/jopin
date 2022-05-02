@@ -12,17 +12,13 @@ const Title = (props) => {
 const AppTitle = () => {
   return (
     <center>
-      <h1 className="text-gradient-orange fs-600">JOPIN</h1>
+      <h1 className='text-amin fs-600'>JOPIN</h1>
     </center>
   );
 };
 
 const SectionTitle = (props) => {
-  return (
-    <p className='fs-600 section-title'>
-      {props.text}
-    </p>
-  );
+  return <p className='fs-600 section-title'>{props.text}</p>;
 };
 
 export { Title, AppTitle, SectionTitle };

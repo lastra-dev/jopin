@@ -11,5 +11,5 @@
 
 .input:focus {
   border-color: transparent;
-  outline: 2px solid hsl(var(--clr-orange));
+  outline: 2px solid hsl(var(--clr-amin));
 }

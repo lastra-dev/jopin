@@ -1,21 +1,17 @@
 class Entry {
-  constructor(id, name, URL, hour, days){
-    this.id = id;
+  constructor(name, url, hour, days) {
     this.name = name;
-    this.URL = URL;
+    this.url = url;
     this.hour = hour;
     this.days = days;
   }
 
   static fromJson(jsonEntry) {
     const entry = JSON.parse(jsonEntry);
-    return new Entry(
-      entry["id"],
-      entry["name"],
-      entry["URL"],
-      entry["hour"],
-      entry["days"],
-    );
+    if (!entry.name || !entry.url || !entry.hour || !entry.days) {
+      throw "Error: JSON Entry missing fields";
+    }
+    return new Entry(entry.name, entry.url, entry.hour, entry.days);
   }
 }
 

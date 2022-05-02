@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import './SubjectTile.css'
+import './EntryTile.css'
 import ToggleSwitch from "../ToggleSwitch";
 
-const SubjectTile = (props) => {
+const EntryTile = (props) => {
   const [checked, setChecked] = useState(false);
 
   const handleChecked = toggle => {
@@ -22,4 +22,4 @@ const SubjectTile = (props) => {
   );
 };
 
-export default SubjectTile;
+export default EntryTile;

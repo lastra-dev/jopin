@@ -7,6 +7,7 @@ const Input = (props) => {
       <p className={`label fs-300`}>{props.label}</p>
       <input
         name={props.name}
+        onChange={props.onChange}
         className="rounded-border input"
         spellCheck={props.spellCheck}
         autoComplete={props.autoComplete}

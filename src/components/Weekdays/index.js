@@ -1,18 +1,15 @@
-import React, { useState } from "react";
 import { WeekdaysInput } from "react-weekdays-input";
 
 const Weekdays = (props) => {
-  const [value, setValue] = useState([0, 0, 0, 0, 0, 0, 0]);
-
   return (
     <>
       <p className={`label fs-300 ${props.className}`}>Days</p>
       <WeekdaysInput
-        value={value}
-        onChange={(value) => setValue(value)}
+        value={props.value}
+        onChange={props.setValue}
         days={["MO", "TU", "WE", "TH", "FR", "SA", "SU"]}
         dayStyle={{
-          padding: "4px 4px",
+          padding: "4px 4.5px",
           margin: "4px",
           borderRadius: "6px",
           border: "1px solid #474747",

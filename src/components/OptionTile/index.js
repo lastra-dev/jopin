@@ -11,7 +11,7 @@ const OptionTile = (props) => {
   };
 
   return (
-    <div className={props.className}>
+    <div className={props.className} onClick={props.onClick}>
       {props.first && <hr />}
       <div className="flex fs-400 option-align">
         {props.text}{" "}

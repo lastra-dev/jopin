@@ -43,7 +43,7 @@ const AddScreen = () => {
       <img
         className='center'
         src={AddImageWatch}
-        alt='Two persons on their laptops'
+        alt='A simple clock illustration.'
       />
     </>
   );

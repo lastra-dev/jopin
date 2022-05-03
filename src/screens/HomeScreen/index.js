@@ -11,13 +11,15 @@ import "./HomeScreen.css";
 const HomeScreen = () => {
   const [modalIsShown, setModalIsShown] = useState(false);
   const [entries, setEntries] = useState([]);
+  const [selectedEntry, setSelectedEntry] = useState(null);
 
   useEffect(() => {
     fetchEntries();
   }, [setEntries]);
 
-  const showModal = (e) => {
+  const showModal = (e, entry) => {
     if (e.target.id !== "subject" && e.target.id !== "subject-name") return;
+    setSelectedEntry(entry);
     setModalIsShown(true);
   };
 
@@ -27,30 +29,54 @@ const HomeScreen = () => {
 
   const fetchEntries = () => {
     setEntries(EntryStorage.getAll());
-  }
+  };
 
-  const renderedEntries = entries.map((entry, index) => (
-    < EntryTile
-      key={index}
+  const openURL = () => {
+    // TODO: Invoke openURL function
+    hideModal();
+  };
+
+  const deleteEntry = (entry) => {
+    EntryStorage.delete(entry.id);
+    fetchEntries();
+    hideModal();
+  };
+
+  const EntriesToRender = entries.map((entry) => (
+    <EntryTile
+      key={entry.id}
       hour={entry.hour}
       name={entry.name}
-      onClick={showModal}
+      onClick={(e) => {
+        showModal(e, entry);
+      }}
     />
-  ))
+  ));
+
+  const ModalToRender = (
+    <Modal
+      entry={selectedEntry}
+      onOpen={openURL}
+      onClose={hideModal}
+      onDelete={() => {
+        deleteEntry(selectedEntry);
+      }}
+    />
+  );
 
   return (
     <>
-      <div className='flex home-screen-navbar'>
+      <div className="flex home-screen-navbar">
         <AddButton /> <AppTitle /> <SettingBtn />
       </div>
-      {modalIsShown && <Modal onClose={hideModal} />}
-      <div className='flex weekday'>
+      {modalIsShown && ModalToRender}
+      <div className="flex weekday">
         <ArrowLeft />
-        <p className='title'>Monday</p>
+        <p className="title">Monday</p>
         <ArrowRight />
       </div>
       <div className="flex column tiles">
-        {entries.length > 0 ? renderedEntries : null}
+        {entries.length > 0 ? EntriesToRender : null}
       </div>
     </>
   );

@@ -1,10 +1,20 @@
 import Entry from "../models/Entry";
 
-const testEntry = new Entry("foo", "https://google.com", "17:00", [
-  "m",
-  "t",
-  "w",
-]);
+const testEntry = new Entry(
+  "foo",
+  "https://google.com",
+  "17:00",
+  [
+    1,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+  ],
+  "0",
+);
 
 test("Expect [fromJson] to return an Entry model", () => {
   const jsonTestEntry = JSON.stringify(testEntry);

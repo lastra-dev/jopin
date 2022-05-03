@@ -1,16 +1,40 @@
 import Entry from "../models/Entry";
 import EntryStorage from "../controllers/EntryStorage";
 
-const testEntry = new Entry("foo", "https://google.com", "17:00", [
-  "m",
-  "t",
-  "w",
-]);
-const testEntry2 = new Entry("bar", "https://google.com", "17:00", [
-  "m",
-  "t",
-  "w",
-]);
+const testEntry = new Entry(
+  "foo",
+  "https://google.com",
+  "17:00",
+  [
+    1,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+  ],
+);
+const testEntry2 = new Entry(
+  "bar",
+  "https://google.com",
+  "17:00",
+  [
+    1,
+    1,
+    1,
+    0,
+    0,
+    0,
+    0,
+  ],
+);
+
+test("Expect [add] to add an ID property to Entry", () => {
+  const id = EntryStorage.add(testEntry);
+  const fetchedEntry = EntryStorage.get(id);
+  expect(fetchedEntry).toMatchObject({ "id": id });
+})
 
 test("Expect [add] to save a json Entry in localStorage", () => {
   expect(typeof EntryStorage.add(testEntry)).toBe("string");

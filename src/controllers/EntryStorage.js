@@ -8,6 +8,7 @@ class EntryStorage {
 
     // NOTE: Use this until we get ID's from the DB.
     const id = Math.floor(Math.random() * 100).toString();
+    entry.id = id;
     const jsonEntry = JSON.stringify(entry);
     localStorage.setItem(id, jsonEntry);
 

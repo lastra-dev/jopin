@@ -13,10 +13,10 @@ const Modal = (props) => {
     <>
       <div className="backdrop" onClick={props.onClose} />
       <div className="modal">
-        <p className="fs-500 modal-title"> Sistemas Operativos I </p>
-        <OptionTile first="true" text="Abrir" />
-        <OptionTile text="Editar" />
-        <OptionTile className="text-red" text="Eliminar" />
+        <p className="fs-500 modal-title">Test</p>
+        <OptionTile first="true" text="Open" />
+        <OptionTile text="Edit" />
+        <OptionTile className="text-red" text="Delete" />
       </div>
     </>
   );

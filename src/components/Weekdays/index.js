@@ -6,7 +6,7 @@ const Weekdays = (props) => {
       <p className={`label fs-300 ${props.className}`}>Days</p>
       <WeekdaysInput
         value={props.value}
-        onChange={props.setValue}
+        onChange={props.onChange}
         days={["MO", "TU", "WE", "TH", "FR", "SA", "SU"]}
         dayStyle={{
           padding: "4px 4.5px",

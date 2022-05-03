@@ -5,7 +5,7 @@ import ToggleSwitch from "../ToggleSwitch";
 const EntryTile = (props) => {
   const [checked, setChecked] = useState(false);
 
-  const handleChecked = toggle => {
+  const handleCheck = toggle => {
     setChecked(toggle);
   };
 
@@ -16,7 +16,7 @@ const EntryTile = (props) => {
         <div id="subject-name" className='subject-name' >
           {props.name}
         </div>
-        < ToggleSwitch checked={checked} onChange={handleChecked} />
+        < ToggleSwitch checked={checked} onChange={handleCheck} />
       </div>
     </div>
   );

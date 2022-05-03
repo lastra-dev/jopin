@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import AddButton from "../../components/AddButton";
 import SettingBtn from "../../components/SettingBtn";
 import { AppTitle } from "../../components/Titles";
@@ -12,6 +13,7 @@ const HomeScreen = () => {
   const [modalIsShown, setModalIsShown] = useState(false);
   const [entries, setEntries] = useState([]);
   const [selectedEntry, setSelectedEntry] = useState(null);
+  let navigate = useNavigate();
 
   useEffect(() => {
     fetchEntries();
@@ -36,6 +38,10 @@ const HomeScreen = () => {
     hideModal();
   };
 
+  const editEntry = (entry) => {
+    navigate("/AddScreen", { state: { entry: entry } });
+  }
+
   const deleteEntry = (entry) => {
     EntryStorage.delete(entry.id);
     fetchEntries();
@@ -45,8 +51,8 @@ const HomeScreen = () => {
   const EntriesToRender = entries.map((entry) => (
     <EntryTile
       key={entry.id}
-      hour={entry.hour}
       name={entry.name}
+      hour={entry.hour}
       onClick={(e) => {
         showModal(e, entry);
       }}
@@ -55,12 +61,11 @@ const HomeScreen = () => {
 
   const ModalToRender = (
     <Modal
-      entry={selectedEntry}
       onOpen={openURL}
       onClose={hideModal}
-      onDelete={() => {
-        deleteEntry(selectedEntry);
-      }}
+      entry={selectedEntry}
+      onEdit={() => { editEntry(selectedEntry); }}
+      onDelete={() => { deleteEntry(selectedEntry); }}
     />
   );
 

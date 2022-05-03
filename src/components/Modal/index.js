@@ -16,7 +16,7 @@ const Modal = (props) => {
       <div className="modal">
         <p className="fs-500 modal-title">{props.entry.name}</p>
         <OptionTile first="true" text="Open" onClick={props.onOpen} />
-        <OptionTile text="Edit" />
+        <OptionTile text="Edit" onClick={props.onEdit} />
         <OptionTile className="text-red" text="Delete" onClick={props.onDelete} />
       </div>
     </>

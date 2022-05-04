@@ -3,7 +3,7 @@ import Entry from "../models/Entry";
 class EntryStorage {
   static add(entry) {
     if (!(entry instanceof Entry)) {
-      throw "Error: Expected an instanceof Entry.";
+      throw "Error: Expected an object instanceof Entry.";
     }
 
     // NOTE: Use this until we get ID's from the DB.
@@ -18,13 +18,13 @@ class EntryStorage {
   static get(id) {
     const jsonEntry = localStorage.getItem(id);
     if (!jsonEntry) {
-      throw "Error: Entry with this ID does not exists.";
+      throw "Error: Fetched object with this ID does not exists.";
     }
     try {
       const entry = Entry.fromJson(jsonEntry);
       return entry;
     } catch {
-      throw "Error: Object is not instanceof Entry."
+      throw "Error: Fetched object is not instanceof Entry."
     }
   }
 
@@ -52,11 +52,7 @@ class EntryStorage {
   }
 
   static edit(id, entry) {
-    try {
-      this.get(id);
-    } catch (notAnEntryError) {
-      throw notAnEntryError;
-    }
+    this.get(id);
     if (!(entry instanceof Entry)) {
       throw "Error: Object given is not Entry"
     }
@@ -73,6 +69,12 @@ class EntryStorage {
         this.delete(keys[i]);
       } catch { }
     }
+  }
+
+  static toggle(id) {
+    const entry = this.get(id);
+    entry.enabled = !entry.enabled;
+    this.edit(id, entry);
   }
 }
 

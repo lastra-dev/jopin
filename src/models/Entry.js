@@ -1,9 +1,10 @@
 class Entry {
-  constructor(name, url, hour, days, id = null) {
+  constructor(name, url, hour, days, enabled = true, id = null) {
     this.name = name;
     this.url = url;
     this.hour = hour;
     this.days = days;
+    this.enabled = enabled;
     this.id = id;
   }
 
@@ -14,6 +15,7 @@ class Entry {
       !entry.url ||
       !entry.hour ||
       !entry.days ||
+      entry.enabled === null ||
       !entry.id
     ) {
       throw "Error: JSON Entry missing fields";
@@ -23,6 +25,7 @@ class Entry {
       entry.url,
       entry.hour,
       entry.days,
+      entry.enabled,
       entry.id,
     );
   }

@@ -32,7 +32,7 @@ const AddScreen = () => {
 
   const handleEdit = (e) => {
     e.preventDefault();
-    const newEntry = new Entry(name, URL, hour, days, entry.id);
+    const newEntry = new Entry(name, URL, hour, days, entry.enabled, entry.id);
     EntryStorage.edit(entry.id, newEntry);
     navigate(-1);
   };

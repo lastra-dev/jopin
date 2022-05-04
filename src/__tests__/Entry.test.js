@@ -13,6 +13,7 @@ const testEntry = new Entry(
     0,
     0,
   ],
+  true,
   "0",
 );
 

@@ -14,6 +14,7 @@ const testEntry = new Entry(
     0,
     0,
   ],
+  true
 );
 const testEntry2 = new Entry(
   "bar",
@@ -28,6 +29,7 @@ const testEntry2 = new Entry(
     0,
     0,
   ],
+  false
 );
 
 test("Expect [add] to add an ID property to Entry", () => {
@@ -35,6 +37,18 @@ test("Expect [add] to add an ID property to Entry", () => {
   const fetchedEntry = EntryStorage.get(id);
   expect(fetchedEntry).toMatchObject({ "id": id });
 })
+
+test("Expect [toggle] to enable or disable an Entry", () => {
+  const id = EntryStorage.add(testEntry);
+  EntryStorage.toggle(id)
+  expect(EntryStorage.get(id).enabled).toBe(!testEntry.enabled);
+});
+
+test("Expect [toggle] to throw an Error when invalid ID", () => {
+  expect(() => {
+    EntryStorage.toggle("Not a valid Entry");
+  }).toThrow();
+});
 
 test("Expect [add] to save a json Entry in localStorage", () => {
   expect(typeof EntryStorage.add(testEntry)).toBe("string");

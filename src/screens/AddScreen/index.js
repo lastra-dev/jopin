@@ -56,6 +56,7 @@ const AddScreen = () => {
         />
         <Input
           label="URL"
+          type="url"
           value={URL}
           onChange={(e) => {
             handleChange(e, setURL);

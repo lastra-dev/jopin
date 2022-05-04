@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import './EntryTile.css'
 import ToggleSwitch from "../ToggleSwitch";
+import Formatters from "../../helpers/Formatters";
 
 const EntryTile = (props) => {
-  const [checked, setChecked] = useState(false);
+  const entry = props.entry;
+  const [checked, setChecked] = useState(entry.enabled);
 
   const handleCheck = toggle => {
     setChecked(toggle);
@@ -11,10 +13,10 @@ const EntryTile = (props) => {
 
   return (
     <div className='flex tile'>
-      <p>{props.hour}</p>
+      <p>{Formatters.formatTime(entry.hour)}</p>
       <div id="subject" onClick={props.onClick} className='border-dark rounded-border flex subject'>
         <div id="subject-name" className='subject-name' >
-          {props.name}
+          {entry.name}
         </div>
         < ToggleSwitch checked={checked} onChange={handleCheck} />
       </div>

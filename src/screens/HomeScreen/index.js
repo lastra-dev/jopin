@@ -50,9 +50,8 @@ const HomeScreen = () => {
 
   const EntriesToRender = entries.map((entry) => (
     <EntryTile
+      entry={entry}
       key={entry.id}
-      name={entry.name}
-      hour={entry.hour}
       onClick={(e) => {
         showModal(e, entry);
       }}

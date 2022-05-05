@@ -49,6 +49,7 @@ const AddScreen = () => {
       <form className="flex column add-form">
         <Input
           label="Name"
+          placeholder="Example"
           value={name}
           onChange={(e) => {
             handleChange(e, setName);
@@ -56,6 +57,7 @@ const AddScreen = () => {
         />
         <Input
           label="URL"
+          placeholder="https://example.com/"
           type="url"
           value={URL}
           onChange={(e) => {

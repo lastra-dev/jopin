@@ -6,6 +6,7 @@ const Input = (props) => {
     <div className={props.className}>
       <p className={`label fs-300`}>{props.label}</p>
       <input
+        placeholder={props.placeholder}
         value={props.value}
         name={props.name}
         onChange={props.onChange}

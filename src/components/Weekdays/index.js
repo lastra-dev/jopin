@@ -7,7 +7,7 @@ const Weekdays = (props) => {
       <WeekdaysInput
         value={props.value}
         onChange={props.onChange}
-        days={["MO", "TU", "WE", "TH", "FR", "SA", "SU"]}
+        days={["SU", "MO", "TU", "WE", "TH", "FR", "SA"]}
         dayStyle={{
           padding: "4px 4.5px",
           margin: "4px",

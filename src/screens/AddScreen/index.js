@@ -8,6 +8,7 @@ import Weekdays from "../../components/Weekdays";
 import AddImageWatch from "../../assets/images/add-img-watch.svg";
 import EntryStorage from "../../controllers/EntryStorage";
 import Entry from "../../models/Entry";
+import Schedule from "../../controllers/Schedule";
 import "./AddScreen.css";
 
 const AddScreen = () => {
@@ -27,6 +28,7 @@ const AddScreen = () => {
     e.preventDefault();
     const newEntry = new Entry(name, URL, hour, days);
     EntryStorage.add(newEntry);
+    Schedule.create(newEntry);
     navigate(-1);
   };
 

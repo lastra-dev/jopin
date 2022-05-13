@@ -29,17 +29,31 @@ class EntryStorage {
   }
 
   static getAll() {
-    let result = [];
+    let entries = [];
     const keys = Object.keys(localStorage);
 
     for (let i = 0; i < keys.length; i++) {
       try {
         const entry = this.get(keys[i]);
-        result.push(entry);
+        entries.push(entry);
       } catch { }
     }
 
+    const result = this.sortByHour(entries)
     return result;
+  }
+
+  static sortByHour(entries) {
+    entries.sort((a, b) => {
+      if (a.hour > b.hour) {
+        return 1;
+      }
+      if (a.hour < b.hour) {
+        return -1;
+      }
+      return 0;
+    })
+    return entries;
   }
 
   static delete(id) {

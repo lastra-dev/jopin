@@ -7,6 +7,7 @@ import { ArrowLeft, ArrowRight } from "../../components/Arrows";
 import EntryTile from "../../components/EntryTile";
 import Modal from "../../components/Modal";
 import EntryStorage from "../../controllers/EntryStorage";
+import Schedule from "../../controllers/Schedule";
 import "./HomeScreen.css";
 
 const HomeScreen = () => {
@@ -44,6 +45,7 @@ const HomeScreen = () => {
 
   const deleteEntry = (entry) => {
     EntryStorage.delete(entry.id);
+    Schedule.delete(entry);
     fetchEntries();
     hideModal();
   };

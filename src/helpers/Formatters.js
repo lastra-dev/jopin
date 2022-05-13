@@ -18,6 +18,14 @@ class Formatters {
     }
     return time;
   }
+
+  static timeToHour(time) {
+    return parseInt(time.split(":")[0]);
+  }
+
+  static timeToMinutes(time) {
+    return parseInt(time.split(":")[1]);
+  }
 }
 
 export default Formatters;

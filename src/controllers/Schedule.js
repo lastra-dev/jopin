@@ -1,13 +1,15 @@
 /*global chrome*/
 
+import Formatters from "../helpers/Formatters";
+
 class Schedule {
   static create(entry) {
     for (let i = 0; i < entry.days.length; i++) {
       if (entry.days[i] === 0) { continue; }
       let nearestWeekDay = this.getNearestWeekDay(i);
       nearestWeekDay.setHours(
-        this.getHour(entry.hour),
-        this.getMinutes(entry.hour),
+        Formatters.timeToHour(entry.hour),
+        Formatters.timeToMinutes(entry.hour),
         0, // seconds
       );
 
@@ -30,14 +32,6 @@ class Schedule {
     alarmInfo.when = date;
     alarmInfo.periodInMinutes = 10080; // every week
     chrome.alarms.create(url, alarmInfo);
-  }
-
-  static getHour(time) {
-    return parseInt(time.split(":")[0]);
-  }
-
-  static getMinutes(time) {
-    return parseInt(time.split(":")[1]);
   }
 }
 

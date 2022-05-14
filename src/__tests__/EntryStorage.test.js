@@ -7,10 +7,10 @@ const testEntry = new Entry(
   "17:00",
   [
     1,
-    1,
-    1,
     0,
     0,
+    1,
+    1,
     0,
     0,
   ],
@@ -21,13 +21,13 @@ const testEntry2 = new Entry(
   "https://google.com",
   "17:00",
   [
+    0,
     1,
+    0,
+    0,
     1,
+    0,
     1,
-    0,
-    0,
-    0,
-    0,
   ],
   false
 );
@@ -137,4 +137,15 @@ test("Expect [clear] to clear all entries", () => {
   EntryStorage.clear();
   const testEntries = EntryStorage.getAll();
   expect(testEntries).toStrictEqual([]);
+});
+
+test("Expect to get all from given week day", () => {
+  EntryStorage.clear();
+  EntryStorage.add(testEntry);
+  EntryStorage.add(testEntry2);
+  expect(EntryStorage.getAllFromWeekDay("Sunday")).toStrictEqual([testEntry])
+  expect(EntryStorage.getAllFromWeekDay("Wednesday")).toStrictEqual([testEntry])
+  expect(EntryStorage.getAllFromWeekDay("Monday")).toStrictEqual([testEntry2])
+  expect(EntryStorage.getAllFromWeekDay("Saturday")).toStrictEqual([testEntry2])
+  expect(EntryStorage.getAllFromWeekDay("Thursday")).toStrictEqual([testEntry, testEntry2])
 });

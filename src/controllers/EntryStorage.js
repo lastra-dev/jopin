@@ -1,4 +1,5 @@
 import Entry from "../models/Entry";
+import WeekDay from "../helpers/WeekDay";
 
 class EntryStorage {
   static add(entry) {
@@ -39,11 +40,23 @@ class EntryStorage {
       } catch { }
     }
 
-    const result = this.sortByHour(entries)
+    const result = this.sortByTime(entries)
     return result;
   }
 
-  static sortByHour(entries) {
+  static getAllFromWeekDay(weekDay) {
+    let result = [];
+    const weekDayNumber = WeekDay.weekDayToNumber(weekDay);
+    const entries = this.getAll();
+    entries.forEach(entry => {
+      if (entry.days[weekDayNumber] === 1) {
+        result.push(entry);
+      }
+    });
+    return result;
+  }
+
+  static sortByTime(entries) {
     entries.sort((a, b) => {
       if (a.hour > b.hour) {
         return 1;

@@ -1,24 +1,32 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
+
+import Modal from "../../components/Modal";
+import WeekDay from "../../helpers/WeekDay";
+import Schedule from "../../controllers/Schedule";
 import AddButton from "../../components/AddButton";
+import EntryTile from "../../components/EntryTile";
 import SettingBtn from "../../components/SettingBtn";
+import EntryStorage from "../../controllers/EntryStorage";
 import { AppTitle } from "../../components/Titles";
 import { ArrowLeft, ArrowRight } from "../../components/Arrows";
-import EntryTile from "../../components/EntryTile";
-import Modal from "../../components/Modal";
-import EntryStorage from "../../controllers/EntryStorage";
-import Schedule from "../../controllers/Schedule";
+
 import "./HomeScreen.css";
 
 const HomeScreen = () => {
-  const [modalIsShown, setModalIsShown] = useState(false);
+  const navigate = useNavigate();
   const [entries, setEntries] = useState([]);
+  const [modalIsShown, setModalIsShown] = useState(false);
   const [selectedEntry, setSelectedEntry] = useState(null);
-  let navigate = useNavigate();
+  const [selectedWeekDay, setSelectedWeekDay] = useState(WeekDay.getCurrentWeekDay());
+
+  const fetchEntries = useCallback(() => {
+    setEntries(EntryStorage.getAllFromWeekDay(selectedWeekDay));
+  }, [selectedWeekDay]);
 
   useEffect(() => {
     fetchEntries();
-  }, [setEntries]);
+  }, [fetchEntries]);
 
   const showModal = (e, entry) => {
     if (e.target.id !== "subject" && e.target.id !== "subject-name") return;
@@ -28,10 +36,6 @@ const HomeScreen = () => {
 
   const hideModal = () => {
     setModalIsShown(false);
-  };
-
-  const fetchEntries = () => {
-    setEntries(EntryStorage.getAll());
   };
 
   const openURL = () => {
@@ -50,7 +54,7 @@ const HomeScreen = () => {
     hideModal();
   };
 
-  const EntriesToRender = entries.map((entry) => (
+  const entriesToRender = entries.map((entry) => (
     <EntryTile
       entry={entry}
       key={entry.id}
@@ -60,7 +64,19 @@ const HomeScreen = () => {
     />
   ));
 
-  const ModalToRender = (
+  const setPreviousWeekDay = () => {
+    const weekDay = WeekDay.previousWeekDay(selectedWeekDay);
+    setSelectedWeekDay(weekDay);
+    fetchEntries();
+  }
+
+  const setNextWeekDay = () => {
+    const weekDay = WeekDay.nextWeekDay(selectedWeekDay);
+    setSelectedWeekDay(weekDay);
+    fetchEntries();
+  }
+
+  const modalToRender = (
     <Modal
       onOpen={openURL}
       onClose={hideModal}
@@ -75,14 +91,14 @@ const HomeScreen = () => {
       <div className="flex home-screen-navbar">
         <AddButton /> <AppTitle /> <SettingBtn />
       </div>
-      {modalIsShown && ModalToRender}
+      {modalIsShown && modalToRender}
       <div className="flex weekday">
-        <ArrowLeft />
-        <p className="title">Monday</p>
-        <ArrowRight />
+        <ArrowLeft onClick={setPreviousWeekDay} />
+        <p className="title">{selectedWeekDay}</p>
+        <ArrowRight onClick={setNextWeekDay} />
       </div>
       <div className="flex column tiles">
-        {entries.length > 0 ? EntriesToRender : null}
+        {entries.length > 0 ? entriesToRender : null}
       </div>
     </>
   );

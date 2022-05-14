@@ -38,8 +38,8 @@ const HomeScreen = () => {
     setModalIsShown(false);
   };
 
-  const openURL = () => {
-    // TODO: Invoke openURL function
+  const openUrl = (entry) => {
+    window.open(entry.url);
     hideModal();
   };
 
@@ -78,9 +78,9 @@ const HomeScreen = () => {
 
   const modalToRender = (
     <Modal
-      onOpen={openURL}
       onClose={hideModal}
       entry={selectedEntry}
+      onOpen={() => { openUrl(selectedEntry); }}
       onEdit={() => { editEntry(selectedEntry); }}
       onDelete={() => { deleteEntry(selectedEntry); }}
     />

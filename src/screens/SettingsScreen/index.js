@@ -1,10 +1,19 @@
 import React from "react";
+
 import Back from "../../components/Back";
-import { SectionTitle, Title } from "../../components/Titles";
+import Schedule from "../../controllers/Schedule";
 import OptionTile from "../../components/OptionTile";
+import EntryStorage from "../../controllers/EntryStorage";
+import { SectionTitle, Title } from "../../components/Titles";
+
 import "./SettingsScreen.css";
 
 const SettingsScreen = () => {
+  const deleteSchedules = () => {
+    Schedule.deleteAll();
+    EntryStorage.clear();
+  }
+
   return (
     <>
       <div className='flex setting-screen-navbar'>
@@ -24,7 +33,7 @@ const SettingsScreen = () => {
 
       <div className='mt-32'>
         <SectionTitle text='Account' />
-        <OptionTile first='true' text='Reset Schedule' />
+        <OptionTile onClick={deleteSchedules} first='true' text='Delete Schedules' />
         <OptionTile className='text-red' text='Sign out' />
       </div>
     </>

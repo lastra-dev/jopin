@@ -11,8 +11,8 @@ const Back = () => {
         navigate(-1);
       }}
     >
-      {/* navigate(-1) permite navegar a la pantalla anterior */}
-      <img src={backImg} />
+      {/* navigate(-1) lets you pop the screen */}
+      <img className="pointer" src={backImg} />
     </div>
   );
 };

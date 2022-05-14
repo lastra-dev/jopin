@@ -11,7 +11,7 @@ const SettingBtn = () => {
         navigate("/SettingsScreen");
       }}
     >
-      <img src={settingBtn}></img>
+      <img className="pointer" src={settingBtn}></img>
     </div>
   );
 };

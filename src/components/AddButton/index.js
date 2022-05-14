@@ -11,7 +11,7 @@ const AddButton = () => {
         navigate("/AddScreen");
       }}
     >
-      <img src={addBtn} alt="Add Button"></img>
+      <img className="pointer" src={addBtn} alt="Add Button"></img>
     </div>
   );
 };

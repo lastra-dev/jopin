@@ -9,7 +9,7 @@
 }
 
 .weekday {
-  margin-top: 32px;
+  margin: 32px 62px 0px;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 }

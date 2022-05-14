@@ -4,11 +4,11 @@ import arrowRightImg from "../../assets/images/arrow-right.svg";
 import settingArrowImg from "../../assets/images/setting-arrow-btn.svg";
 
 const ArrowLeft = (props) => {
-  return <img src={arrowLeftImg} onClick={props.onClick}></img>;
+  return <img className="pointer" src={arrowLeftImg} onClick={props.onClick}></img>;
 };
 
 const ArrowRight = (props) => {
-  return <img src={arrowRightImg} onClick={props.onClick}></img>;
+  return <img className="pointer" src={arrowRightImg} onClick={props.onClick}></img>;
 };
 
 const SettingArrow = () => {

@@ -37,7 +37,7 @@ class Auth {
       } catch (e) {
         console.log(e);
       }
-    }else{
+    } else {
       console.log("Passwords not matching.")
     }
   }

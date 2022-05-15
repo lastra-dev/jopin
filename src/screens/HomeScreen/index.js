@@ -5,11 +5,12 @@ import Modal from "../../components/Modal";
 import WeekDay from "../../helpers/WeekDay";
 import Database from "../../models/Database";
 import Schedule from "../../controllers/Schedule";
+import { AppTitle } from "../../components/Titles";
 import AddButton from "../../components/AddButton";
 import EntryTile from "../../components/EntryTile";
 import SettingBtn from "../../components/SettingBtn";
 import EntryStorage from "../../controllers/EntryStorage";
-import { AppTitle } from "../../components/Titles";
+import LoadingSpinner from "../../components/LoadingSpinner";
 import { ArrowLeft, ArrowRight } from "../../components/Arrows";
 
 import "./HomeScreen.css";
@@ -17,6 +18,8 @@ import "./HomeScreen.css";
 const HomeScreen = () => {
   const navigate = useNavigate();
   const [entries, setEntries] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [firstLoad, setFirstLoad] = useState(true);
   const [modalIsShown, setModalIsShown] = useState(false);
   const [selectedEntry, setSelectedEntry] = useState(null);
   const [selectedWeekDay, setSelectedWeekDay] = useState(
@@ -27,9 +30,26 @@ const HomeScreen = () => {
     setEntries(EntryStorage.getAllFromWeekDay(selectedWeekDay));
   }, [selectedWeekDay]);
 
+  const showLoadingSpinner = useCallback(() => {
+    setLoading(true);
+  }, []);
+
+  const hideLoadingSpinner = useCallback(() => {
+    setLoading(false);
+  }, []);
+
   useEffect(() => {
-    fetchEntries();
-  }, [fetchEntries]);
+    if (firstLoad) {
+      showLoadingSpinner();
+      setTimeout(() => {
+        fetchEntries();
+        hideLoadingSpinner();
+        setFirstLoad(false);
+      }, 1000)
+    } else {
+      fetchEntries();
+    }
+  }, [fetchEntries, showLoadingSpinner, hideLoadingSpinner, firstLoad]);
 
   const showModal = (e, entry) => {
     if (e.target.id !== "subject" && e.target.id !== "subject-name") return;
@@ -108,7 +128,8 @@ const HomeScreen = () => {
         <ArrowRight onClick={setNextWeekDay} />
       </div>
       <div className="flex column tiles">
-        {entries.length > 0 ? entriesToRender : null}
+        {loading ? <LoadingSpinner /> :
+          entries.length > 0 ? entriesToRender : null}
       </div>
     </>
   );

@@ -6,7 +6,7 @@ const testEntry = new Entry(
   "17:00",
   [1, 1, 1, 0, 0, 0, 0],
   true,
-  "0"
+  "0",
 );
 
 test("Expect [fromJson] to return an Entry model", () => {

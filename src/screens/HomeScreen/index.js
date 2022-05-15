@@ -61,6 +61,7 @@ const HomeScreen = () => {
   };
 
   const deleteEntry = (entry) => {
+    Database.deleteSchedule(entry.id);
     EntryStorage.delete(entry.id);
     Schedule.delete(entry);
     fetchEntries();

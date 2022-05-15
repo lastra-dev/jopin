@@ -18,19 +18,20 @@ const AddScreen = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const entry = location.state ? location.state.entry : null;
-  const [URL, setURL] = useState(entry ? entry.url : "");
+  const [url, setUrl] = useState(entry ? entry.url : "");
   const [name, setName] = useState(entry ? entry.name : "");
-  const [hour, setHour] = useState(entry ? entry.hour : "");
+  const [time, setTime] = useState(entry ? entry.time : "");
   const [days, setDays] = useState(entry ? entry.days : [0, 0, 0, 0, 0, 0, 0]);
 
   const handleChange = (e, setInput) => {
     setInput(e.target.value);
   };
 
-  const handleAdd = (e) => {
+  const handleAdd = async (e) => {
     e.preventDefault();
-    const newEntry = new Entry(name, URL, hour, days);
-    Database.createSchedule(newEntry);
+    const newEntry = new Entry(name, url, time, days);
+    const id = await Database.createSchedule(newEntry);
+    newEntry.id = id;
     EntryStorage.add(newEntry);
     Schedule.create(newEntry);
     navigate(-1);
@@ -38,9 +39,10 @@ const AddScreen = () => {
 
   const handleEdit = (e) => {
     e.preventDefault();
-    const newEntry = new Entry(name, URL, hour, days, entry.enabled, entry.id);
+    const newEntry = new Entry(name, url, time, days, entry.enabled, entry.id);
+    Database.updateSchedule(newEntry);
     Schedule.edit(entry.id, newEntry);
-    EntryStorage.edit(entry.id, newEntry);
+    EntryStorage.edit(newEntry);
     navigate(-1);
   };
 
@@ -66,17 +68,17 @@ const AddScreen = () => {
           label="URL"
           placeholder="https://example.com/"
           type="url"
-          value={URL}
+          value={url}
           onChange={(e) => {
-            handleChange(e, setURL);
+            handleChange(e, setUrl);
           }}
         />
         <Input
-          label="Hour"
+          label="Time"
           type="time"
-          value={hour}
+          value={time}
           onChange={(e) => {
-            handleChange(e, setHour);
+            handleChange(e, setTime);
           }}
         />
         <Weekdays value={days} onChange={setDays} />

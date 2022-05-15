@@ -6,26 +6,22 @@ const testEntry = new Entry(
   "https://google.com",
   "17:00",
   [1, 0, 0, 1, 1, 0, 0],
-  true
+  true,
+  "0",
 );
 const testEntry2 = new Entry(
   "bar",
   "https://google.com",
-  "17:00",
+  "18:00",
   [0, 1, 0, 0, 1, 0, 1],
-  false
+  false,
+  "1",
 );
 
-test("Expect [add] to add an ID property to Entry", () => {
-  const id = EntryStorage.add(testEntry);
-  const fetchedEntry = EntryStorage.get(id);
-  expect(fetchedEntry).toMatchObject({ id: id });
-});
-
 test("Expect [toggle] to enable or disable an Entry", () => {
-  const id = EntryStorage.add(testEntry);
-  EntryStorage.toggle(id);
-  expect(EntryStorage.get(id).enabled).toBe(!testEntry.enabled);
+  EntryStorage.add(testEntry);
+  EntryStorage.toggle(testEntry.id);
+  expect(EntryStorage.get(testEntry.id).enabled).toBe(!testEntry.enabled);
 });
 
 test("Expect [toggle] to throw an Error when invalid ID", () => {
@@ -46,8 +42,8 @@ test("Expect [add] to throw when not an Entry", () => {
 });
 
 test("Expect [get] to recieve an Entry from localStorage", () => {
-  const testEntryId = EntryStorage.add(testEntry);
-  expect(EntryStorage.get(testEntryId)).toStrictEqual(testEntry);
+  EntryStorage.add(testEntry);
+  expect(EntryStorage.get(testEntry.id)).toStrictEqual(testEntry);
 });
 
 test("Expect [get] to throw when Entry doesn't exists", () => {
@@ -72,9 +68,9 @@ test("Expect [getAll] to recieve a list with all entries", () => {
 });
 
 test("Expect [delete] to delete an Entry", () => {
-  const id = EntryStorage.add(testEntry);
-  EntryStorage.delete(id);
-  expect(localStorage.getItem(id)).toBeNull();
+  EntryStorage.add(testEntry);
+  EntryStorage.delete(testEntry.id);
+  expect(localStorage.getItem(testEntry.id)).toBeNull();
 });
 
 test("Expect [delete] to throw when id is not an Entry", () => {
@@ -84,14 +80,14 @@ test("Expect [delete] to throw when id is not an Entry", () => {
 });
 
 test("Expect [edit] to edit an Entry", () => {
-  const id = EntryStorage.add(testEntry);
+  EntryStorage.add(testEntry);
 
   const testEditEntry = testEntry;
   testEditEntry.name = "bar";
 
-  EntryStorage.edit(id, testEditEntry);
+  EntryStorage.edit(testEditEntry);
 
-  const editedEntry = EntryStorage.get(id);
+  const editedEntry = EntryStorage.get(testEntry.id);
   expect(editedEntry).toStrictEqual(testEditEntry);
   expect(editedEntry.name).toBe("bar");
 });
@@ -103,9 +99,9 @@ test("Expect [edit] to throw if Entry does not exists", () => {
 });
 
 test("Expect [edit] to throw if given invalid Entry", () => {
-  const id = EntryStorage.add(testEntry);
+  EntryStorage.add(testEntry);
   expect(() => {
-    EntryStorage.edit(id, "Not a valid Entry");
+    EntryStorage.edit(testEntry.id, "Not a valid Entry");
   }).toThrow();
 });
 
@@ -139,4 +135,8 @@ test("Expect to get all from given week day", () => {
     testEntry,
     testEntry2,
   ]);
+});
+
+test("Expect to sort entries by time", () => {
+  expect(EntryStorage.sortByTime([testEntry2, testEntry])).toStrictEqual([testEntry, testEntry2]);
 });

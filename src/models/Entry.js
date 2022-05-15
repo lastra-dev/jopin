@@ -1,8 +1,8 @@
 class Entry {
-  constructor(name, url, hour, days, enabled = true, id = null) {
+  constructor(name, url, time, days, enabled = true, id = null) {
     this.name = name;
     this.url = url;
-    this.hour = hour;
+    this.time = time;
     this.days = days;
     this.enabled = enabled;
     this.id = id;
@@ -11,19 +11,19 @@ class Entry {
   static fromJson(jsonEntry) {
     const entry = JSON.parse(jsonEntry);
     if (
-      !entry.name ||
-      !entry.url ||
-      !entry.hour ||
-      !entry.days ||
-      entry.enabled === null ||
-      !entry.id
+      !entry.hasOwnProperty('name') ||
+      !entry.hasOwnProperty('url') ||
+      !entry.hasOwnProperty('time') ||
+      !entry.hasOwnProperty('days') ||
+      !entry.hasOwnProperty('enabled') ||
+      !entry.hasOwnProperty('id')
     ) {
       throw "Error: JSON Entry missing fields";
     }
     return new Entry(
       entry.name,
       entry.url,
-      entry.hour,
+      entry.time,
       entry.days,
       entry.enabled,
       entry.id

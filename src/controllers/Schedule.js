@@ -11,8 +11,8 @@ class Schedule {
       }
       let nearestWeekDayDate = this.getDateOfNearestWeekDay(i);
       nearestWeekDayDate.setHours(
-        Formatters.timeToHour(entry.hour),
-        Formatters.timeToMinutes(entry.hour),
+        Formatters.timeToHour(entry.time),
+        Formatters.timeToMinutes(entry.time),
         0 // seconds
       );
 

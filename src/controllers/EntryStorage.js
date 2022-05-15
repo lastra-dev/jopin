@@ -7,13 +7,10 @@ class EntryStorage {
       throw "Error: Expected an object instanceof Entry.";
     }
 
-    // NOTE: Use this until we get ID's from the DB.
-    const id = Math.floor(Math.random() * 100).toString();
-    entry.id = id;
     const jsonEntry = JSON.stringify(entry);
-    localStorage.setItem(id, jsonEntry);
+    localStorage.setItem(entry.id, jsonEntry);
 
-    return id;
+    return entry.id;
   }
 
   static get(id) {
@@ -37,7 +34,7 @@ class EntryStorage {
       try {
         const entry = this.get(keys[i]);
         entries.push(entry);
-      } catch {}
+      } catch { }
     }
 
     const result = this.sortByTime(entries);
@@ -58,10 +55,10 @@ class EntryStorage {
 
   static sortByTime(entries) {
     entries.sort((a, b) => {
-      if (a.hour > b.hour) {
+      if (a.time > b.time) {
         return 1;
       }
-      if (a.hour < b.hour) {
+      if (a.time < b.time) {
         return -1;
       }
       return 0;
@@ -78,14 +75,14 @@ class EntryStorage {
     localStorage.removeItem(id);
   }
 
-  static edit(id, entry) {
-    this.get(id);
+  static edit(entry) {
+    this.get(entry.id);
     if (!(entry instanceof Entry)) {
       throw "Error: Object given is not Entry";
     }
 
     const jsonEntry = JSON.stringify(entry);
-    localStorage.setItem(id, jsonEntry);
+    localStorage.setItem(entry.id, jsonEntry);
   }
 
   static clear() {
@@ -94,14 +91,14 @@ class EntryStorage {
     for (let i = 0; i < keys.length; i++) {
       try {
         this.delete(keys[i]);
-      } catch {}
+      } catch { }
     }
   }
 
   static toggle(id) {
     const entry = this.get(id);
     entry.enabled = !entry.enabled;
-    this.edit(id, entry);
+    this.edit(entry);
   }
 }
 

@@ -15,7 +15,7 @@ const EntryTile = (props) => {
 
   return (
     <div className="flex tile">
-      <p>{Formatters.formatTime(entry.hour)}</p>
+      <p>{Formatters.formatTime(entry.time)}</p>
       <div
         id="subject"
         onClick={props.onClick}

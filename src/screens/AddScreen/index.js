@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import Back from "../../components/Back";
-import { Title } from "../../components/Titles";
-import Input from "../../components/Input";
-import PrimaryButton from "../../components/PrimaryButton";
-import Weekdays from "../../components/Weekdays";
-import AddImageWatch from "../../assets/images/add-img-watch.svg";
-import EntryStorage from "../../controllers/EntryStorage";
+
 import Entry from "../../models/Entry";
+import Back from "../../components/Back";
+import Input from "../../components/Input";
+import Database from "../../models/Database";
+import { Title } from "../../components/Titles";
+import Weekdays from "../../components/Weekdays";
 import Schedule from "../../controllers/Schedule";
+import EntryStorage from "../../controllers/EntryStorage";
+import PrimaryButton from "../../components/PrimaryButton";
+import AddImageWatch from "../../assets/images/add-img-watch.svg";
+
 import "./AddScreen.css";
 
 const AddScreen = () => {
@@ -27,6 +30,7 @@ const AddScreen = () => {
   const handleAdd = (e) => {
     e.preventDefault();
     const newEntry = new Entry(name, URL, hour, days);
+    Database.createSchedule(newEntry);
     EntryStorage.add(newEntry);
     Schedule.create(newEntry);
     navigate(-1);

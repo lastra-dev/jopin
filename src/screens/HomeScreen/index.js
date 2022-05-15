@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import Modal from "../../components/Modal";
 import WeekDay from "../../helpers/WeekDay";
+import Database from "../../models/Database";
 import Schedule from "../../controllers/Schedule";
 import AddButton from "../../components/AddButton";
 import EntryTile from "../../components/EntryTile";
@@ -22,12 +23,22 @@ const HomeScreen = () => {
     WeekDay.getCurrentWeekDay()
   );
 
+  const [schedules, setSchedules] = useState([]);
+
   const fetchEntries = useCallback(() => {
     setEntries(EntryStorage.getAllFromWeekDay(selectedWeekDay));
   }, [selectedWeekDay]);
 
   useEffect(() => {
     fetchEntries();
+
+    const getData = async () => {
+      setSchedules(await Database.getSchedules());
+    }
+
+    getData();
+
+    console.log(schedules);
   }, [fetchEntries]);
 
   const showModal = (e, entry) => {

@@ -18,7 +18,9 @@ const HomeScreen = () => {
   const [entries, setEntries] = useState([]);
   const [modalIsShown, setModalIsShown] = useState(false);
   const [selectedEntry, setSelectedEntry] = useState(null);
-  const [selectedWeekDay, setSelectedWeekDay] = useState(WeekDay.getCurrentWeekDay());
+  const [selectedWeekDay, setSelectedWeekDay] = useState(
+    WeekDay.getCurrentWeekDay()
+  );
 
   const fetchEntries = useCallback(() => {
     setEntries(EntryStorage.getAllFromWeekDay(selectedWeekDay));
@@ -45,7 +47,7 @@ const HomeScreen = () => {
 
   const editEntry = (entry) => {
     navigate("/AddScreen", { state: { entry: entry } });
-  }
+  };
 
   const deleteEntry = (entry) => {
     EntryStorage.delete(entry.id);
@@ -68,21 +70,27 @@ const HomeScreen = () => {
     const weekDay = WeekDay.previousWeekDay(selectedWeekDay);
     setSelectedWeekDay(weekDay);
     fetchEntries();
-  }
+  };
 
   const setNextWeekDay = () => {
     const weekDay = WeekDay.nextWeekDay(selectedWeekDay);
     setSelectedWeekDay(weekDay);
     fetchEntries();
-  }
+  };
 
   const modalToRender = (
     <Modal
       onClose={hideModal}
       entry={selectedEntry}
-      onOpen={() => { openUrl(selectedEntry); }}
-      onEdit={() => { editEntry(selectedEntry); }}
-      onDelete={() => { deleteEntry(selectedEntry); }}
+      onOpen={() => {
+        openUrl(selectedEntry);
+      }}
+      onEdit={() => {
+        editEntry(selectedEntry);
+      }}
+      onDelete={() => {
+        deleteEntry(selectedEntry);
+      }}
     />
   );
 

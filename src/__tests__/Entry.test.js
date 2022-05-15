@@ -4,17 +4,9 @@ const testEntry = new Entry(
   "foo",
   "https://google.com",
   "17:00",
-  [
-    1,
-    1,
-    1,
-    0,
-    0,
-    0,
-    0,
-  ],
+  [1, 1, 1, 0, 0, 0, 0],
   true,
-  "0",
+  "0"
 );
 
 test("Expect [fromJson] to return an Entry model", () => {

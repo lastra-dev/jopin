@@ -1,7 +1,7 @@
 import WeekDay from "../helpers/WeekDay";
 
 beforeAll(() => {
-  jest.useFakeTimers('modern');
+  jest.useFakeTimers("modern");
 });
 
 test("Expect to get the week day number", () => {
@@ -15,25 +15,25 @@ test("Expect to get the week day number", () => {
 });
 
 test("Expect to get week day from week day number", () => {
-  jest.setSystemTime(new Date('December 28, 2000 22:50:00')) // Thursday
+  jest.setSystemTime(new Date("December 28, 2000 22:50:00")); // Thursday
   expect(WeekDay.getCurrentWeekDay()).toBe("Thursday");
 
-  jest.setSystemTime(new Date('December 29, 2000 22:50:00')) // Thursday
+  jest.setSystemTime(new Date("December 29, 2000 22:50:00")); // Thursday
   expect(WeekDay.getCurrentWeekDay()).toBe("Friday");
 
-  jest.setSystemTime(new Date('December 30, 2000 22:50:00')) // Thursday
+  jest.setSystemTime(new Date("December 30, 2000 22:50:00")); // Thursday
   expect(WeekDay.getCurrentWeekDay()).toBe("Saturday");
 
-  jest.setSystemTime(new Date('December 31, 2000 22:50:00')) // Thursday
+  jest.setSystemTime(new Date("December 31, 2000 22:50:00")); // Thursday
   expect(WeekDay.getCurrentWeekDay()).toBe("Sunday");
 
-  jest.setSystemTime(new Date('January 01, 2001 22:50:00')) // Thursday
+  jest.setSystemTime(new Date("January 01, 2001 22:50:00")); // Thursday
   expect(WeekDay.getCurrentWeekDay()).toBe("Monday");
 
-  jest.setSystemTime(new Date('January 02, 2001 22:50:00')) // Thursday
+  jest.setSystemTime(new Date("January 02, 2001 22:50:00")); // Thursday
   expect(WeekDay.getCurrentWeekDay()).toBe("Tuesday");
 
-  jest.setSystemTime(new Date('January 03, 2001 22:50:00')) // Thursday
+  jest.setSystemTime(new Date("January 03, 2001 22:50:00")); // Thursday
   expect(WeekDay.getCurrentWeekDay()).toBe("Wednesday");
 });
 

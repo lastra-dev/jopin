@@ -26,7 +26,7 @@ class Entry {
       entry.hour,
       entry.days,
       entry.enabled,
-      entry.id,
+      entry.id
     );
   }
 }

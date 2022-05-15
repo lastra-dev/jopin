@@ -11,17 +11,17 @@ const WelcomeScreen = () => {
   return (
     <>
       <AppTitle />
-      <div className='flex column'>
+      <div className="flex column">
         <img
           src={welcomeImg}
-          alt='Two people chatting'
-          className='center welcome-img'
+          alt="Two people chatting"
+          className="center welcome-img"
         />
-        <p className='title welcome-title'>Welcome</p>
-        <p className='subtitle text-gray'>Let us handle your links!</p>
+        <p className="title welcome-title">Welcome</p>
+        <p className="subtitle text-gray">Let us handle your links!</p>
         <PrimaryButton
-          className='start-button btn-shadow'
-          text='START'
+          className="start-button btn-shadow"
+          text="START"
           onClick={() => {
             navigate("/LoginScreen", { replace: true });
           }}

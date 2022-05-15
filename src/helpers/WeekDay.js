@@ -2,7 +2,7 @@ class WeekDay {
   // By Gabriel Kohen
   // https://stackoverflow.com/questions/9677757/how-to-get-the-day-of-the-week-from-the-day-number-in-javascript
   static getCurrentWeekDay() {
-    return new Date().toLocaleString('en-us', { weekday: 'long' });
+    return new Date().toLocaleString("en-us", { weekday: "long" });
   }
 
   static nextWeekDay(weekDay) {

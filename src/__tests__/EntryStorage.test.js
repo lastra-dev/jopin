@@ -5,42 +5,26 @@ const testEntry = new Entry(
   "foo",
   "https://google.com",
   "17:00",
-  [
-    1,
-    0,
-    0,
-    1,
-    1,
-    0,
-    0,
-  ],
+  [1, 0, 0, 1, 1, 0, 0],
   true
 );
 const testEntry2 = new Entry(
   "bar",
   "https://google.com",
   "17:00",
-  [
-    0,
-    1,
-    0,
-    0,
-    1,
-    0,
-    1,
-  ],
+  [0, 1, 0, 0, 1, 0, 1],
   false
 );
 
 test("Expect [add] to add an ID property to Entry", () => {
   const id = EntryStorage.add(testEntry);
   const fetchedEntry = EntryStorage.get(id);
-  expect(fetchedEntry).toMatchObject({ "id": id });
-})
+  expect(fetchedEntry).toMatchObject({ id: id });
+});
 
 test("Expect [toggle] to enable or disable an Entry", () => {
   const id = EntryStorage.add(testEntry);
-  EntryStorage.toggle(id)
+  EntryStorage.toggle(id);
   expect(EntryStorage.get(id).enabled).toBe(!testEntry.enabled);
 });
 
@@ -143,9 +127,16 @@ test("Expect to get all from given week day", () => {
   EntryStorage.clear();
   EntryStorage.add(testEntry);
   EntryStorage.add(testEntry2);
-  expect(EntryStorage.getAllFromWeekDay("Sunday")).toStrictEqual([testEntry])
-  expect(EntryStorage.getAllFromWeekDay("Wednesday")).toStrictEqual([testEntry])
-  expect(EntryStorage.getAllFromWeekDay("Monday")).toStrictEqual([testEntry2])
-  expect(EntryStorage.getAllFromWeekDay("Saturday")).toStrictEqual([testEntry2])
-  expect(EntryStorage.getAllFromWeekDay("Thursday")).toStrictEqual([testEntry, testEntry2])
+  expect(EntryStorage.getAllFromWeekDay("Sunday")).toStrictEqual([testEntry]);
+  expect(EntryStorage.getAllFromWeekDay("Wednesday")).toStrictEqual([
+    testEntry,
+  ]);
+  expect(EntryStorage.getAllFromWeekDay("Monday")).toStrictEqual([testEntry2]);
+  expect(EntryStorage.getAllFromWeekDay("Saturday")).toStrictEqual([
+    testEntry2,
+  ]);
+  expect(EntryStorage.getAllFromWeekDay("Thursday")).toStrictEqual([
+    testEntry,
+    testEntry2,
+  ]);
 });

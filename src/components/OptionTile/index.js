@@ -14,7 +14,7 @@ const OptionTile = (props) => {
     <div className={`pointer ${props.className}`} onClick={props.onClick}>
       {props.first && <hr />}
       <div className="flex fs-400 option-align">
-        {props.text}{" "}
+        {props.text}
         {props.showToggle ? (
           <ToggleSwitch
             small="true"

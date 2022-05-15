@@ -25,7 +25,7 @@ class EntryStorage {
       const entry = Entry.fromJson(jsonEntry);
       return entry;
     } catch {
-      throw "Error: Fetched object is not instanceof Entry."
+      throw "Error: Fetched object is not instanceof Entry.";
     }
   }
 
@@ -37,10 +37,10 @@ class EntryStorage {
       try {
         const entry = this.get(keys[i]);
         entries.push(entry);
-      } catch { }
+      } catch {}
     }
 
-    const result = this.sortByTime(entries)
+    const result = this.sortByTime(entries);
     return result;
   }
 
@@ -48,7 +48,7 @@ class EntryStorage {
     let result = [];
     const weekDayNumber = WeekDay.weekDayToNumber(weekDay);
     const entries = this.getAll();
-    entries.forEach(entry => {
+    entries.forEach((entry) => {
       if (entry.days[weekDayNumber] === 1) {
         result.push(entry);
       }
@@ -65,7 +65,7 @@ class EntryStorage {
         return -1;
       }
       return 0;
-    })
+    });
     return entries;
   }
 
@@ -81,7 +81,7 @@ class EntryStorage {
   static edit(id, entry) {
     this.get(id);
     if (!(entry instanceof Entry)) {
-      throw "Error: Object given is not Entry"
+      throw "Error: Object given is not Entry";
     }
 
     const jsonEntry = JSON.stringify(entry);
@@ -94,7 +94,7 @@ class EntryStorage {
     for (let i = 0; i < keys.length; i++) {
       try {
         this.delete(keys[i]);
-      } catch { }
+      } catch {}
     }
   }
 

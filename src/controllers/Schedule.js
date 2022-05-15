@@ -6,17 +6,22 @@ import EntryStorage from "../controllers/EntryStorage";
 class Schedule {
   static create(entry) {
     for (let i = 0; i < entry.days.length; i++) {
-      if (entry.days[i] === 0) { continue; }
+      if (entry.days[i] === 0) {
+        continue;
+      }
       let nearestWeekDayDate = this.getDateOfNearestWeekDay(i);
       nearestWeekDayDate.setHours(
         Formatters.timeToHour(entry.hour),
         Formatters.timeToMinutes(entry.hour),
-        0, // seconds
+        0 // seconds
       );
 
       // Alarms need different names
       // so we differentiate them with the week day number
-      this.createAlarm(`${entry.url} weekDay:${i}`, nearestWeekDayDate.getTime());
+      this.createAlarm(
+        `${entry.url} weekDay:${i}`,
+        nearestWeekDayDate.getTime()
+      );
     }
   }
 
@@ -28,12 +33,14 @@ class Schedule {
 
   static delete(entry) {
     for (let i = 0; i < entry.days.length; i++) {
-      if (entry.days[i] === 0) { continue; }
+      if (entry.days[i] === 0) {
+        continue;
+      }
       chrome.alarms.clear(`${entry.url} weekDay:${i}`);
     }
   }
 
-  static deleteAll(){
+  static deleteAll() {
     chrome.alarms.clearAll();
   }
 
@@ -41,7 +48,9 @@ class Schedule {
   // https://stackoverflow.com/questions/1579010/get-next-date-from-weekday-in-javascript
   static getDateOfNearestWeekDay(weekDayNumber) {
     let result = new Date();
-    result.setDate(result.getDate() + (weekDayNumber + (7 - result.getDay())) % 7);
+    result.setDate(
+      result.getDate() + ((weekDayNumber + (7 - result.getDay())) % 7)
+    );
     return result;
   }
 

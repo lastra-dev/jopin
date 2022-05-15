@@ -3,16 +3,22 @@ import {
   onAuthStateChanged,
   signOut,
 } from "firebase/auth";
+
 import { auth } from "./firebase-config";
+import Schedule from "../controllers/Schedule";
+import EntryStorage from "../controllers/EntryStorage";
 
 class Auth {
   static async signIn(email, password) {
-    const userCredentials = await signInWithEmailAndPassword(
-      auth,
-      email,
-      password
-    );
-    console.log(userCredentials);
+    try {
+      await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   static async monitorAuthState(onSignIn, onSignOut) {
@@ -29,6 +35,8 @@ class Auth {
 
   static async logout() {
     await signOut(auth);
+    Schedule.deleteAll();
+    EntryStorage.clear();
   }
 
   static getUserId() {

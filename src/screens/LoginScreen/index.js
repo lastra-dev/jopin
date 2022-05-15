@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
 
 import Auth from "../../services/Auth";
 import Input from "../../components/Input";
@@ -10,21 +9,8 @@ import PrimaryButton from "../../components/PrimaryButton";
 import "./LoginScreen.css";
 
 const LoginScreen = () => {
-  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  const loadHomeScreen = useCallback(() => {
-    navigate("/HomeScreen", { replace: true });
-  }, [navigate]);
-
-  const loadSignIn = useCallback(() => {
-    navigate("/LoginScreen", { replace: true });
-  }, [navigate]);
-
-  useEffect(() => {
-    Auth.monitorAuthState(loadHomeScreen, loadSignIn);
-  }, [loadHomeScreen, loadSignIn]);
 
   const handleChange = (e, setInput) => {
     setInput(e.target.value);

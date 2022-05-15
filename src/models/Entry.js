@@ -1,9 +1,10 @@
 class Entry {
-  constructor(name, url, time, days, enabled = true, id = null) {
+  constructor(name, url, time, days, ownerId, enabled = true, id = null) {
     this.name = name;
     this.url = url;
     this.time = time;
     this.days = days;
+    this.ownerId = ownerId;
     this.enabled = enabled;
     this.id = id;
   }
@@ -15,6 +16,7 @@ class Entry {
       !entry.hasOwnProperty('url') ||
       !entry.hasOwnProperty('time') ||
       !entry.hasOwnProperty('days') ||
+      !entry.hasOwnProperty('ownerId') ||
       !entry.hasOwnProperty('enabled') ||
       !entry.hasOwnProperty('id')
     ) {
@@ -25,6 +27,7 @@ class Entry {
       entry.url,
       entry.time,
       entry.days,
+      entry.ownerId,
       entry.enabled,
       entry.id
     );

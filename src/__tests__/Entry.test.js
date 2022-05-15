@@ -5,8 +5,9 @@ const testEntry = new Entry(
   "https://google.com",
   "17:00",
   [1, 1, 1, 0, 0, 0, 0],
+  "ownerId",
   true,
-  "0",
+  "id"
 );
 
 test("Expect [fromJson] to return an Entry model", () => {

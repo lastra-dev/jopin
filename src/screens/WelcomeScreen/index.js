@@ -1,12 +1,27 @@
-import React from "react";
-import { AppTitle } from "../../components/Titles";
-import welcomeImg from "../../assets/images/welcome-img.svg";
-import PrimaryButton from "../../components/PrimaryButton";
+import React, { useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
+
+import Auth from "../../services/Auth";
+import { AppTitle } from "../../components/Titles";
+import PrimaryButton from "../../components/PrimaryButton";
+
+import welcomeImg from "../../assets/images/welcome-img.svg";
 import "./WelcomeScreen.css";
 
 const WelcomeScreen = () => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
+
+  const loadHomeScreen = useCallback(() => {
+    navigate("/HomeScreen", { replace: true });
+  }, [navigate]);
+
+  const loadWelcomeScreen = useCallback(() => {
+    navigate("/", { replace: true });
+  }, [navigate]);
+
+  useEffect(() => {
+    Auth.monitorAuthState(loadHomeScreen, loadWelcomeScreen);
+  }, [loadHomeScreen, loadWelcomeScreen]);
 
   return (
     <>

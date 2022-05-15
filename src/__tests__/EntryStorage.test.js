@@ -6,16 +6,18 @@ const testEntry = new Entry(
   "https://google.com",
   "17:00",
   [1, 0, 0, 1, 1, 0, 0],
+  "ownerId",
   true,
-  "0",
+  "0"
 );
 const testEntry2 = new Entry(
   "bar",
   "https://google.com",
   "18:00",
   [0, 1, 0, 0, 1, 0, 1],
+  "ownerId",
   false,
-  "1",
+  "1"
 );
 
 test("Expect [toggle] to enable or disable an Entry", () => {
@@ -138,5 +140,8 @@ test("Expect to get all from given week day", () => {
 });
 
 test("Expect to sort entries by time", () => {
-  expect(EntryStorage.sortByTime([testEntry2, testEntry])).toStrictEqual([testEntry, testEntry2]);
+  expect(EntryStorage.sortByTime([testEntry2, testEntry])).toStrictEqual([
+    testEntry,
+    testEntry2,
+  ]);
 });

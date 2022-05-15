@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
+import Auth from "../../services/Auth";
 import Entry from "../../models/Entry";
 import Back from "../../components/Back";
 import Input from "../../components/Input";
@@ -29,7 +30,8 @@ const AddScreen = () => {
 
   const handleAdd = async (e) => {
     e.preventDefault();
-    const newEntry = new Entry(name, url, time, days);
+    const newEntry = new Entry(name, url, time, days, Auth.getUserId());
+    console.log(newEntry);
     const id = await Database.createSchedule(newEntry);
     newEntry.id = id;
     EntryStorage.add(newEntry);
@@ -39,7 +41,15 @@ const AddScreen = () => {
 
   const handleEdit = (e) => {
     e.preventDefault();
-    const newEntry = new Entry(name, url, time, days, entry.enabled, entry.id);
+    const newEntry = new Entry(
+      name,
+      url,
+      time,
+      days,
+      entry.ownerId,
+      entry.enabled,
+      entry.id
+    );
     Database.updateSchedule(newEntry);
     Schedule.edit(entry.id, newEntry);
     EntryStorage.edit(newEntry);

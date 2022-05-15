@@ -145,3 +145,10 @@ test("Expect to sort entries by time", () => {
     testEntry2,
   ]);
 });
+
+test("Expect to add all entries", () => {
+  const testEntries = [testEntry, testEntry2];
+  EntryStorage.clear();
+  EntryStorage.addAll(testEntries);
+  expect(EntryStorage.getAll()).toStrictEqual(testEntries);
+});

@@ -23,22 +23,12 @@ const HomeScreen = () => {
     WeekDay.getCurrentWeekDay()
   );
 
-  const [schedules, setSchedules] = useState([]);
-
   const fetchEntries = useCallback(() => {
     setEntries(EntryStorage.getAllFromWeekDay(selectedWeekDay));
   }, [selectedWeekDay]);
 
   useEffect(() => {
     fetchEntries();
-
-    const getData = async () => {
-      setSchedules(await Database.getSchedules());
-    }
-
-    getData();
-
-    console.log(schedules);
   }, [fetchEntries]);
 
   const showModal = (e, entry) => {

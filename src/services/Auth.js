@@ -5,6 +5,7 @@ import {
 } from "firebase/auth";
 
 import { auth } from "./firebase-config";
+import Database from "../models/Database";
 import Schedule from "../controllers/Schedule";
 import EntryStorage from "../controllers/EntryStorage";
 
@@ -16,6 +17,9 @@ class Auth {
         email,
         password
       );
+      const entries = await Database.getSchedules();
+      EntryStorage.addAll(entries);
+      Schedule.createAll(entries);
     } catch (e) {
       console.log(e);
     }

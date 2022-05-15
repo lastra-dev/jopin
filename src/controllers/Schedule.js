@@ -25,6 +25,12 @@ class Schedule {
     }
   }
 
+  static createAll(entries) {
+    entries.forEach(entry => {
+      this.create(entry);
+    });
+  }
+
   static edit(id, entry) {
     const oldEntry = EntryStorage.get(id);
     this.delete(oldEntry);

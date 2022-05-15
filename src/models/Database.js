@@ -1,4 +1,5 @@
 import Auth from "../services/Auth";
+import Entry from "../models/Entry";
 import { db } from "../services/firebase-config";
 import {
   collection,
@@ -20,10 +21,17 @@ class Database {
       where("ownerId", "==", Auth.getUserId())
     );
     const data = await getDocs(q);
-    return data.docs.map((doc) => ({
-      ...doc.data(),
-      id: doc.id,
-    }));
+    return data.docs.map((doc) => {
+      const data = doc.data()
+      return new Entry(
+        data.name,
+        data.url,
+        data.time,
+        data.days,
+        data.ownerId,
+        data.enabled,
+        doc.id);
+    });
   };
 
   static createSchedule = async (entry) => {

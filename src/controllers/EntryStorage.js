@@ -13,6 +13,12 @@ class EntryStorage {
     return entry.id;
   }
 
+  static addAll(entries) {
+    entries.forEach(entry => {
+      this.add(entry);
+    });
+  }
+
   static get(id) {
     const jsonEntry = localStorage.getItem(id);
     if (!jsonEntry) {

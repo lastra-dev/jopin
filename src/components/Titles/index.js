@@ -9,10 +9,10 @@ const Title = (props) => {
   );
 };
 
-const AppTitle = () => {
+const AppTitle = (props) => {
   return (
     <center>
-      <h1 className="text-amin fs-600">JOPIN</h1>
+      <h1 className={`text-amin fs-600 ${props.className}`}>JOPIN</h1>
     </center>
   );
 };

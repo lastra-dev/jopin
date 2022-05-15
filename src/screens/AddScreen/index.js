@@ -31,7 +31,6 @@ const AddScreen = () => {
   const handleAdd = async (e) => {
     e.preventDefault();
     const newEntry = new Entry(name, url, time, days, Auth.getUserId());
-    console.log(newEntry);
     const id = await Database.createSchedule(newEntry);
     newEntry.id = id;
     EntryStorage.add(newEntry);
@@ -59,7 +58,7 @@ const AddScreen = () => {
   return (
     <>
       <div className="flex add-screen-navbar">
-        <Back />{" "}
+        <Back />
         <Title
           className="navbar-title fw-500"
           text={entry ? "Edit Schedule" : "New Schedule"}

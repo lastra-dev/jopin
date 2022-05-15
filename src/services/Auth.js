@@ -1,7 +1,8 @@
 import {
-  signInWithEmailAndPassword,
-  onAuthStateChanged,
   signOut,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
 } from "firebase/auth";
 
 import { auth } from "./firebase-config";
@@ -25,13 +26,27 @@ class Auth {
     }
   }
 
+  static async createAccount(email, password, passwordConfirm) {
+    if (password === passwordConfirm) {
+      try {
+        await createUserWithEmailAndPassword(
+          auth,
+          email,
+          password
+        );
+      } catch (e) {
+        console.log(e);
+      }
+    }else{
+      console.log("Passwords not matching.")
+    }
+  }
+
   static async monitorAuthState(onSignIn, onSignOut) {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        console.log(user);
         onSignIn();
       } else {
-        console.log("Not signed in.");
         onSignOut();
       }
     });

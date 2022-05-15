@@ -8,9 +8,11 @@ import EntryStorage from "../../controllers/EntryStorage";
 import { SectionTitle, Title } from "../../components/Titles";
 
 import "./SettingsScreen.css";
+import Database from "../../models/Database";
 
 const SettingsScreen = () => {
   const deleteSchedules = () => {
+    Database.deleteAllSchedules();
     Schedule.deleteAll();
     EntryStorage.clear();
   };

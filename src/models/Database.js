@@ -2,14 +2,14 @@ import Auth from "../services/Auth";
 import Entry from "../models/Entry";
 import { db } from "../services/firebase-config";
 import {
-  collection,
-  getDocs,
-  addDoc,
-  updateDoc,
   doc,
-  deleteDoc,
-  query,
   where,
+  query,
+  addDoc,
+  getDocs,
+  updateDoc,
+  deleteDoc,
+  collection,
 } from "firebase/firestore";
 
 const schedulesCollection = collection(db, "schedules");
@@ -51,6 +51,18 @@ class Database {
     const scheduleDoc = doc(db, "schedules", id);
     await deleteDoc(scheduleDoc);
   };
+
+  static deleteAllSchedules = async () => {
+    const q = query(
+      schedulesCollection,
+      where("ownerId", "==", Auth.getUserId())
+    );
+
+    const data = await getDocs(q);
+    data.forEach(async doc => {
+      await deleteDoc(doc.ref);
+    });
+  }
 }
 
 export default Database;

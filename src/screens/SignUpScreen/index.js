@@ -1,39 +1,38 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 import Auth from "../../services/Auth";
+import Back from "../../components/Back";
 import Input from "../../components/Input";
 import { AppTitle } from "../../components/Titles";
 import LoginImg from "../../assets/images/login-img.svg";
 import PrimaryButton from "../../components/PrimaryButton";
 
-import "./LoginScreen.css";
+import "./SignUpScreen.css";
 
-const LoginScreen = () => {
-  const navigate = useNavigate();
+const SignUpScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [passwordConfirm, setPasswordConfirm] = useState("");
 
   const handleChange = (e, setInput) => {
     setInput(e.target.value);
   };
 
   const handleSubmit = async () => {
-    await Auth.signIn(email, password);
+    await Auth.createAccount(email, password, passwordConfirm);
   };
-
-  const loadSignUpScreen = () => {
-    navigate("/SignUpScreen");
-  }
 
   return (
     <>
-      <AppTitle />
+      <div className="flex sign-up-screen-navbar">
+        <Back />
+        <AppTitle className="appTitle-margin" />
+      </div>
       <div className="flex column">
         <img
           src={LoginImg}
           alt="A person sitting on the window"
-          className="center login-img-margin"
+          className="center sign-up-img-margin"
         />
         <div className="text-center">
           <Input
@@ -49,13 +48,19 @@ const LoginScreen = () => {
             className="mt-8"
             onChange={(e) => { handleChange(e, setPassword) }}
           />
+          <Input
+            label="Confirm Password"
+            type="password"
+            className="mt-8"
+            onChange={(e) => { handleChange(e, setPasswordConfirm) }}
+          />
           <PrimaryButton
             className="login-btn-spacing btn-shadow login-btn"
-            text="SIGN IN"
+            text="SIGN UP"
             onClick={handleSubmit}
           />
-          <p className="subtitle text-gray">Don't have an account?
-            <span className="text-amin pointer" onClick={loadSignUpScreen}> Register</span>
+          <p className="fs-300 text-gray">By signing up you're agreeing to<br></br> our
+            <span className="text-amin pointer"> Terms of Service</span>
           </p>
         </div>
       </div>
@@ -63,4 +68,4 @@ const LoginScreen = () => {
   );
 };
 
-export default LoginScreen;
+export default SignUpScreen;

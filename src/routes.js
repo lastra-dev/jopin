@@ -1,9 +1,11 @@
 import React from "react";
 import { MemoryRouter, Routes, Route } from "react-router-dom";
-import WelcomeScreen from "./screens/WelcomeScreen";
-import LoginScreen from "./screens/LoginScreen";
-import HomeScreen from "./screens/HomeScreen";
+
 import AddScreen from "./screens/AddScreen";
+import HomeScreen from "./screens/HomeScreen";
+import LoginScreen from "./screens/LoginScreen";
+import SignUpScreen from "./screens/SignUpScreen";
+import WelcomeScreen from "./screens/WelcomeScreen";
 import SettingsScreen from "./screens/SettingsScreen";
 
 export const AppRoutes = () => {
@@ -11,9 +13,10 @@ export const AppRoutes = () => {
     <MemoryRouter>
       <Routes>
         <Route path="/" element={<WelcomeScreen />} />
-        <Route path="/LoginScreen" element={<LoginScreen />} />
-        <Route path="/HomeScreen" element={<HomeScreen />} />
         <Route path="/AddScreen" element={<AddScreen />} />
+        <Route path="/HomeScreen" element={<HomeScreen />} />
+        <Route path="/LoginScreen" element={<LoginScreen />} />
+        <Route path="/SignUpScreen" element={<SignUpScreen />} />
         <Route path="/SettingsScreen" element={<SettingsScreen />} />
       </Routes>
     </MemoryRouter>

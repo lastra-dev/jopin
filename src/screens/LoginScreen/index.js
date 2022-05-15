@@ -1,16 +1,37 @@
-import React from "react";
+import React, { useState, useEffect, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
+
+import Auth from "../../services/Auth";
+import Input from "../../components/Input";
 import { AppTitle } from "../../components/Titles";
 import LoginImg from "../../assets/images/login-img.svg";
 import PrimaryButton from "../../components/PrimaryButton";
-import Input from "../../components/Input";
-import { useNavigate } from "react-router-dom";
+
 import "./LoginScreen.css";
 
 const LoginScreen = () => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  const handleSubmit = () => {
+  const loadHomeScreen = useCallback(() => {
     navigate("/HomeScreen", { replace: true });
+  }, [navigate]);
+
+  const loadSignIn = useCallback(() => {
+    navigate("/LoginScreen", { replace: true });
+  }, [navigate]);
+
+  useEffect(() => {
+    Auth.monitorAuthState(loadHomeScreen, loadSignIn);
+  }, [loadHomeScreen, loadSignIn]);
+
+  const handleChange = (e, setInput) => {
+    setInput(e.target.value);
+  };
+
+  const handleSubmit = async () => {
+    await Auth.signIn(email, password);
   };
 
   return (
@@ -22,26 +43,27 @@ const LoginScreen = () => {
           alt="A person sitting on the window"
           className="center login-img-margin"
         />
-        <form onSubmit={handleSubmit} className="text-center">
+        <div className="text-center">
           <Input
-            name="username"
             spellCheck="false"
             autoComplete="off"
             autoFocus="on"
-            label="Username"
+            label="Email"
+            onChange={(e) => { handleChange(e, setEmail) }}
           />
           <Input
-            name="password"
             label="Password"
             type="password"
             className="mt-8"
+            onChange={(e) => { handleChange(e, setPassword) }}
           />
           <PrimaryButton
             className="login-btn-spacing btn-shadow login-btn"
-            text="LOG IN"
+            text="SIGN IN"
+            onClick={handleSubmit}
           />
           <p className="subtitle text-gray"></p>
-        </form>
+        </div>
       </div>
     </>
   );

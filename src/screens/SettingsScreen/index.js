@@ -1,5 +1,6 @@
 import React from "react";
 
+import Auth from "../../services/Auth";
 import Back from "../../components/Back";
 import Schedule from "../../controllers/Schedule";
 import OptionTile from "../../components/OptionTile";
@@ -38,7 +39,7 @@ const SettingsScreen = () => {
           first="true"
           text="Delete Schedules"
         />
-        <OptionTile className="text-red" text="Sign out" />
+        <OptionTile className="text-red" text="Sign out" onClick={Auth.logout} />
       </div>
     </>
   );

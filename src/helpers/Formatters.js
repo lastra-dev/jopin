@@ -1,4 +1,12 @@
+/**
+  * Utilidades para dar formato.
+  * */
 class Formatters {
+  /**
+    * Convierte la hora del sistema de 24 horas al sistema de 12 horas.
+    * @param {string} time - Hora a convertir.
+    * @returns {string} - Hora en sistema de 12 horas.
+    * */
   static formatTime(time) {
     const hour = parseInt(time.slice(0, 2));
     if (hour === 0) {
@@ -15,10 +23,20 @@ class Formatters {
     return time;
   }
 
+  /**
+    * Obtiene solamente la hora omitiendo minutos.
+    * @param {string} time - Hora con minutos.
+    * @returns {string} - Hora sin minutos.
+    * */
   static timeToHour(time) {
     return parseInt(time.split(":")[0]);
   }
 
+  /**
+    * Obtiene solamente los minutos omitiendo la hora.
+    * @param {string} time - Hora con minutos.
+    * @returns {string} - Minutos sin hora.
+    * */
   static timeToMinutes(time) {
     return parseInt(time.split(":")[1]);
   }

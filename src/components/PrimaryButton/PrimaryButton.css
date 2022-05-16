@@ -1,5 +1,5 @@
 .primary-btn {
-  background: hsl(var(--clr-amin));
+  background: var(--gradient-ibiza);
   border: none;
   border-radius: var(--corner-radius);
   color: hsl(var(--clr-light));

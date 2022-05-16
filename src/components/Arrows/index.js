@@ -5,13 +5,13 @@ import settingArrowImg from "../../assets/images/setting-arrow-btn.svg";
 
 const ArrowLeft = (props) => {
   return (
-    <img className="pointer" src={arrowLeftImg} onClick={props.onClick}></img>
+    <img className="hover-animation-large pointer" src={arrowLeftImg} onClick={props.onClick}></img>
   );
 };
 
 const ArrowRight = (props) => {
   return (
-    <img className="pointer" src={arrowRightImg} onClick={props.onClick}></img>
+    <img className="hover-animation-large pointer" src={arrowRightImg} onClick={props.onClick}></img>
   );
 };
 

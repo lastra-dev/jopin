@@ -12,7 +12,7 @@ const Title = (props) => {
 const AppTitle = (props) => {
   return (
     <center>
-      <h1 className={`text-amin fs-600 ${props.className}`}>JOPIN</h1>
+      <h1 className={`text-gradient-ibiza fs-600 ${props.className}`}>JOPIN</h1>
     </center>
   );
 };

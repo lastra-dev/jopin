@@ -12,7 +12,7 @@ const Back = () => {
       }}
     >
       {/* navigate(-1) lets you pop the screen */}
-      <img className="pointer" src={backImg} />
+      <img className="hover-animation-large pointer" src={backImg} />
     </div>
   );
 };

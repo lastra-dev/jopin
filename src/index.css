@@ -11,13 +11,14 @@
   --clr-orange: 21 100% 50%;
   --clr-gray: 0 0% 28%;
   --clr-red: 3 73% 59%;
-  --clr-amin: 272 76% 53%;
+  --clr-ibiza: 351 90% 57%;
 
   /*
   background: var(--gradient-orange); 
    se usa webkit para integrarlo en otros elementos html
   */
   --gradient-orange: linear-gradient(180deg, #ff8645 0%, #ff5900 100%);
+  --gradient-ibiza: linear-gradient(180deg, #EE0979 0%, #FF6A00 100%);
 
   /* font-sizes */
   --fs-300: 0.75rem;
@@ -153,10 +154,6 @@ button:focus {
   background-color: hsl(var(--clr-gray));
 }
 
-.bg-amin {
-  background-color: hsl(var(--clr-amin));
-}
-
 /* text */
 
 .text-dark {
@@ -165,6 +162,13 @@ button:focus {
 
 .text-gradient-orange {
   background: var(--gradient-orange);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-ibiza {
+  background: var(--gradient-ibiza);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -185,9 +189,11 @@ button:focus {
 .text-orange {
   color: hsl(var(--clr-orange));
 }
-.text-amin {
-  color: hsl(var(--clr-amin));
+
+.text-ibiza {
+  color: hsl(var(--clr-ibiza));
 }
+
 .text-center {
   text-align: center;
 }
@@ -202,8 +208,8 @@ button:focus {
   border-color: var(--clr-dark);
 }
 
-.border-amin {
-  border-color: var(--clr-amin);
+.border-ibiza {
+  border-color: var(--clr-ibiza);
 }
 
 .rounded-border {
@@ -249,6 +255,10 @@ button:focus {
   background: var(--gradient-orange);
 }
 
+.btn-ibiza-bg {
+  background: var(--gradient-ibiza);
+}
+
 .btn-shadow {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
@@ -282,4 +292,14 @@ hr {
 
 .pointer {
   cursor: pointer;
+}
+
+/* animations */
+
+.hover-animation:hover {
+  transform: scale(1.02);
+}
+
+.hover-animation-large:hover {
+  transform: scale(1.30);
 }

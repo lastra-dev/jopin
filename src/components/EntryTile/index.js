@@ -19,7 +19,7 @@ const EntryTile = (props) => {
       <div
         id="subject"
         onClick={props.onClick}
-        className="border-dark rounded-border flex subject"
+        className="border-dark rounded-border flex subject hover-animation"
       >
         <div id="subject-name" className="subject-name">
           {entry.name}

@@ -14,6 +14,12 @@ const LoginScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  window.onkeydown = (event) => {
+    if (event.key === "Enter") {
+      handleSubmit();
+    }
+  };
+
   const handleChange = (e, setInput) => {
     setInput(e.target.value);
   };
@@ -56,7 +62,7 @@ const LoginScreen = () => {
             onClick={handleSubmit}
           />
           <p className="subtitle text-gray">Don't have an account?
-            <span className="text-amin pointer" onClick={loadSignUpScreen}> Register</span>
+            <span className="text-ibiza pointer" onClick={loadSignUpScreen}> Register</span>
           </p>
         </div>
       </div>

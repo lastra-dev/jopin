@@ -32,7 +32,7 @@ const WelcomeScreen = () => {
           src={welcomeImg}
           alt="Two people chatting"
         />
-        <p className="title welcome-title">Welcome</p>
+        <p className="title welcome-title">Welcome!</p>
         <p className="subtitle text-gray">Let us schedule your links...</p>
         <PrimaryButton
           className="start-button btn-shadow"

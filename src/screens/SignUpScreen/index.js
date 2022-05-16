@@ -14,6 +14,12 @@ const SignUpScreen = () => {
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
 
+  window.onkeydown = (event) => {
+    if (event.key === "Enter") {
+      handleSubmit();
+    }
+  };
+
   const handleChange = (e, setInput) => {
     setInput(e.target.value);
   };
@@ -61,7 +67,7 @@ const SignUpScreen = () => {
             onClick={handleSubmit}
           />
           <p className="fs-300 text-gray">By signing up you're agreeing to<br></br> our
-            <span className="text-amin pointer"> Terms of Service</span>
+            <span className="text-ibiza pointer"> Terms of Service</span>
           </p>
         </div>
       </div>

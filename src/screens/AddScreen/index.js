@@ -11,9 +11,9 @@ import Weekdays from "../../components/Weekdays";
 import Schedule from "../../controllers/Schedule";
 import EntryStorage from "../../controllers/EntryStorage";
 import PrimaryButton from "../../components/PrimaryButton";
-import AddImageWatch from "../../assets/images/add-img-watch.svg";
 
 import "./AddScreen.css";
+import AddImg from "../../assets/images/add-img.svg";
 
 const AddScreen = () => {
   const location = useLocation();
@@ -100,9 +100,10 @@ const AddScreen = () => {
         />
       </form>
       <img
+        style={{ marginTop: "10px", height: "180px", overflow: "hidden" }}
         className="center"
-        src={AddImageWatch}
-        alt="A simple clock illustration."
+        src={AddImg}
+        alt="A Girl reading a book."
       />
     </>
   );

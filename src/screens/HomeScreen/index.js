@@ -14,6 +14,7 @@ import LoadingSpinner from "../../components/LoadingSpinner";
 import { ArrowLeft, ArrowRight } from "../../components/Arrows";
 
 import "./HomeScreen.css";
+import placeholder from "../../assets/images/placeholder.svg";
 
 const HomeScreen = () => {
   const navigate = useNavigate();
@@ -129,7 +130,14 @@ const HomeScreen = () => {
       </div>
       <div className="flex column tiles">
         {loading ? <LoadingSpinner /> :
-          entries.length > 0 ? entriesToRender : null}
+          entries.length > 0 ? entriesToRender :
+            <>
+              <p className="subtitle">Nothing here yet...</p>
+              <div style={{ height: "409.20px", overflow: "hidden" }}>
+                <img alt="A man with a paper airplane." src={placeholder}></img>
+              </div>
+            </>
+        }
       </div>
     </>
   );

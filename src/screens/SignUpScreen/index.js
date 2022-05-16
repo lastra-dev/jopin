@@ -4,7 +4,7 @@ import Auth from "../../services/Auth";
 import Back from "../../components/Back";
 import Input from "../../components/Input";
 import { AppTitle } from "../../components/Titles";
-import LoginImg from "../../assets/images/login-img.svg";
+import SignUpImg from "../../assets/images/signup-img.svg";
 import PrimaryButton from "../../components/PrimaryButton";
 
 import "./SignUpScreen.css";
@@ -30,7 +30,8 @@ const SignUpScreen = () => {
       </div>
       <div className="flex column">
         <img
-          src={LoginImg}
+          width="180px"
+          src={SignUpImg}
           alt="A person sitting on the window"
           className="center sign-up-img-margin"
         />

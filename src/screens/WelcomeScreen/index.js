@@ -26,14 +26,14 @@ const WelcomeScreen = () => {
   return (
     <>
       <AppTitle />
-      <div className="flex column">
+      <div className="flex column override-gap">
         <img
+          width="500px"
           src={welcomeImg}
           alt="Two people chatting"
-          className="center welcome-img"
         />
         <p className="title welcome-title">Welcome</p>
-        <p className="subtitle text-gray">Let us handle your links!</p>
+        <p className="subtitle text-gray">Let us schedule your links...</p>
         <PrimaryButton
           className="start-button btn-shadow"
           text="START"

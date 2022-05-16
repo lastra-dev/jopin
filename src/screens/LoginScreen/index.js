@@ -31,9 +31,10 @@ const LoginScreen = () => {
       <AppTitle />
       <div className="flex column">
         <img
+          height="280px"
           src={LoginImg}
           alt="A person sitting on the window"
-          className="center login-img-margin"
+          className="center"
         />
         <div className="text-center">
           <Input

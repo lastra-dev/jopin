@@ -1,12 +1,12 @@
-.welcome-title {
-  margin-top: 32px;
-}
-
 .start-button {
   padding: 8px 72px;
   margin: 16px 64px 0;
 }
 
-.welcome-img {
-  margin-top: 40px;
+.override-gap {
+  gap: 0px;
+}
+
+.welcome-title {
+  margin-bottom: 16px;
 }

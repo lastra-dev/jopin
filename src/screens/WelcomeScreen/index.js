@@ -1,15 +1,17 @@
-import React, { useEffect, useCallback } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Auth from "../../services/Auth";
 import { AppTitle } from "../../components/Titles";
 import PrimaryButton from "../../components/PrimaryButton";
+import { HashSpinner } from "../../components/LoadingSpinner";
 
 import welcomeImg from "../../assets/images/welcome-img.svg";
 import "./WelcomeScreen.css";
 
 const WelcomeScreen = () => {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(true);
 
   const loadHomeScreen = useCallback(() => {
     navigate("/HomeScreen", { replace: true });
@@ -21,28 +23,33 @@ const WelcomeScreen = () => {
 
   useEffect(() => {
     Auth.monitorAuthState(loadHomeScreen, loadWelcomeScreen);
-  }, [loadHomeScreen, loadWelcomeScreen]);
+    let timer = setTimeout(() => {
+      setLoading(false);
+    }, 1500)
+    return () => clearTimeout(timer);
+  }, [loadHomeScreen, loadWelcomeScreen, setLoading]);
 
   return (
-    <>
-      <AppTitle />
-      <div className="flex column override-gap">
-        <img
-          width="500px"
-          src={welcomeImg}
-          alt="Two people chatting"
-        />
-        <p className="title welcome-title">Welcome!</p>
-        <p className="subtitle text-gray">Let us schedule your links...</p>
-        <PrimaryButton
-          className="start-button btn-shadow"
-          text="START"
-          onClick={() => {
-            navigate("/LoginScreen", { replace: true });
-          }}
-        />
-      </div>
-    </>
+    loading ? <HashSpinner /> :
+      <>
+        <AppTitle />
+        <div className="flex column override-gap">
+          <img
+            width="500px"
+            src={welcomeImg}
+            alt="Two people chatting"
+          />
+          <p className="title welcome-title">Welcome!</p>
+          <p className="subtitle text-gray">Let us schedule your links...</p>
+          <PrimaryButton
+            className="start-button btn-shadow"
+            text="START"
+            onClick={() => {
+              navigate("/LoginScreen", { replace: true });
+            }}
+          />
+        </div>
+      </>
   );
 };
 

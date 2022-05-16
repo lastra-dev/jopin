@@ -1,6 +1,7 @@
 import ClimbingBoxLoader from "react-spinners/ClimbingBoxLoader";
+import HashLoader from "react-spinners/HashLoader";
 
-const LoadingSpinner = () => {
+const BoxLoadingSpinner = () => {
   return (
     <div style={{ marginTop: "80px" }}>
       <center>
@@ -10,4 +11,14 @@ const LoadingSpinner = () => {
   )
 }
 
-export default LoadingSpinner;
+const HashSpinner = () => {
+  return (
+    <div style={{ marginTop: "250px" }}>
+      <center>
+        <HashLoader color="#F42D4B" size={50} />
+      </center>
+    </div>
+  )
+}
+
+export { BoxLoadingSpinner, HashSpinner };

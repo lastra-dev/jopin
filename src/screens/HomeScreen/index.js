@@ -10,7 +10,7 @@ import AddButton from "../../components/AddButton";
 import EntryTile from "../../components/EntryTile";
 import SettingBtn from "../../components/SettingBtn";
 import EntryStorage from "../../controllers/EntryStorage";
-import LoadingSpinner from "../../components/LoadingSpinner";
+import { BoxLoadingSpinner } from "../../components/LoadingSpinner";
 import { ArrowLeft, ArrowRight } from "../../components/Arrows";
 
 import "./HomeScreen.css";
@@ -19,7 +19,7 @@ import placeholder from "../../assets/images/placeholder.svg";
 const HomeScreen = () => {
   const navigate = useNavigate();
   const [entries, setEntries] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [firstLoad, setFirstLoad] = useState(true);
   const [modalIsShown, setModalIsShown] = useState(false);
   const [selectedEntry, setSelectedEntry] = useState(null);
@@ -31,26 +31,17 @@ const HomeScreen = () => {
     setEntries(EntryStorage.getAllFromWeekDay(selectedWeekDay));
   }, [selectedWeekDay]);
 
-  const showLoadingSpinner = useCallback(() => {
-    setLoading(true);
-  }, []);
-
-  const hideLoadingSpinner = useCallback(() => {
-    setLoading(false);
-  }, []);
-
   useEffect(() => {
     if (firstLoad) {
-      showLoadingSpinner();
       setTimeout(() => {
         fetchEntries();
-        hideLoadingSpinner();
+        setLoading(false);
         setFirstLoad(false);
       }, 1000)
     } else {
       fetchEntries();
     }
-  }, [fetchEntries, showLoadingSpinner, hideLoadingSpinner, firstLoad]);
+  }, [fetchEntries, firstLoad, setLoading]);
 
   const showModal = (e, entry) => {
     if (e.target.id !== "subject" && e.target.id !== "subject-name") return;
@@ -129,7 +120,7 @@ const HomeScreen = () => {
         <ArrowRight onClick={setNextWeekDay} />
       </div>
       <div className="flex column tiles">
-        {loading ? <LoadingSpinner /> :
+        {loading ? <BoxLoadingSpinner /> :
           entries.length > 0 ? entriesToRender :
             <>
               <p className="subtitle">Nothing here yet...</p>

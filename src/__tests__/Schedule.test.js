@@ -1,17 +1,33 @@
-import Schedule from "../controllers/Schedule.js";
+import Schedule from "../models/Schedule";
 
-beforeAll(() => {
-  jest.useFakeTimers('modern');
-  jest.setSystemTime(new Date('December 28, 2000 22:50:00')) // Thursday
+const testSchedule = new Schedule(
+  "foo",
+  "https://google.com",
+  "17:00",
+  [1, 1, 1, 0, 0, 0, 0],
+  "ownerId",
+  true,
+  "id"
+);
+
+test("Expect [fromJson] to return a Schedule model", () => {
+  const jsonTestSchedule = JSON.stringify(testSchedule);
+  expect(Schedule.fromJson(jsonTestSchedule)).toStrictEqual(testSchedule);
 });
 
-test("Expect to get the nearest date for the given week day", () => {
-  // 0 - Sunday, 1 - Monday, 2 - Tuesday, 3 - Wednesday, 4 - Thursday, 5 - Friday, 6 - Saturday
-  expect(Schedule.getDateOfNearestWeekDay(4)).toStrictEqual(new Date('December 28, 2000 22:50:00'))
-  expect(Schedule.getDateOfNearestWeekDay(5)).toStrictEqual(new Date('December 29, 2000 22:50:00'))
-  expect(Schedule.getDateOfNearestWeekDay(6)).toStrictEqual(new Date('December 30, 2000 22:50:00'))
-  expect(Schedule.getDateOfNearestWeekDay(0)).toStrictEqual(new Date('December 31, 2000 22:50:00'))
-  expect(Schedule.getDateOfNearestWeekDay(1)).toStrictEqual(new Date('January 01, 2001 22:50:00'))
-  expect(Schedule.getDateOfNearestWeekDay(2)).toStrictEqual(new Date('January 02, 2001 22:50:00'))
-  expect(Schedule.getDateOfNearestWeekDay(3)).toStrictEqual(new Date('January 03, 2001 22:50:00'))
+test("Expect [fromJson] to throw when JSON fields are incomplete", () => {
+  const invalidSchedule = { name: "Not a valid Schedule" };
+  const jsonInvalidSchedule = JSON.stringify(invalidSchedule);
+  expect(() => {
+    Schedule.fromJson(jsonInvalidSchedule);
+  }).toThrow();
+});
+
+test("Expect to throw error when constructor don't have all required properties", () => {
+  expect(() => {
+    new Schedule("Invalid Schedul", "abc", "abc", [0, 0, 0, 0, 0, 0, 0], "0");
+  }).toThrow();
+  expect(() => {
+    new Schedule("Invalid Schedul", "", "", [1, 0, 0, 0, 0, 0, 0], "0");
+  }).toThrow();
 });

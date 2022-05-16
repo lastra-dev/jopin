@@ -1,4 +1,4 @@
-class Entry {
+class Schedule {
   constructor(name, url, time, days, ownerId, enabled = true, id = null) {
     const daysValid = days.some(day => {
       return day === 1;
@@ -26,29 +26,29 @@ class Entry {
     this.id = id;
   }
 
-  static fromJson(jsonEntry) {
-    const entry = JSON.parse(jsonEntry);
+  static fromJson(jsonSchedule) {
+    const schedule = JSON.parse(jsonSchedule);
     if (
-      !entry.hasOwnProperty('name') ||
-      !entry.hasOwnProperty('url') ||
-      !entry.hasOwnProperty('time') ||
-      !entry.hasOwnProperty('days') ||
-      !entry.hasOwnProperty('ownerId') ||
-      !entry.hasOwnProperty('enabled') ||
-      !entry.hasOwnProperty('id')
+      !schedule.hasOwnProperty('name') ||
+      !schedule.hasOwnProperty('url') ||
+      !schedule.hasOwnProperty('time') ||
+      !schedule.hasOwnProperty('days') ||
+      !schedule.hasOwnProperty('ownerId') ||
+      !schedule.hasOwnProperty('enabled') ||
+      !schedule.hasOwnProperty('id')
     ) {
       throw Error("Error: JSON Entry missing fields");
     }
-    return new Entry(
-      entry.name,
-      entry.url,
-      entry.time,
-      entry.days,
-      entry.ownerId,
-      entry.enabled,
-      entry.id
+    return new Schedule(
+      schedule.name,
+      schedule.url,
+      schedule.time,
+      schedule.days,
+      schedule.ownerId,
+      schedule.enabled,
+      schedule.id
     );
   }
 }
 
-export default Entry;
+export default Schedule;

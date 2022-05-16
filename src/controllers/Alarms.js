@@ -1,48 +1,48 @@
 /*global chrome*/
 
 import Formatters from "../helpers/Formatters";
-import EntryStorage from "../controllers/EntryStorage";
+import ScheduleStorage from "../controllers/ScheduleStorage";
 
-class Schedule {
-  static create(entry) {
-    for (let i = 0; i < entry.days.length; i++) {
-      if (entry.days[i] === 0) {
+class Alarms {
+  static create(schedule) {
+    for (let i = 0; i < schedule.days.length; i++) {
+      if (schedule.days[i] === 0) {
         continue;
       }
       let nearestWeekDayDate = this.getDateOfNearestWeekDay(i);
       nearestWeekDayDate.setHours(
-        Formatters.timeToHour(entry.time),
-        Formatters.timeToMinutes(entry.time),
+        Formatters.timeToHour(schedule.time),
+        Formatters.timeToMinutes(schedule.time),
         0 // seconds
       );
 
       // Alarms need different names
       // so we differentiate them with the week day number
       this.createAlarm(
-        `${entry.url} weekDay:${i}`,
+        `${schedule.url} weekDay:${i}`,
         nearestWeekDayDate.getTime()
       );
     }
   }
 
-  static createAll(entries) {
-    entries.forEach(entry => {
-      this.create(entry);
+  static createAll(schedules) {
+    schedules.forEach(schedule => {
+      this.create(schedule);
     });
   }
 
-  static edit(id, entry) {
-    const oldEntry = EntryStorage.get(id);
+  static edit(id, schedule) {
+    const oldEntry = ScheduleStorage.get(id);
     this.delete(oldEntry);
-    this.create(entry);
+    this.create(schedule);
   }
 
-  static delete(entry) {
-    for (let i = 0; i < entry.days.length; i++) {
-      if (entry.days[i] === 0) {
+  static delete(schedule) {
+    for (let i = 0; i < schedule.days.length; i++) {
+      if (schedule.days[i] === 0) {
         continue;
       }
-      chrome.alarms.clear(`${entry.url} weekDay:${i}`);
+      chrome.alarms.clear(`${schedule.url} weekDay:${i}`);
     }
   }
 
@@ -68,4 +68,4 @@ class Schedule {
   }
 }
 
-export default Schedule;
+export default Alarms;

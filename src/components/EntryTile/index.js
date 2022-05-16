@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ToggleSwitch from "../ToggleSwitch";
 import Formatters from "../../helpers/Formatters";
-import EntryStorage from "../../controllers/EntryStorage";
+import ScheduleStorage from "../../controllers/ScheduleStorage";
 import "./EntryTile.css";
 
 const EntryTile = (props) => {
@@ -10,7 +10,7 @@ const EntryTile = (props) => {
 
   const handleCheck = (toggle) => {
     setChecked(toggle);
-    EntryStorage.toggle(entry.id);
+    ScheduleStorage.toggle(entry.id);
   };
 
   return (

@@ -1,21 +1,21 @@
-import Entry from "../models/Entry";
+import Schedule from "../models/Schedule";
 import WeekDay from "../helpers/WeekDay";
 
-class EntryStorage {
-  static add(entry) {
-    if (!(entry instanceof Entry)) {
+class ScheduleStorage {
+  static add(schedule) {
+    if (!(schedule instanceof Schedule)) {
       throw Error("Error: Expected an object instanceof Entry.");
     }
 
-    const jsonEntry = JSON.stringify(entry);
-    localStorage.setItem(entry.id, jsonEntry);
+    const jsonEntry = JSON.stringify(schedule);
+    localStorage.setItem(schedule.id, jsonEntry);
 
-    return entry.id;
+    return schedule.id;
   }
 
-  static addAll(entries) {
-    entries.forEach(entry => {
-      this.add(entry);
+  static addAll(schedules) {
+    schedules.forEach(schedule => {
+      this.add(schedule);
     });
   }
 
@@ -25,8 +25,8 @@ class EntryStorage {
       throw Error("Error: Fetched object with this ID does not exists.");
     }
     try {
-      const entry = Entry.fromJson(jsonEntry);
-      return entry;
+      const schedule = Schedule.fromJson(jsonEntry);
+      return schedule;
     } catch {
       throw Error("Error: Fetched object is not instanceof Entry.");
     }
@@ -38,8 +38,8 @@ class EntryStorage {
 
     for (let i = 0; i < keys.length; i++) {
       try {
-        const entry = this.get(keys[i]);
-        entries.push(entry);
+        const schedule = this.get(keys[i]);
+        entries.push(schedule);
       } catch { }
     }
 
@@ -51,16 +51,16 @@ class EntryStorage {
     let result = [];
     const weekDayNumber = WeekDay.weekDayToNumber(weekDay);
     const entries = this.getAll();
-    entries.forEach((entry) => {
-      if (entry.days[weekDayNumber] === 1) {
-        result.push(entry);
+    entries.forEach((schedule) => {
+      if (schedule.days[weekDayNumber] === 1) {
+        result.push(schedule);
       }
     });
     return result;
   }
 
-  static sortByTime(entries) {
-    entries.sort((a, b) => {
+  static sortByTime(schedules) {
+    schedules.sort((a, b) => {
       if (a.time > b.time) {
         return 1;
       }
@@ -69,7 +69,7 @@ class EntryStorage {
       }
       return 0;
     });
-    return entries;
+    return schedules;
   }
 
   static delete(id) {
@@ -81,14 +81,14 @@ class EntryStorage {
     localStorage.removeItem(id);
   }
 
-  static edit(entry) {
-    this.get(entry.id);
-    if (!(entry instanceof Entry)) {
+  static edit(schedule) {
+    this.get(schedule.id);
+    if (!(schedule instanceof Schedule)) {
       throw Error("Error: Object given is not Entry");
     }
 
-    const jsonEntry = JSON.stringify(entry);
-    localStorage.setItem(entry.id, jsonEntry);
+    const jsonEntry = JSON.stringify(schedule);
+    localStorage.setItem(schedule.id, jsonEntry);
   }
 
   static clear() {
@@ -102,10 +102,10 @@ class EntryStorage {
   }
 
   static toggle(id) {
-    const entry = this.get(id);
-    entry.enabled = !entry.enabled;
-    this.edit(entry);
+    const schedule = this.get(id);
+    schedule.enabled = !schedule.enabled;
+    this.edit(schedule);
   }
 }
 
-export default EntryStorage;
+export default ScheduleStorage;

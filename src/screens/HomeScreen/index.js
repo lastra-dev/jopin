@@ -4,14 +4,14 @@ import { useNavigate } from "react-router-dom";
 import Modal from "../../components/Modal";
 import WeekDay from "../../helpers/WeekDay";
 import Database from "../../models/Database";
-import Schedule from "../../controllers/Schedule";
+import Alarms from "../../controllers/Alarms";
 import { AppTitle } from "../../components/Titles";
 import AddButton from "../../components/AddButton";
 import EntryTile from "../../components/EntryTile";
 import SettingBtn from "../../components/SettingBtn";
-import EntryStorage from "../../controllers/EntryStorage";
-import { BoxLoadingSpinner } from "../../components/LoadingSpinner";
 import { ArrowLeft, ArrowRight } from "../../components/Arrows";
+import ScheduleStorage from "../../controllers/ScheduleStorage";
+import { BoxLoadingSpinner } from "../../components/LoadingSpinner";
 
 import "./HomeScreen.css";
 import placeholder from "../../assets/images/placeholder.svg";
@@ -28,7 +28,7 @@ const HomeScreen = () => {
   );
 
   const fetchEntries = useCallback(() => {
-    setEntries(EntryStorage.getAllFromWeekDay(selectedWeekDay));
+    setEntries(ScheduleStorage.getAllFromWeekDay(selectedWeekDay));
   }, [selectedWeekDay]);
 
   useEffect(() => {
@@ -65,8 +65,8 @@ const HomeScreen = () => {
 
   const deleteEntry = (entry) => {
     Database.deleteSchedule(entry.id);
-    EntryStorage.delete(entry.id);
-    Schedule.delete(entry);
+    ScheduleStorage.delete(entry.id);
+    Alarms.delete(entry);
     fetchEntries();
     hideModal();
   };

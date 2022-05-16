@@ -2,15 +2,15 @@ import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import Auth from "../../services/Auth";
-import Entry from "../../models/Entry";
 import Back from "../../components/Back";
 import Input from "../../components/Input";
+import Schedule from "../../models/Schedule";
 import Database from "../../models/Database";
+import Alarms from "../../controllers/Alarms";
 import { Title } from "../../components/Titles";
 import Weekdays from "../../components/Weekdays";
-import Schedule from "../../controllers/Schedule";
-import EntryStorage from "../../controllers/EntryStorage";
 import PrimaryButton from "../../components/PrimaryButton";
+import ScheduleStorage from "../../controllers/ScheduleStorage";
 
 import "./AddScreen.css";
 import AddImg from "../../assets/images/add-img.svg";
@@ -31,11 +31,11 @@ const AddScreen = () => {
 
   const handleAdd = async () => {
     try {
-      const newEntry = new Entry(name, url, time, days, Auth.getUserId());
+      const newEntry = new Schedule(name, url, time, days, Auth.getUserId());
       const id = await Database.createSchedule(newEntry);
       newEntry.id = id;
-      EntryStorage.add(newEntry);
-      Schedule.create(newEntry);
+      ScheduleStorage.add(newEntry);
+      Alarms.create(newEntry);
       navigate(-1);
     } catch (e) {
       setErrorMsg("Invalid Schedule, please fill all entries.");
@@ -43,7 +43,7 @@ const AddScreen = () => {
   };
 
   const handleEdit = () => {
-    const newEntry = new Entry(
+    const newEntry = new Schedule(
       name,
       url,
       time,
@@ -53,8 +53,8 @@ const AddScreen = () => {
       entry.id
     );
     Database.updateSchedule(newEntry);
-    Schedule.edit(entry.id, newEntry);
-    EntryStorage.edit(newEntry);
+    Alarms.edit(entry.id, newEntry);
+    ScheduleStorage.edit(newEntry);
     navigate(-1);
   };
 

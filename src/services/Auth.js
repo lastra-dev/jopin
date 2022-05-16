@@ -7,8 +7,8 @@ import {
 
 import { auth } from "./firebase-config";
 import Database from "../models/Database";
-import Schedule from "../controllers/Schedule";
-import EntryStorage from "../controllers/EntryStorage";
+import Alarms from "../controllers/Alarms";
+import ScheduleStorage from "../controllers/ScheduleStorage";
 
 class Auth {
   static async signIn(email, password) {
@@ -19,8 +19,8 @@ class Auth {
         password
       );
       const entries = await Database.getSchedules();
-      EntryStorage.addAll(entries);
-      Schedule.createAll(entries);
+      ScheduleStorage.addAll(entries);
+      Alarms.createAll(entries);
     } catch (e) {
       return this.handleError(e.code);
     }
@@ -78,8 +78,8 @@ class Auth {
 
   static async logout() {
     await signOut(auth);
-    Schedule.deleteAll();
-    EntryStorage.clear();
+    Alarms.deleteAll();
+    ScheduleStorage.clear();
   }
 
   static getUserId() {

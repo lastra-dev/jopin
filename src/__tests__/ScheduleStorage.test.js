@@ -1,0 +1,154 @@
+import Schedule from "../models/Schedule";
+import ScheduleStorage from "../controllers/ScheduleStorage";
+
+const testSchedule = new Schedule(
+  "foo",
+  "https://google.com",
+  "17:00",
+  [1, 0, 0, 1, 1, 0, 0],
+  "ownerId",
+  true,
+  "0"
+);
+const testSchedule2 = new Schedule(
+  "bar",
+  "https://google.com",
+  "18:00",
+  [0, 1, 0, 0, 1, 0, 1],
+  "ownerId",
+  false,
+  "1"
+);
+
+test("Expect [toggle] to enable or disable a Schedule", () => {
+  ScheduleStorage.add(testSchedule);
+  ScheduleStorage.toggle(testSchedule.id);
+  expect(ScheduleStorage.get(testSchedule.id).enabled).toBe(!testSchedule.enabled);
+});
+
+test("Expect [toggle] to throw an Error when invalid ID", () => {
+  expect(() => {
+    ScheduleStorage.toggle("Not a valid Schedule");
+  }).toThrow();
+});
+
+test("Expect [add] to save a json Schedule in localStorage", () => {
+  expect(typeof ScheduleStorage.add(testSchedule)).toBe("string");
+});
+
+test("Expect [add] to throw when not a Schedule", () => {
+  const notASchedule = "This is not a Schedule";
+  expect(() => {
+    ScheduleStorage.add(notASchedule);
+  }).toThrow();
+});
+
+test("Expect [get] to recieve a Schedule from localStorage", () => {
+  ScheduleStorage.add(testSchedule);
+  expect(ScheduleStorage.get(testSchedule.id)).toStrictEqual(testSchedule);
+});
+
+test("Expect [get] to throw when Schedule doesn't exists", () => {
+  expect(() => {
+    ScheduleStorage.get("Non existing entry");
+  }).toThrow();
+});
+
+test("Expect [get] to throw when getting an object different than Schedule", () => {
+  localStorage.setItem("notAnSchedule", "This is not an Schedule");
+  expect(() => {
+    ScheduleStorage.get("notAnSchedule");
+  }).toThrow();
+});
+
+test("Expect [getAll] to recieve a list with all entries", () => {
+  ScheduleStorage.clear();
+  ScheduleStorage.add(testSchedule);
+  ScheduleStorage.add(testSchedule2);
+  const testEntries = [testSchedule, testSchedule2];
+  expect(ScheduleStorage.getAll()).toStrictEqual(testEntries);
+});
+
+test("Expect [delete] to delete a Schedule", () => {
+  ScheduleStorage.add(testSchedule);
+  ScheduleStorage.delete(testSchedule.id);
+  expect(localStorage.getItem(testSchedule.id)).toBeNull();
+});
+
+test("Expect [delete] to throw when id is not a Schedule", () => {
+  expect(() => {
+    ScheduleStorage.delete("Non existing entry");
+  }).toThrow();
+});
+
+test("Expect [edit] to edit a Schedule", () => {
+  ScheduleStorage.add(testSchedule);
+
+  const testEditSchedule = testSchedule;
+  testEditSchedule.name = "bar";
+
+  ScheduleStorage.edit(testEditSchedule);
+
+  const editedSchedule = ScheduleStorage.get(testSchedule.id);
+  expect(editedSchedule).toStrictEqual(testEditSchedule);
+  expect(editedSchedule.name).toBe("bar");
+});
+
+test("Expect [edit] to throw if Schedule does not exists", () => {
+  expect(() => {
+    ScheduleStorage.edit("Not an existing Schedule", testSchedule);
+  }).toThrow();
+});
+
+test("Expect [edit] to throw if given invalid Schedule", () => {
+  ScheduleStorage.add(testSchedule);
+  expect(() => {
+    ScheduleStorage.edit(testSchedule.id, "Not a valid Schedule");
+  }).toThrow();
+});
+
+test("Expect [edit] to throw if editing an object that is not Schedule", () => {
+  localStorage.setItem("notASchedule", "This is not a Schedule");
+  expect(() => {
+    ScheduleStorage.edit("notASchedule", testSchedule2);
+  }).toThrow();
+});
+
+test("Expect [clear] to clear all entries", () => {
+  ScheduleStorage.add(testSchedule);
+  ScheduleStorage.clear();
+  const testEntries = ScheduleStorage.getAll();
+  expect(testEntries).toStrictEqual([]);
+});
+
+test("Expect to get all from given week day", () => {
+  ScheduleStorage.clear();
+  ScheduleStorage.add(testSchedule);
+  ScheduleStorage.add(testSchedule2);
+  expect(ScheduleStorage.getAllFromWeekDay("Sunday")).toStrictEqual([testSchedule]);
+  expect(ScheduleStorage.getAllFromWeekDay("Wednesday")).toStrictEqual([
+    testSchedule,
+  ]);
+  expect(ScheduleStorage.getAllFromWeekDay("Monday")).toStrictEqual([testSchedule2]);
+  expect(ScheduleStorage.getAllFromWeekDay("Saturday")).toStrictEqual([
+    testSchedule2,
+  ]);
+  expect(ScheduleStorage.getAllFromWeekDay("Thursday")).toStrictEqual([
+    testSchedule,
+    testSchedule2,
+  ]);
+});
+
+test("Expect to sort entries by time", () => {
+  expect(ScheduleStorage.sortByTime([testSchedule2, testSchedule])).toStrictEqual([
+    testSchedule,
+    testSchedule2,
+  ]);
+});
+
+test("Expect to add all entries", () => {
+  const testEntries = [testSchedule, testSchedule2];
+  ScheduleStorage.clear();
+  ScheduleStorage.addAll(testEntries);
+  expect(ScheduleStorage.getAll()).toStrictEqual(testEntries);
+});

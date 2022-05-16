@@ -2,10 +2,10 @@ import React from "react";
 
 import Auth from "../../services/Auth";
 import Back from "../../components/Back";
-import Schedule from "../../controllers/Schedule";
+import Alarms from "../../controllers/Alarms";
 import OptionTile from "../../components/OptionTile";
-import EntryStorage from "../../controllers/EntryStorage";
 import { SectionTitle, Title } from "../../components/Titles";
+import ScheduleStorage from "../../controllers/ScheduleStorage";
 
 import "./SettingsScreen.css";
 import Database from "../../models/Database";
@@ -13,8 +13,8 @@ import Database from "../../models/Database";
 const SettingsScreen = () => {
   const deleteSchedules = () => {
     Database.deleteAllSchedules();
-    Schedule.deleteAll();
-    EntryStorage.clear();
+    Alarms.deleteAll();
+    ScheduleStorage.clear();
   };
 
   return (

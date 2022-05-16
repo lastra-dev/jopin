@@ -1,5 +1,5 @@
 import Auth from "../services/Auth";
-import Entry from "../models/Entry";
+import Schedule from "../models/Schedule";
 import { db } from "../services/firebase-config";
 import {
   doc,
@@ -23,7 +23,7 @@ class Database {
     const data = await getDocs(q);
     return data.docs.map((doc) => {
       const data = doc.data()
-      return new Entry(
+      return new Schedule(
         data.name,
         data.url,
         data.time,

@@ -18,6 +18,7 @@ import AddImg from "../../assets/images/add-img.svg";
 const AddScreen = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const [errorMsg, setErrorMsg] = useState("");
   const entry = location.state ? location.state.entry : null;
   const [url, setUrl] = useState(entry ? entry.url : "");
   const [name, setName] = useState(entry ? entry.name : "");
@@ -28,18 +29,20 @@ const AddScreen = () => {
     setInput(e.target.value);
   };
 
-  const handleAdd = async (e) => {
-    e.preventDefault();
-    const newEntry = new Entry(name, url, time, days, Auth.getUserId());
-    const id = await Database.createSchedule(newEntry);
-    newEntry.id = id;
-    EntryStorage.add(newEntry);
-    Schedule.create(newEntry);
-    navigate(-1);
+  const handleAdd = async () => {
+    try {
+      const newEntry = new Entry(name, url, time, days, Auth.getUserId());
+      const id = await Database.createSchedule(newEntry);
+      newEntry.id = id;
+      EntryStorage.add(newEntry);
+      Schedule.create(newEntry);
+      navigate(-1);
+    } catch (e) {
+      setErrorMsg("Invalid Schedule, please fill all entries.");
+    }
   };
 
-  const handleEdit = (e) => {
-    e.preventDefault();
+  const handleEdit = () => {
     const newEntry = new Entry(
       name,
       url,
@@ -64,7 +67,7 @@ const AddScreen = () => {
           text={entry ? "Edit Schedule" : "New Schedule"}
         />
       </div>
-      <form className="flex column add-form">
+      <div className="flex column add-form">
         <Input
           label="Name"
           placeholder="Example"
@@ -91,14 +94,13 @@ const AddScreen = () => {
           }}
         />
         <Weekdays value={days} onChange={setDays} />
+        <p className="text-red">{errorMsg}</p>
         <PrimaryButton
           className="add-btn-spacing"
           text={entry ? "EDIT" : "ADD"}
-          onClick={(e) => {
-            entry ? handleEdit(e) : handleAdd(e);
-          }}
+          onClick={entry ? handleEdit : handleAdd}
         />
-      </form>
+      </div>
       <img
         style={{ marginTop: "10px", height: "180px", overflow: "hidden" }}
         className="center"

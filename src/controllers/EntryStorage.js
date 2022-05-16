@@ -4,7 +4,7 @@ import WeekDay from "../helpers/WeekDay";
 class EntryStorage {
   static add(entry) {
     if (!(entry instanceof Entry)) {
-      throw "Error: Expected an object instanceof Entry.";
+      throw Error("Error: Expected an object instanceof Entry.");
     }
 
     const jsonEntry = JSON.stringify(entry);
@@ -22,13 +22,13 @@ class EntryStorage {
   static get(id) {
     const jsonEntry = localStorage.getItem(id);
     if (!jsonEntry) {
-      throw "Error: Fetched object with this ID does not exists.";
+      throw Error("Error: Fetched object with this ID does not exists.");
     }
     try {
       const entry = Entry.fromJson(jsonEntry);
       return entry;
     } catch {
-      throw "Error: Fetched object is not instanceof Entry.";
+      throw Error("Error: Fetched object is not instanceof Entry.");
     }
   }
 
@@ -84,7 +84,7 @@ class EntryStorage {
   static edit(entry) {
     this.get(entry.id);
     if (!(entry instanceof Entry)) {
-      throw "Error: Object given is not Entry";
+      throw Error("Error: Object given is not Entry");
     }
 
     const jsonEntry = JSON.stringify(entry);

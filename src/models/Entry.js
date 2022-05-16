@@ -1,5 +1,22 @@
 class Entry {
   constructor(name, url, time, days, ownerId, enabled = true, id = null) {
+    const daysValid = days.some(day => {
+      return day === 1;
+    });
+
+    if (
+      name === undefined ||
+      url === undefined ||
+      time === undefined ||
+      daysValid === false ||
+      ownerId === undefined ||
+      name === "" ||
+      url === "" ||
+      time === "" ||
+      ownerId === ""
+    ) {
+      throw Error("Missing properties");
+    }
     this.name = name;
     this.url = url;
     this.time = time;
@@ -20,7 +37,7 @@ class Entry {
       !entry.hasOwnProperty('enabled') ||
       !entry.hasOwnProperty('id')
     ) {
-      throw "Error: JSON Entry missing fields";
+      throw Error("Error: JSON Entry missing fields");
     }
     return new Entry(
       entry.name,

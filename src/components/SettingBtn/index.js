@@ -11,7 +11,7 @@ const SettingBtn = () => {
         navigate("/SettingsScreen");
       }}
     >
-      <img className="hover-animation-large pointer" src={settingBtn}></img>
+      <img alt="Open settings." className="hover-animation-large pointer" src={settingBtn}></img>
     </div>
   );
 };

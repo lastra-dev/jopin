@@ -22,3 +22,12 @@ test("Expect [fromJson] to throw when JSON fields are incomplete", () => {
     Entry.fromJson(jsonInvalidEntry);
   }).toThrow();
 });
+
+test("Expect to throw error when constructor don't have all required properties", () => {
+  expect(() => {
+    new Entry("Invalid Entry", "abc", "abc", [0, 0, 0, 0, 0, 0, 0], "0");
+  }).toThrow();
+  expect(() => {
+    new Entry("Invalid Entry", "", "", [1, 0, 0, 0, 0, 0, 0], "0");
+  }).toThrow();
+});

@@ -33,11 +33,12 @@ const HomeScreen = () => {
 
   useEffect(() => {
     if (firstLoad) {
-      setTimeout(() => {
+      let timer = setTimeout(() => {
         fetchEntries();
         setLoading(false);
         setFirstLoad(false);
       }, 1000)
+      return () => clearTimeout(timer);
     } else {
       fetchEntries();
     }

@@ -48,6 +48,7 @@ const LoginScreen = () => {
             autoComplete="off"
             autoFocus="on"
             label="Email"
+            type="email"
             onChange={(e) => { handleChange(e, setEmail) }}
           />
           <Input

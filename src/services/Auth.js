@@ -22,7 +22,29 @@ class Auth {
       EntryStorage.addAll(entries);
       Schedule.createAll(entries);
     } catch (e) {
-      console.log(e);
+      return this.handleError(e.code);
+    }
+  }
+
+  static handleError(errorCode) {
+    switch (errorCode) {
+      case "auth/invalid-email":
+        return "Invalid Email / Password."
+      case "auth/wrong-password":
+        return "Invalid Email / Password."
+      case "auth/user-not-found":
+        return "No user found with this email."
+      case "auth/operation-not-allowed":
+        return "Server error, please try again.";
+      case "auth/email-already-in-use":
+        return "Email already used.";
+      case "auth/weak-password":
+        return "Weak password.";
+      case "auth/user-disabled":
+        return "User disabled.";
+      default:
+        console.log(errorCode);
+        return "Unkown error, please try again."
     }
   }
 
@@ -35,10 +57,10 @@ class Auth {
           password
         );
       } catch (e) {
-        console.log(e);
+        return this.handleError(e.code);
       }
     } else {
-      console.log("Passwords not matching.")
+      return "Passwords do not match.";
     }
   }
 

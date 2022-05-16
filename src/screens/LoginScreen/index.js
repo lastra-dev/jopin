@@ -13,6 +13,7 @@ const LoginScreen = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
 
   window.onkeydown = (event) => {
     if (event.key === "Enter") {
@@ -25,7 +26,10 @@ const LoginScreen = () => {
   };
 
   const handleSubmit = async () => {
-    await Auth.signIn(email, password);
+    const errMsg = await Auth.signIn(email, password);
+    if (errMsg) {
+      setErrorMsg(errMsg);
+    }
   };
 
   const loadSignUpScreen = () => {
@@ -57,6 +61,7 @@ const LoginScreen = () => {
             className="mt-8"
             onChange={(e) => { handleChange(e, setPassword) }}
           />
+          <p className="text-red mt-8">{errorMsg}</p>
           <PrimaryButton
             className="login-btn-spacing btn-shadow login-btn"
             text="SIGN IN"

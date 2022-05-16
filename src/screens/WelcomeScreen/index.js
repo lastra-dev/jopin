@@ -13,6 +13,12 @@ const WelcomeScreen = () => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
 
+  window.onkeydown = (event) => {
+    if (event.key === "Enter") {
+      handleSubmit();
+    }
+  };
+
   const loadHomeScreen = useCallback(() => {
     navigate("/HomeScreen", { replace: true });
   }, [navigate]);
@@ -29,6 +35,10 @@ const WelcomeScreen = () => {
     return () => clearTimeout(timer);
   }, [loadHomeScreen, loadWelcomeScreen, setLoading]);
 
+  const handleSubmit = () => {
+    navigate("/LoginScreen", { replace: true });
+  }
+
   return (
     loading ? <HashSpinner /> :
       <>
@@ -44,9 +54,7 @@ const WelcomeScreen = () => {
           <PrimaryButton
             className="start-button btn-shadow"
             text="START"
-            onClick={() => {
-              navigate("/LoginScreen", { replace: true });
-            }}
+            onClick={handleSubmit}
           />
         </div>
       </>

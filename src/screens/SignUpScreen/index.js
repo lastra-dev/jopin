@@ -11,6 +11,7 @@ import "./SignUpScreen.css";
 
 const SignUpScreen = () => {
   const [email, setEmail] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
 
@@ -25,7 +26,10 @@ const SignUpScreen = () => {
   };
 
   const handleSubmit = async () => {
-    await Auth.createAccount(email, password, passwordConfirm);
+    const errMsg = await Auth.createAccount(email, password, passwordConfirm);
+    if (errMsg) {
+      setErrorMsg(errMsg);
+    }
   };
 
   return (
@@ -61,6 +65,7 @@ const SignUpScreen = () => {
             className="mt-8"
             onChange={(e) => { handleChange(e, setPasswordConfirm) }}
           />
+          <p className="text-red mt-8">{errorMsg}</p>
           <PrimaryButton
             className="login-btn-spacing btn-shadow login-btn"
             text="SIGN UP"

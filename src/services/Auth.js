@@ -42,6 +42,8 @@ class Auth {
         return "Weak password.";
       case "auth/user-disabled":
         return "User disabled.";
+      case "auth/missing-email":
+        return "Please enter an email."
       default:
         console.log(errorCode);
         return "Unkown error, please try again."

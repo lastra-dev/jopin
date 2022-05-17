@@ -1,46 +1,49 @@
-<img src="https://i.imgur.com/qd1AVxN.png" alt="app icon" height="120">
+<img src="https://i.imgur.com/gJNYBOR.png" alt="app icon" height="120">
 
-## **Basta de pedir enlaces, deja que lo hagamos por ti.**
+## **Manage your scheduled links with ease!**
 
-Jopin es una extensión para alumnos y docentes del [IEST Anáhuac](http://www.anahuac.mx/iest/) que les
-permite abrir sus clases automáticamente sin la necesidad de organizar
-sus enlaces.
+Jopin is an extension that helps you schedule your links and open them automatically.
 
-## Funciones
+## Features
 
-- 🚀 Abre tus clases a la hora exacta.
-- 🤖 Extrae y organiza tus horarios automáticamente.
-- 🗨️ Modo no intrusivo, notifica en lugar de abrir la clase.
-- ✏️ Edición de horarios.
+- ✏️ Edit your schedules.
+- 🚀 Open your links at the exact hour.
+- 🤖 Synchronize your schedules on different devices.
+- 🗨️ Non-intrusive mode, notify instead of directly opening the link.
 
-## Capturas de Pantalla
+## Screenshots
 
-<img src="https://i.imgur.com/CcS1GOb.png" alt="App overview" height="400">
+<img src="https://i.imgur.com/qmcmbpG.png" alt="App overview" height="400">
 
-## Contribuciones
+## Contributions
 
-Este proyecto se está desarrollando con [React](https://reactjs.org/),
-las contribuciones son aceptadas.
+This project is developed with [React](https://reactjs.org/),
+contributions are accepted.
 
-## Desarrollo
+## Development
 
-En el directorio del proyecto puedes ejecutar:
+In the project directory, you can run:
 
 ```bash
 $ npm start
 ```
 
-Para ejecutar la aplicación en modo desarrollo. Abre
-http://localhost:3000 para verlo en tu navegador.
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-La página se recargará cuando hagas cambios. También podrás ver errores
-en consola.
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
+
+```bash
+$ npm test
+```
+
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
 ```bash
 $ make build
 ```
 
-Construye la extensión que se puede instalar en navegadores basados en
-chromium. Este comando generará una carpeta _dist_ que puede ser cargada
-en su navegador como extensión.
-[Instrucciones sobre cómo cargar una extensión desempaquetada](https://developer.chrome.com/docs/extensions/mv3/getstarted/#unpacked).
+Builds the extension. This command will generate a _dist_ folder that can be loaded in your browser as an extension.
+[How to load an unpacked extension](https://developer.chrome.com/docs/extensions/mv3/getstarted/#unpacked).

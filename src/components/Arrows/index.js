@@ -5,13 +5,23 @@ import settingArrowImg from "../../assets/images/setting-arrow-btn.svg";
 
 const ArrowLeft = (props) => {
   return (
-    <img alt="Previous week day." className="hover-animation-large pointer" src={arrowLeftImg} onClick={props.onClick}></img>
+    <img
+      alt="Previous week day."
+      className="hover-animation-large pointer"
+      src={arrowLeftImg}
+      onClick={props.onClick}
+    ></img>
   );
 };
 
 const ArrowRight = (props) => {
   return (
-    <img alt="Next week day." className="hover-animation-large pointer" src={arrowRightImg} onClick={props.onClick}></img>
+    <img
+      alt="Next week day."
+      className="hover-animation-large pointer"
+      src={arrowRightImg}
+      onClick={props.onClick}
+    ></img>
   );
 };
 

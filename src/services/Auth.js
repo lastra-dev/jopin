@@ -13,14 +13,10 @@ import ScheduleStorage from "../controllers/ScheduleStorage";
 class Auth {
   static async signIn(email, password) {
     try {
-      await signInWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-      const entries = await Database.getSchedules();
-      ScheduleStorage.addAll(entries);
-      Alarms.createAll(entries);
+      await signInWithEmailAndPassword(auth, email, password);
+      const schedules = await Database.getSchedules();
+      ScheduleStorage.addAll(schedules);
+      Alarms.createAll(schedules);
     } catch (e) {
       return this.handleError(e.code);
     }
@@ -29,35 +25,31 @@ class Auth {
   static handleError(errorCode) {
     switch (errorCode) {
       case "auth/invalid-email":
-        return "Invalid Email / Password."
+        return "Invalid Email / Password.";
       case "auth/wrong-password":
-        return "Invalid Email / Password."
+        return "Invalid Email / Password.";
       case "auth/user-not-found":
-        return "No user found with this email."
+        return "No user found with this email.";
       case "auth/operation-not-allowed":
         return "Server error, please try again.";
       case "auth/email-already-in-use":
         return "Email already used.";
       case "auth/weak-password":
-        return "Weak password.";
+        return "Bad password, 6 characters minimum.";
       case "auth/user-disabled":
         return "User disabled.";
       case "auth/missing-email":
-        return "Please enter an email."
+        return "Please enter an email.";
       default:
         console.log(errorCode);
-        return "Unkown error, please try again."
+        return "Unkown error, please try again.";
     }
   }
 
   static async createAccount(email, password, passwordConfirm) {
     if (password === passwordConfirm) {
       try {
-        await createUserWithEmailAndPassword(
-          auth,
-          email,
-          password
-        );
+        await createUserWithEmailAndPassword(auth, email, password);
       } catch (e) {
         return this.handleError(e.code);
       }

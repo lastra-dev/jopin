@@ -1,6 +1,6 @@
 class Schedule {
   constructor(name, url, time, days, ownerId, enabled = true, id = null) {
-    const daysValid = days.some(day => {
+    const daysValid = days.some((day) => {
       return day === 1;
     });
 
@@ -29,15 +29,15 @@ class Schedule {
   static fromJson(jsonSchedule) {
     const schedule = JSON.parse(jsonSchedule);
     if (
-      !schedule.hasOwnProperty('name') ||
-      !schedule.hasOwnProperty('url') ||
-      !schedule.hasOwnProperty('time') ||
-      !schedule.hasOwnProperty('days') ||
-      !schedule.hasOwnProperty('ownerId') ||
-      !schedule.hasOwnProperty('enabled') ||
-      !schedule.hasOwnProperty('id')
+      !schedule.hasOwnProperty("name") ||
+      !schedule.hasOwnProperty("url") ||
+      !schedule.hasOwnProperty("time") ||
+      !schedule.hasOwnProperty("days") ||
+      !schedule.hasOwnProperty("ownerId") ||
+      !schedule.hasOwnProperty("enabled") ||
+      !schedule.hasOwnProperty("id")
     ) {
-      throw Error("Error: JSON Entry missing fields");
+      throw Error("Error: JSON Schedule missing fields");
     }
     return new Schedule(
       schedule.name,

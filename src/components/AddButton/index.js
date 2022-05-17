@@ -11,7 +11,11 @@ const AddButton = () => {
         navigate("/AddScreen");
       }}
     >
-      <img className="hover-animation-large pointer" src={addBtn} alt="Add Button"></img>
+      <img
+        className="hover-animation-large pointer"
+        src={addBtn}
+        alt="Add Button"
+      ></img>
     </div>
   );
 };

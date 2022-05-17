@@ -8,8 +8,8 @@ const BoxLoadingSpinner = () => {
         <ClimbingBoxLoader color="hsl(var(--clr-ibiza))" size={20} />
       </center>
     </div>
-  )
-}
+  );
+};
 
 const HashSpinner = () => {
   return (
@@ -18,7 +18,7 @@ const HashSpinner = () => {
         <HashLoader color="#F42D4B" size={50} />
       </center>
     </div>
-  )
-}
+  );
+};
 
 export { BoxLoadingSpinner, HashSpinner };

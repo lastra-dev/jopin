@@ -26,14 +26,14 @@ class Alarms {
   }
 
   static createAll(schedules) {
-    schedules.forEach(schedule => {
+    schedules.forEach((schedule) => {
       this.create(schedule);
     });
   }
 
   static edit(id, schedule) {
-    const oldEntry = ScheduleStorage.get(id);
-    this.delete(oldEntry);
+    const oldSchedule = ScheduleStorage.get(id);
+    this.delete(oldSchedule);
     this.create(schedule);
   }
 

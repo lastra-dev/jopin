@@ -19,11 +19,13 @@ const AddScreen = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [errorMsg, setErrorMsg] = useState("");
-  const entry = location.state ? location.state.entry : null;
-  const [url, setUrl] = useState(entry ? entry.url : "");
-  const [name, setName] = useState(entry ? entry.name : "");
-  const [time, setTime] = useState(entry ? entry.time : "");
-  const [days, setDays] = useState(entry ? entry.days : [0, 0, 0, 0, 0, 0, 0]);
+  const schedule = location.state ? location.state.schedule : null;
+  const [url, setUrl] = useState(schedule ? schedule.url : "");
+  const [name, setName] = useState(schedule ? schedule.name : "");
+  const [time, setTime] = useState(schedule ? schedule.time : "");
+  const [days, setDays] = useState(
+    schedule ? schedule.days : [0, 0, 0, 0, 0, 0, 0]
+  );
 
   const handleChange = (e, setInput) => {
     setInput(e.target.value);
@@ -31,11 +33,11 @@ const AddScreen = () => {
 
   const handleAdd = async () => {
     try {
-      const newEntry = new Schedule(name, url, time, days, Auth.getUserId());
-      const id = await Database.createSchedule(newEntry);
-      newEntry.id = id;
-      ScheduleStorage.add(newEntry);
-      Alarms.create(newEntry);
+      const newSchedule = new Schedule(name, url, time, days, Auth.getUserId());
+      const id = await Database.createSchedule(newSchedule);
+      newSchedule.id = id;
+      ScheduleStorage.add(newSchedule);
+      Alarms.create(newSchedule);
       navigate(-1);
     } catch (e) {
       setErrorMsg("Invalid Schedule, please fill all entries.");
@@ -43,18 +45,18 @@ const AddScreen = () => {
   };
 
   const handleEdit = () => {
-    const newEntry = new Schedule(
+    const newSchedule = new Schedule(
       name,
       url,
       time,
       days,
-      entry.ownerId,
-      entry.enabled,
-      entry.id
+      schedule.ownerId,
+      schedule.enabled,
+      schedule.id
     );
-    Database.updateSchedule(newEntry);
-    Alarms.edit(entry.id, newEntry);
-    ScheduleStorage.edit(newEntry);
+    Database.updateSchedule(newSchedule);
+    Alarms.edit(schedule.id, newSchedule);
+    ScheduleStorage.edit(newSchedule);
     navigate(-1);
   };
 
@@ -64,7 +66,7 @@ const AddScreen = () => {
         <Back />
         <Title
           className="navbar-title fw-500"
-          text={entry ? "Edit Schedule" : "New Schedule"}
+          text={schedule ? "Edit Schedule" : "New Schedule"}
         />
       </div>
       <div className="flex column add-form">
@@ -97,8 +99,8 @@ const AddScreen = () => {
         <p className="text-red">{errorMsg}</p>
         <PrimaryButton
           className="add-btn-spacing"
-          text={entry ? "EDIT" : "ADD"}
-          onClick={entry ? handleEdit : handleAdd}
+          text={schedule ? "EDIT" : "ADD"}
+          onClick={schedule ? handleEdit : handleAdd}
         />
       </div>
       <img

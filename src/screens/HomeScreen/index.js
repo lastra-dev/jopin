@@ -7,7 +7,7 @@ import Database from "../../models/Database";
 import Alarms from "../../controllers/Alarms";
 import { AppTitle } from "../../components/Titles";
 import AddButton from "../../components/AddButton";
-import EntryTile from "../../components/EntryTile";
+import ScheduleTile from "../../components/ScheduleTile";
 import SettingBtn from "../../components/SettingBtn";
 import { ArrowLeft, ArrowRight } from "../../components/Arrows";
 import ScheduleStorage from "../../controllers/ScheduleStorage";
@@ -18,35 +18,35 @@ import placeholder from "../../assets/images/placeholder.svg";
 
 const HomeScreen = () => {
   const navigate = useNavigate();
-  const [entries, setEntries] = useState([]);
+  const [schedules, setSchedules] = useState([]);
   const [loading, setLoading] = useState(true);
   const [firstLoad, setFirstLoad] = useState(true);
   const [modalIsShown, setModalIsShown] = useState(false);
-  const [selectedEntry, setSelectedEntry] = useState(null);
+  const [selectedSchedule, setSelectedSchedule] = useState(null);
   const [selectedWeekDay, setSelectedWeekDay] = useState(
     WeekDay.getCurrentWeekDay()
   );
 
-  const fetchEntries = useCallback(() => {
-    setEntries(ScheduleStorage.getAllFromWeekDay(selectedWeekDay));
+  const fetchSchedules = useCallback(() => {
+    setSchedules(ScheduleStorage.getAllFromWeekDay(selectedWeekDay));
   }, [selectedWeekDay]);
 
   useEffect(() => {
     if (firstLoad) {
       let timer = setTimeout(() => {
-        fetchEntries();
+        fetchSchedules();
         setLoading(false);
         setFirstLoad(false);
-      }, 1000)
+      }, 1000);
       return () => clearTimeout(timer);
     } else {
-      fetchEntries();
+      fetchSchedules();
     }
-  }, [fetchEntries, firstLoad, setLoading]);
+  }, [fetchSchedules, firstLoad, setLoading]);
 
-  const showModal = (e, entry) => {
+  const showModal = (e, schedule) => {
     if (e.target.id !== "subject" && e.target.id !== "subject-name") return;
-    setSelectedEntry(entry);
+    setSelectedSchedule(schedule);
     setModalIsShown(true);
   };
 
@@ -54,29 +54,29 @@ const HomeScreen = () => {
     setModalIsShown(false);
   };
 
-  const openUrl = (entry) => {
-    window.open(entry.url);
+  const openUrl = (schedule) => {
+    window.open(schedule.url);
     hideModal();
   };
 
-  const editEntry = (entry) => {
-    navigate("/AddScreen", { state: { entry: entry } });
+  const editSchedule = (schedule) => {
+    navigate("/AddScreen", { state: { schedule: schedule } });
   };
 
-  const deleteEntry = (entry) => {
-    Database.deleteSchedule(entry.id);
-    ScheduleStorage.delete(entry.id);
-    Alarms.delete(entry);
-    fetchEntries();
+  const deleteSchedule = (schedule) => {
+    Database.deleteSchedule(schedule.id);
+    ScheduleStorage.delete(schedule.id);
+    Alarms.delete(schedule);
+    fetchSchedules();
     hideModal();
   };
 
-  const entriesToRender = entries.map((entry) => (
-    <EntryTile
-      entry={entry}
-      key={entry.id}
+  const schedulesToRender = schedules.map((schedule) => (
+    <ScheduleTile
+      schedule={schedule}
+      key={schedule.id}
       onClick={(e) => {
-        showModal(e, entry);
+        showModal(e, schedule);
       }}
     />
   ));
@@ -84,27 +84,27 @@ const HomeScreen = () => {
   const setPreviousWeekDay = () => {
     const weekDay = WeekDay.previousWeekDay(selectedWeekDay);
     setSelectedWeekDay(weekDay);
-    fetchEntries();
+    fetchSchedules();
   };
 
   const setNextWeekDay = () => {
     const weekDay = WeekDay.nextWeekDay(selectedWeekDay);
     setSelectedWeekDay(weekDay);
-    fetchEntries();
+    fetchSchedules();
   };
 
   const modalToRender = (
     <Modal
       onClose={hideModal}
-      entry={selectedEntry}
+      schedule={selectedSchedule}
       onOpen={() => {
-        openUrl(selectedEntry);
+        openUrl(selectedSchedule);
       }}
       onEdit={() => {
-        editEntry(selectedEntry);
+        editSchedule(selectedSchedule);
       }}
       onDelete={() => {
-        deleteEntry(selectedEntry);
+        deleteSchedule(selectedSchedule);
       }}
     />
   );
@@ -121,15 +121,18 @@ const HomeScreen = () => {
         <ArrowRight onClick={setNextWeekDay} />
       </div>
       <div className="flex column tiles">
-        {loading ? <BoxLoadingSpinner /> :
-          entries.length > 0 ? entriesToRender :
-            <>
-              <p className="subtitle">Nothing here yet...</p>
-              <div style={{ height: "409.20px", overflow: "hidden" }}>
-                <img alt="A man with a paper airplane." src={placeholder}></img>
-              </div>
-            </>
-        }
+        {loading ? (
+          <BoxLoadingSpinner />
+        ) : schedules.length > 0 ? (
+          schedulesToRender
+        ) : (
+          <>
+            <p className="subtitle">Nothing here yet...</p>
+            <div style={{ height: "409.20px", overflow: "hidden" }}>
+              <img alt="A man with a paper airplane." src={placeholder}></img>
+            </div>
+          </>
+        )}
       </div>
     </>
   );

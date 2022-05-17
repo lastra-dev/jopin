@@ -1,4 +1,4 @@
-<img src="https://i.imgur.com/qd1AVxN.png" alt="app icon" height="120">  
+<img src="https://i.imgur.com/qd1AVxN.png" alt="app icon" height="120">
 
 ## **Basta de pedir enlaces, deja que lo hagamos por ti.**
 
@@ -11,7 +11,7 @@ sus enlaces.
 - 🚀 Abre tus clases a la hora exacta.
 - 🤖 Extrae y organiza tus horarios automáticamente.
 - 🗨️ Modo no intrusivo, notifica en lugar de abrir la clase.
-- ✏️  Edición de horarios.
+- ✏️ Edición de horarios.
 
 ## Capturas de Pantalla
 
@@ -41,6 +41,6 @@ $ make build
 ```
 
 Construye la extensión que se puede instalar en navegadores basados en
-chromium. Este comando generará una carpeta *dist* que puede ser cargada
+chromium. Este comando generará una carpeta _dist_ que puede ser cargada
 en su navegador como extensión.
 [Instrucciones sobre cómo cargar una extensión desempaquetada](https://developer.chrome.com/docs/extensions/mv3/getstarted/#unpacked).

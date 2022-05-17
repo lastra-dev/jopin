@@ -34,7 +34,7 @@ const LoginScreen = () => {
 
   const loadSignUpScreen = () => {
     navigate("/SignUpScreen");
-  }
+  };
 
   return (
     <>
@@ -53,13 +53,17 @@ const LoginScreen = () => {
             autoFocus="on"
             label="Email"
             type="email"
-            onChange={(e) => { handleChange(e, setEmail) }}
+            onChange={(e) => {
+              handleChange(e, setEmail);
+            }}
           />
           <Input
             label="Password"
             type="password"
             className="mt-8"
-            onChange={(e) => { handleChange(e, setPassword) }}
+            onChange={(e) => {
+              handleChange(e, setPassword);
+            }}
           />
           <p className="text-red mt-8">{errorMsg}</p>
           <PrimaryButton
@@ -67,8 +71,12 @@ const LoginScreen = () => {
             text="SIGN IN"
             onClick={handleSubmit}
           />
-          <p className="subtitle text-gray">Don't have an account?
-            <span className="text-ibiza pointer" onClick={loadSignUpScreen}> Register</span>
+          <p className="subtitle text-gray">
+            Don't have an account?
+            <span className="text-ibiza pointer" onClick={loadSignUpScreen}>
+              {" "}
+              Register
+            </span>
           </p>
         </div>
       </div>

@@ -22,7 +22,7 @@ class Database {
     );
     const data = await getDocs(q);
     return data.docs.map((doc) => {
-      const data = doc.data()
+      const data = doc.data();
       return new Schedule(
         data.name,
         data.url,
@@ -30,21 +30,22 @@ class Database {
         data.days,
         data.ownerId,
         data.enabled,
-        doc.id);
+        doc.id
+      );
     });
   };
 
-  static createSchedule = async (entry) => {
-    delete entry.id;
-    const doc = await addDoc(schedulesCollection, { ...entry });
+  static createSchedule = async (schedule) => {
+    delete schedule.id;
+    const doc = await addDoc(schedulesCollection, { ...schedule });
     return doc.id;
   };
 
-  static updateSchedule = async (entry) => {
-    const scheduleDoc = doc(db, "schedules", entry.id);
-    const editedEntry = { ...entry };
-    delete editedEntry.id;
-    await updateDoc(scheduleDoc, editedEntry);
+  static updateSchedule = async (schedule) => {
+    const scheduleDoc = doc(db, "schedules", schedule.id);
+    const editedSchedule = { ...schedule };
+    delete editedSchedule.id;
+    await updateDoc(scheduleDoc, editedSchedule);
   };
 
   static deleteSchedule = async (id) => {
@@ -59,10 +60,10 @@ class Database {
     );
 
     const data = await getDocs(q);
-    data.forEach(async doc => {
+    data.forEach(async (doc) => {
       await deleteDoc(doc.ref);
     });
-  }
+  };
 }
 
 export default Database;

@@ -51,19 +51,25 @@ const SignUpScreen = () => {
             autoComplete="off"
             autoFocus="on"
             label="Email"
-            onChange={(e) => { handleChange(e, setEmail) }}
+            onChange={(e) => {
+              handleChange(e, setEmail);
+            }}
           />
           <Input
             label="Password"
             type="password"
             className="mt-8"
-            onChange={(e) => { handleChange(e, setPassword) }}
+            onChange={(e) => {
+              handleChange(e, setPassword);
+            }}
           />
           <Input
             label="Confirm Password"
             type="password"
             className="mt-8"
-            onChange={(e) => { handleChange(e, setPasswordConfirm) }}
+            onChange={(e) => {
+              handleChange(e, setPasswordConfirm);
+            }}
           />
           <p className="text-red mt-8">{errorMsg}</p>
           <PrimaryButton
@@ -71,7 +77,8 @@ const SignUpScreen = () => {
             text="SIGN UP"
             onClick={handleSubmit}
           />
-          <p className="fs-300 text-gray">By signing up you're agreeing to<br></br> our
+          <p className="fs-300 text-gray">
+            By signing up you're agreeing to<br></br> our
             <span className="text-ibiza pointer"> Terms of Service</span>
           </p>
         </div>

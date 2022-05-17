@@ -41,7 +41,11 @@ const SettingsScreen = () => {
           first="true"
           text="Delete Schedules"
         />
-        <OptionTile className="text-red" text="Sign out" onClick={Auth.logout} />
+        <OptionTile
+          className="text-red"
+          text="Sign out"
+          onClick={Auth.logout}
+        />
       </div>
     </>
   );

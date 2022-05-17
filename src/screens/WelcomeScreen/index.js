@@ -31,33 +31,30 @@ const WelcomeScreen = () => {
     Auth.monitorAuthState(loadHomeScreen, loadWelcomeScreen);
     let timer = setTimeout(() => {
       setLoading(false);
-    }, 1500)
+    }, 1500);
     return () => clearTimeout(timer);
   }, [loadHomeScreen, loadWelcomeScreen, setLoading]);
 
   const handleSubmit = () => {
     navigate("/LoginScreen", { replace: true });
-  }
+  };
 
-  return (
-    loading ? <HashSpinner /> :
-      <>
-        <AppTitle />
-        <div className="flex column override-gap">
-          <img
-            width="500px"
-            src={welcomeImg}
-            alt="Two people chatting"
-          />
-          <p className="title welcome-title">Welcome!</p>
-          <p className="subtitle text-gray">Let us schedule your links...</p>
-          <PrimaryButton
-            className="start-button btn-shadow"
-            text="START"
-            onClick={handleSubmit}
-          />
-        </div>
-      </>
+  return loading ? (
+    <HashSpinner />
+  ) : (
+    <>
+      <AppTitle />
+      <div className="flex column override-gap">
+        <img width="500px" src={welcomeImg} alt="Two people chatting" />
+        <p className="title welcome-title">Welcome!</p>
+        <p className="subtitle text-gray">Let us schedule your links...</p>
+        <PrimaryButton
+          className="start-button btn-shadow"
+          text="START"
+          onClick={handleSubmit}
+        />
+      </div>
+    </>
   );
 };
 

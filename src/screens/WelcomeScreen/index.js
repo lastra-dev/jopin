@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import Auth from "../../services/Auth";
 import Database from "../../models/Database";
+import Alarms from "../../controllers/Alarms";
 import { AppTitle } from "../../components/Titles";
 import PrimaryButton from "../../components/PrimaryButton";
 import { HashSpinner } from "../../components/LoadingSpinner";
@@ -25,6 +26,7 @@ const WelcomeScreen = () => {
     if (!localStorage.getItem("loggedIn")) {
       const schedules = await Database.getSchedules();
       ScheduleStorage.addAll(schedules);
+      Alarms.createAll(schedules);
       localStorage.setItem("loggedIn", true);
     }
   };

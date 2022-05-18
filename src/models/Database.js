@@ -36,6 +36,7 @@ class Database {
   };
 
   static createSchedule = async (schedule) => {
+    // Delete ID property because we will get it from Firebase
     delete schedule.id;
     const doc = await addDoc(schedulesCollection, { ...schedule });
     return doc.id;

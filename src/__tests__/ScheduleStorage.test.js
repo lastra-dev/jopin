@@ -45,7 +45,7 @@ test("Expect [add] to throw when not a Schedule", () => {
   }).toThrow();
 });
 
-test("Expect [get] to recieve a Schedule from localStorage", () => {
+test("Expect [get] to receive a Schedule from localStorage", () => {
   ScheduleStorage.add(testSchedule);
   expect(ScheduleStorage.get(testSchedule.id)).toStrictEqual(testSchedule);
 });
@@ -63,7 +63,7 @@ test("Expect [get] to throw when getting an object different than Schedule", () 
   }).toThrow();
 });
 
-test("Expect [getAll] to recieve a list with all schedules", () => {
+test("Expect [getAll] to receive a list with all schedules", () => {
   ScheduleStorage.clear();
   ScheduleStorage.add(testSchedule);
   ScheduleStorage.add(testSchedule2);

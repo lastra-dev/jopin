@@ -5,6 +5,16 @@ class WeekDay {
     return new Date().toLocaleString("en-us", { weekday: "long" });
   }
 
+  // Solution by Tim
+  // https://stackoverflow.com/questions/1579010/get-next-date-from-weekday-in-javascript
+  static getDateOfNearestWeekDay(weekDayNumber) {
+    let result = new Date();
+    result.setDate(
+      result.getDate() + ((weekDayNumber + (7 - result.getDay())) % 7)
+    );
+    return result;
+  }
+
   static nextWeekDay(weekDay) {
     switch (weekDay) {
       case "Sunday":

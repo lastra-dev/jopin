@@ -26,9 +26,9 @@ const LoginScreen = () => {
   };
 
   const handleSubmit = async () => {
-    const errMsg = await Auth.signIn(email, password);
-    if (errMsg) {
-      setErrorMsg(errMsg);
+    const errorMsg = await Auth.login(email, password);
+    if (errorMsg) {
+      setErrorMsg(errorMsg);
     }
   };
 

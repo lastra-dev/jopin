@@ -1,5 +1,6 @@
 /*global chrome*/
 
+import WeekDay from "../helpers/WeekDay";
 import Formatters from "../helpers/Formatters";
 import ScheduleStorage from "../controllers/ScheduleStorage";
 
@@ -9,7 +10,7 @@ class Alarms {
       if (schedule.days[i] === 0) {
         continue;
       }
-      let nearestWeekDayDate = this.getDateOfNearestWeekDay(i);
+      let nearestWeekDayDate = WeekDay.getDateOfNearestWeekDay(i);
       nearestWeekDayDate.setHours(
         Formatters.timeToHour(schedule.time),
         Formatters.timeToMinutes(schedule.time),
@@ -48,16 +49,6 @@ class Alarms {
 
   static deleteAll() {
     chrome.alarms.clearAll();
-  }
-
-  // Solution by Tim
-  // https://stackoverflow.com/questions/1579010/get-next-date-from-weekday-in-javascript
-  static getDateOfNearestWeekDay(weekDayNumber) {
-    let result = new Date();
-    result.setDate(
-      result.getDate() + ((weekDayNumber + (7 - result.getDay())) % 7)
-    );
-    return result;
   }
 
   static createAlarm(url, date) {

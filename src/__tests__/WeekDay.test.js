@@ -56,3 +56,29 @@ test("Expect to get the previous week day from given week day", () => {
   expect(WeekDay.previousWeekDay("Friday")).toBe("Thursday");
   expect(WeekDay.previousWeekDay("Saturday")).toBe("Friday");
 });
+
+test("Expect to get the nearest date for the given week day", () => {
+  jest.setSystemTime(new Date("December 28, 2000 22:50:00")); // Thursday
+  // 0 - Sunday, 1 - Monday, 2 - Tuesday, 3 - Wednesday, 4 - Thursday, 5 - Friday, 6 - Saturday
+  expect(WeekDay.getDateOfNearestWeekDay(4)).toStrictEqual(
+    new Date("December 28, 2000 22:50:00")
+  );
+  expect(WeekDay.getDateOfNearestWeekDay(5)).toStrictEqual(
+    new Date("December 29, 2000 22:50:00")
+  );
+  expect(WeekDay.getDateOfNearestWeekDay(6)).toStrictEqual(
+    new Date("December 30, 2000 22:50:00")
+  );
+  expect(WeekDay.getDateOfNearestWeekDay(0)).toStrictEqual(
+    new Date("December 31, 2000 22:50:00")
+  );
+  expect(WeekDay.getDateOfNearestWeekDay(1)).toStrictEqual(
+    new Date("January 01, 2001 22:50:00")
+  );
+  expect(WeekDay.getDateOfNearestWeekDay(2)).toStrictEqual(
+    new Date("January 02, 2001 22:50:00")
+  );
+  expect(WeekDay.getDateOfNearestWeekDay(3)).toStrictEqual(
+    new Date("January 03, 2001 22:50:00")
+  );
+});

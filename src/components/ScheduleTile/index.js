@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import ToggleSwitch from "../ToggleSwitch";
+import Alarms from "../../controllers/Alarms";
 import Formatters from "../../helpers/Formatters";
 import ScheduleStorage from "../../controllers/ScheduleStorage";
 
@@ -13,6 +14,11 @@ const ScheduleTile = (props) => {
   const handleCheck = (toggle) => {
     setChecked(toggle);
     ScheduleStorage.toggle(schedule.id);
+    if (!toggle) {
+      Alarms.delete(schedule);
+    } else {
+      Alarms.create(schedule);
+    }
   };
 
   return (

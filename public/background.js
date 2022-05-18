@@ -13,5 +13,6 @@ chrome.alarms.onAlarm.addListener((alarm) => {
     return;
   }
 
-  chrome.tabs.create({ url: alarm.name.split(" ")[0] });
+  const url = alarm.name.split(" ")[0];
+  chrome.tabs.create({ url: url });
 });

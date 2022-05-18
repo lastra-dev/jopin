@@ -6,7 +6,6 @@ import {
 } from "firebase/auth";
 
 import { auth } from "./firebase-config";
-import Database from "../models/Database";
 import Alarms from "../controllers/Alarms";
 import ScheduleStorage from "../controllers/ScheduleStorage";
 
@@ -14,9 +13,6 @@ class Auth {
   static async signIn(email, password) {
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      const schedules = await Database.getSchedules();
-      ScheduleStorage.addAll(schedules);
-      Alarms.createAll(schedules);
     } catch (e) {
       return this.handleError(e.code);
     }
@@ -42,19 +38,18 @@ class Auth {
         return "Please enter an email.";
       default:
         console.log(errorCode);
-        return "Unkown error, please try again.";
+        return "Unknown error, please try again.";
     }
   }
 
   static async createAccount(email, password, passwordConfirm) {
-    if (password === passwordConfirm) {
-      try {
-        await createUserWithEmailAndPassword(auth, email, password);
-      } catch (e) {
-        return this.handleError(e.code);
-      }
-    } else {
+    if (password !== passwordConfirm) {
       return "Passwords do not match.";
+    }
+    try {
+      await createUserWithEmailAndPassword(auth, email, password);
+    } catch (e) {
+      return this.handleError(e.code);
     }
   }
 
@@ -63,6 +58,7 @@ class Auth {
       if (user) {
         onSignIn();
       } else {
+        localStorage.removeItem("loggedIn")
         onSignOut();
       }
     });

@@ -11,7 +11,6 @@ import ScheduleTile from "../../components/ScheduleTile";
 import SettingBtn from "../../components/SettingBtn";
 import { ArrowLeft, ArrowRight } from "../../components/Arrows";
 import ScheduleStorage from "../../controllers/ScheduleStorage";
-import { BoxLoadingSpinner } from "../../components/LoadingSpinner";
 
 import "./HomeScreen.css";
 import placeholder from "../../assets/images/placeholder.svg";
@@ -19,8 +18,6 @@ import placeholder from "../../assets/images/placeholder.svg";
 const HomeScreen = () => {
   const navigate = useNavigate();
   const [schedules, setSchedules] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [firstLoad, setFirstLoad] = useState(true);
   const [modalIsShown, setModalIsShown] = useState(false);
   const [selectedSchedule, setSelectedSchedule] = useState(null);
   const [selectedWeekDay, setSelectedWeekDay] = useState(
@@ -32,17 +29,8 @@ const HomeScreen = () => {
   }, [selectedWeekDay]);
 
   useEffect(() => {
-    if (firstLoad) {
-      let timer = setTimeout(() => {
-        fetchSchedules();
-        setLoading(false);
-        setFirstLoad(false);
-      }, 1000);
-      return () => clearTimeout(timer);
-    } else {
-      fetchSchedules();
-    }
-  }, [fetchSchedules, firstLoad, setLoading]);
+    fetchSchedules();
+  }, [fetchSchedules]);
 
   const showModal = (e, schedule) => {
     if (e.target.id !== "subject" && e.target.id !== "subject-name") return;
@@ -121,9 +109,7 @@ const HomeScreen = () => {
         <ArrowRight onClick={setNextWeekDay} />
       </div>
       <div className="flex column tiles">
-        {loading ? (
-          <BoxLoadingSpinner />
-        ) : schedules.length > 0 ? (
+        {schedules.length > 0 ? (
           schedulesToRender
         ) : (
           <>

@@ -2,9 +2,11 @@ import React, { useEffect, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Auth from "../../services/Auth";
+import Database from "../../models/Database";
 import { AppTitle } from "../../components/Titles";
 import PrimaryButton from "../../components/PrimaryButton";
 import { HashSpinner } from "../../components/LoadingSpinner";
+import ScheduleStorage from "../../controllers/ScheduleStorage";
 
 import welcomeImg from "../../assets/images/welcome-img.svg";
 import "./WelcomeScreen.css";
@@ -19,25 +21,32 @@ const WelcomeScreen = () => {
     }
   };
 
-  const loadHomeScreen = useCallback(() => {
+  const fetchAndSaveSchedules = async () => {
+    if (!localStorage.getItem("loggedIn")) {
+      const schedules = await Database.getSchedules();
+      ScheduleStorage.addAll(schedules);
+      localStorage.setItem("loggedIn", true);
+    }
+  };
+
+  const loadHomeScreen = useCallback(async () => {
+    await fetchAndSaveSchedules();
+    setLoading(false);
     navigate("/HomeScreen", { replace: true });
   }, [navigate]);
 
   const loadWelcomeScreen = useCallback(() => {
+    setLoading(false);
     navigate("/", { replace: true });
   }, [navigate]);
-
-  useEffect(() => {
-    Auth.monitorAuthState(loadHomeScreen, loadWelcomeScreen);
-    let timer = setTimeout(() => {
-      setLoading(false);
-    }, 1500);
-    return () => clearTimeout(timer);
-  }, [loadHomeScreen, loadWelcomeScreen, setLoading]);
 
   const handleSubmit = () => {
     navigate("/LoginScreen", { replace: true });
   };
+
+  useEffect(() => {
+    Auth.monitorAuthState(loadHomeScreen, loadWelcomeScreen);
+  }, [loadHomeScreen, loadWelcomeScreen]);
 
   return loading ? (
     <HashSpinner />

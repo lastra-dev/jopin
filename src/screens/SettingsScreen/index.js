@@ -24,7 +24,7 @@ const SettingsScreen = () => {
       </div>
       <div className="mt-48">
         <SectionTitle text="App" />
-        <OptionTile first="true" showToggle="true" text="Intrusive Mode" />
+        <OptionTile first="true" showToggle="true" text="Notify mode" />
       </div>
 
       <div className="mt-32">

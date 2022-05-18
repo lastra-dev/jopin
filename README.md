@@ -9,7 +9,7 @@ Jopin is an extension that helps you schedule your links and open them automatic
 - ✏️ Edit your schedules.
 - 🚀 Open your links at the exact hour.
 - 🤖 Synchronize your schedules on different devices.
-- 🗨️ Non-intrusive mode, notify instead of directly opening the link.
+- 🗨️ Notify mode, notify instead of directly opening the link.
 
 ## Screenshots
 

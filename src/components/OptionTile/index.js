@@ -1,13 +1,27 @@
 import React, { useState } from "react";
 import { SettingArrow } from "../Arrows";
+import Alarms from "../../controllers/Alarms";
 import ToggleSwitch from "../../components/ToggleSwitch";
+import ScheduleStorage from "../../controllers/ScheduleStorage";
+
 import "./Option.css";
 
 const OptionTile = (props) => {
-  const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState(
+    localStorage.getItem("notify") === "true"
+  );
 
   const handleChecked = (toggle) => {
     setChecked(toggle);
+    if (toggle) {
+      localStorage.setItem("notify", true);
+      Alarms.deleteAll();
+      Alarms.createAll(ScheduleStorage.getAll());
+    } else {
+      localStorage.setItem("notify", false);
+      Alarms.deleteAll();
+      Alarms.createAll(ScheduleStorage.getAll());
+    }
   };
 
   return (

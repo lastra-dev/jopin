@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import ToggleSwitch from "../ToggleSwitch";
+import Database from "../../models/Database";
 import Alarms from "../../controllers/Alarms";
 import Formatters from "../../helpers/Formatters";
 import ScheduleStorage from "../../controllers/ScheduleStorage";
@@ -8,16 +9,20 @@ import ScheduleStorage from "../../controllers/ScheduleStorage";
 import "./ScheduleTile.css";
 
 const ScheduleTile = (props) => {
+  const weekDay = props.weekDay;
   const schedule = props.schedule;
-  const [checked, setChecked] = useState(schedule.enabled);
+  const [checked, setChecked] = useState(
+    ScheduleStorage.getWeekDayEnabled(schedule.id, weekDay)
+  );
 
   const handleCheck = (toggle) => {
     setChecked(toggle);
-    ScheduleStorage.toggle(schedule.id);
+    ScheduleStorage.toggle(schedule.id, weekDay);
+    Database.updateSchedule(ScheduleStorage.get(schedule.id));
     if (!toggle) {
-      Alarms.delete(schedule);
+      Alarms.deleteSingle(weekDay, schedule);
     } else {
-      Alarms.create(schedule);
+      Alarms.createSingle(weekDay, schedule);
     }
   };
 

@@ -61,6 +61,7 @@ const HomeScreen = () => {
 
   const schedulesToRender = schedules.map((schedule) => (
     <ScheduleTile
+      weekDay={selectedWeekDay}
       schedule={schedule}
       key={schedule.id}
       onClick={(e) => {

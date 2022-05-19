@@ -52,7 +52,7 @@ class ScheduleStorage {
     const weekDayNumber = WeekDay.weekDayToNumber(weekDay);
     const schedules = this.getAll();
     schedules.forEach((schedule) => {
-      if (schedule.days[weekDayNumber] === 1) {
+      if (schedule.days[weekDayNumber] !== 0) {
         result.push(schedule);
       }
     });
@@ -101,10 +101,16 @@ class ScheduleStorage {
     }
   }
 
-  static toggle(id) {
+  static toggle(id, weekDay) {
     const schedule = this.get(id);
-    schedule.enabled = !schedule.enabled;
+    const weekDayNumber = WeekDay.weekDayToNumber(weekDay);
+    schedule.days[weekDayNumber] = -schedule.days[weekDayNumber];
     this.edit(schedule);
+  }
+
+  static getWeekDayEnabled(scheduleId, weekDay) {
+    const schedule = this.get(scheduleId);
+    return schedule.days[WeekDay.weekDayToNumber(weekDay)] == true;
   }
 }
 

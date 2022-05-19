@@ -14,7 +14,7 @@ const testSchedule2 = new Schedule(
   "bar",
   "https://google.com",
   "18:00",
-  [0, 1, 0, 0, 1, 0, 1],
+  [0, 1, 0, 0, 1, -1, 1],
   "ownerId",
   false,
   "1"
@@ -22,10 +22,11 @@ const testSchedule2 = new Schedule(
 
 test("Expect [toggle] to enable or disable a Schedule", () => {
   ScheduleStorage.add(testSchedule);
-  ScheduleStorage.toggle(testSchedule.id);
-  expect(ScheduleStorage.get(testSchedule.id).enabled).toBe(
-    !testSchedule.enabled
-  );
+  ScheduleStorage.add(testSchedule2);
+  ScheduleStorage.toggle(testSchedule.id, "Sunday");
+  ScheduleStorage.toggle(testSchedule2.id, "Friday");
+  expect(ScheduleStorage.get(testSchedule.id).days[0]).toBe(-1);
+  expect(ScheduleStorage.get(testSchedule2.id).days[5]).toBe(1);
 });
 
 test("Expect [toggle] to throw an Error when invalid ID", () => {
@@ -156,4 +157,11 @@ test("Expect to add all schedules", () => {
   ScheduleStorage.clear();
   ScheduleStorage.addAll(testSchedules);
   expect(ScheduleStorage.getAll()).toStrictEqual(testSchedules);
+});
+
+test("Expect to get schedule from week day enabled or not.", () => {
+  const testSchedules = [testSchedule, testSchedule2];
+  ScheduleStorage.addAll(testSchedules);
+  expect(ScheduleStorage.getWeekDayEnabled(testSchedule.id, "Sunday")).toBe(true);
+  expect(ScheduleStorage.getWeekDayEnabled(testSchedule2.id, "Friday")).toBe(false);
 });

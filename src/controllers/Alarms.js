@@ -7,7 +7,7 @@ import ScheduleStorage from "../controllers/ScheduleStorage";
 class Alarms {
   static create(schedule) {
     for (let i = 0; i < schedule.days.length; i++) {
-      if (schedule.days[i] === 0) {
+      if (schedule.days[i] !== 1) {
         continue;
       }
       let nearestWeekDayDate = WeekDay.getDateOfNearestWeekDay(i);
@@ -52,15 +52,32 @@ class Alarms {
     }
   }
 
+  static createSingle(day, schedule) {
+    const dayNumber = WeekDay.weekDayToNumber(day);
+    const notifyMode = localStorage.getItem("notify");
+    this.createAlarm(
+      `${schedule.name}|${schedule.url}|${notifyMode}|${dayNumber}`,
+      WeekDay.getDateOfNearestWeekDay(day).getTime()
+    );
+  }
+
+  static deleteSingle(day, schedule) {
+    const dayNumber = WeekDay.weekDayToNumber(day);
+    const notifyMode = localStorage.getItem("notify");
+    chrome.alarms.clear(
+      `${schedule.name}|${schedule.url}|${notifyMode}|${dayNumber}`
+    );
+  }
+
   static deleteAll() {
     chrome.alarms.clearAll();
   }
 
-  static createAlarm(url, date) {
+  static createAlarm(data, date) {
     let alarmInfo = {};
     alarmInfo.when = date;
     alarmInfo.periodInMinutes = 10080; // every week
-    chrome.alarms.create(url, alarmInfo);
+    chrome.alarms.create(data, alarmInfo);
   }
 }
 

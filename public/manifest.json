@@ -1,7 +1,7 @@
 {
   "name": "Jopin",
   "short_name": "Jopin",
-  "description": "Abre tus clases sin pedir enlaces, IEST Anáhuac",
+  "description": "Set alarms for your links.",
   "author": "Oscar Lastra & Humberto Cabrera",
   "homepage_url": "https://github.com/lastra-dev/jopin",
   "manifest_version": 3,

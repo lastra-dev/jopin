@@ -4,6 +4,8 @@ chrome.runtime.onInstalled.addListener(() => {
   return;
 });
 
+const notificationName = "jopin";
+
 chrome.alarms.onAlarm.addListener((alarm) => {
   // Avoids opening tab when scheduled before current date
   // -10 seconds to have a reasonable threshold of time.
@@ -23,7 +25,7 @@ chrome.alarms.onAlarm.addListener((alarm) => {
 });
 
 const notify = (name, url, notifyMode) => {
-  chrome.notifications.create("jopin", {
+  chrome.notifications.create(notificationName, {
     title: "Jopin",
     message: notifyMode ? name : `${name} is now!`,
     type: "basic",
@@ -32,10 +34,25 @@ const notify = (name, url, notifyMode) => {
     requireInteraction: notifyMode ? true : false,
   });
 
-  chrome.notifications.onButtonClicked.addListener((_, buttonIndex) => {
-    if (buttonIndex === 0) {
+  if (notifyMode) {
+    chrome.notifications.onButtonClicked.addListener((_, buttonIndex) => {
+      if (buttonIndex === 0) {
+        chrome.tabs.create({ url: url });
+        clearNotification();
+      }
+    });
+
+    chrome.notifications.onClicked.addListener((_) => {
       chrome.tabs.create({ url: url });
-      chrome.notifications.clear("jopin");
-    }
-  });
+      clearNotification();
+    });
+  } else {
+    chrome.notifications.onClicked.addListener((_) => {
+      clearNotification();
+    });
+  }
+};
+
+const clearNotification = () => {
+  chrome.notifications.clear(notificationName);
 };

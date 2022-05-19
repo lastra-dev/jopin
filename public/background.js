@@ -15,9 +15,10 @@ chrome.alarms.onAlarm.addListener((alarm) => {
     return;
   }
 
-  const url = alarm.name.split(" ")[0];
-  const name = alarm.name.split(" ")[4];
-  const notifyMode = alarm.name.split(" ")[2] === "true";
+  const alarmProperties = alarm.name.split("|");
+  const name = alarmProperties[0];
+  const url = alarmProperties[1];
+  const notifyMode = alarmProperties[2] === "true";
 
   notify(name, url, notifyMode);
   if (notifyMode) return;

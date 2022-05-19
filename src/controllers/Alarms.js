@@ -21,7 +21,7 @@ class Alarms {
       // Alarms need different names
       // so we differentiate them with the week day number
       this.createAlarm(
-        `${schedule.url} notify: ${notifyMode} name: ${schedule.name} weekDay: ${i}`,
+        `${schedule.name}|${schedule.url}|${notifyMode}|${i}`,
         nearestWeekDayDate.getTime()
       );
     }
@@ -47,7 +47,7 @@ class Alarms {
 
       const notifyMode = localStorage.getItem("notify");
       chrome.alarms.clear(
-        `${schedule.url} notify: ${notifyMode} name: ${schedule.name} weekDay: ${i}`
+        `${schedule.name}|${schedule.url}|${notifyMode}|${i}`
       );
     }
   }

@@ -1,33 +1,56 @@
 import Schedule from "../models/Schedule";
 
-const testSchedule = new Schedule(
-  "foo",
-  "https://google.com",
-  "17:00",
-  [1, 1, 1, 0, 0, 0, 0],
-  "ownerId",
-  true,
-  "id"
-);
+const testSchedule = new Schedule({
+  name: "foo",
+  url: "https://google.com",
+  time: "17:00",
+  days: [1, 1, 1, 0, 0, 0, 0],
+  daysEnabled: [true, true, false, false, false, false, false],
+  ownerId: "ownerId",
+  id: "id",
+});
 
 test("Expect [fromJson] to return a Schedule model", () => {
   const jsonTestSchedule = JSON.stringify(testSchedule);
   expect(Schedule.fromJson(jsonTestSchedule)).toStrictEqual(testSchedule);
 });
 
-test("Expect [fromJson] to throw when JSON fields are incomplete", () => {
-  const invalidSchedule = { name: "Not a valid Schedule" };
-  const jsonInvalidSchedule = JSON.stringify(invalidSchedule);
+test("Expect [Schedule] to throw Error when missing properties", () => {
+  // Non active days
   expect(() => {
-    Schedule.fromJson(jsonInvalidSchedule);
+    new Schedule({
+      name: "Invalid Schedule",
+      url: "https://google.com",
+      time: "17:00",
+      days: [0, 0, 0, 0, 0, 0, 0],
+      daysEnabled: [false, false, false, false, false, false, false],
+      ownerId: "ownerId",
+      id: "id",
+    });
   }).toThrow();
-});
 
-test("Expect to throw error when constructor don't have all required properties", () => {
+  // Empty properties
   expect(() => {
-    new Schedule("Invalid Schedule", "abc", "abc", [0, 0, 0, 0, 0, 0, 0], "0");
+    new Schedule({
+      name: "Invalid Schedule",
+      url: "",
+      time: "",
+      days: [1, 0, 0, 0, 0, 0, 0],
+      daysEnabled: [true, false, false, false, false, false, false],
+      ownerId: "ownerId",
+      id: "id",
+    });
   }).toThrow();
+
+  // Missing name
   expect(() => {
-    new Schedule("Invalid Schedule", "", "", [1, 0, 0, 0, 0, 0, 0], "0");
+    new Schedule({
+      url: "",
+      time: "",
+      days: [1, 0, 0, 0, 0, 0, 0],
+      daysEnabled: [true, false, false, false, false, false, false],
+      ownerId: "ownerId",
+      id: "id",
+    });
   }).toThrow();
 });

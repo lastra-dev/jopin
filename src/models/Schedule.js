@@ -1,53 +1,34 @@
 class Schedule {
-  constructor(name, url, time, days, ownerId, enabled = true, id = null) {
-    const daysValid = days.some((day) => {
+  constructor(schedule) {
+    const daysValid = schedule.days.some((day) => {
       return day === 1;
     });
 
     if (
-      name === undefined ||
-      url === undefined ||
-      time === undefined ||
-      daysValid === false ||
-      ownerId === undefined ||
-      name === "" ||
-      url === "" ||
-      time === "" ||
-      ownerId === ""
+      !daysValid ||
+      schedule.url === "" ||
+      schedule.time === "" ||
+      schedule.name === "" ||
+      schedule.ownerId === "" ||
+      schedule.name === undefined ||
+      schedule.url === undefined ||
+      schedule.time === undefined ||
+      schedule.ownerId === undefined
     ) {
       throw Error("Missing properties");
     }
-    this.name = name;
-    this.url = url;
-    this.time = time;
-    this.days = days;
-    this.ownerId = ownerId;
-    this.enabled = enabled;
-    this.id = id;
+    this.name = schedule.name;
+    this.url = schedule.url;
+    this.time = schedule.time;
+    this.days = schedule.days;
+    this.daysEnabled = schedule.daysEnabled;
+    this.ownerId = schedule.ownerId;
+    this.enabled = schedule.enabled;
+    this.id = schedule.id;
   }
 
   static fromJson(jsonSchedule) {
-    const schedule = JSON.parse(jsonSchedule);
-    if (
-      !schedule.hasOwnProperty("name") ||
-      !schedule.hasOwnProperty("url") ||
-      !schedule.hasOwnProperty("time") ||
-      !schedule.hasOwnProperty("days") ||
-      !schedule.hasOwnProperty("ownerId") ||
-      !schedule.hasOwnProperty("enabled") ||
-      !schedule.hasOwnProperty("id")
-    ) {
-      throw Error("Error: JSON Schedule missing fields");
-    }
-    return new Schedule(
-      schedule.name,
-      schedule.url,
-      schedule.time,
-      schedule.days,
-      schedule.ownerId,
-      schedule.enabled,
-      schedule.id
-    );
+    return new Schedule(JSON.parse(jsonSchedule));
   }
 }
 

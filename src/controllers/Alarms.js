@@ -6,8 +6,8 @@ import ScheduleStorage from "../controllers/ScheduleStorage";
 
 class Alarms {
   static create(schedule) {
-    for (let i = 0; i < schedule.days.length; i++) {
-      if (schedule.days[i] !== 1) {
+    for (let i = 0; i < schedule.daysEnabled.length; i++) {
+      if (schedule.daysEnabled[i] === false) {
         continue;
       }
       let nearestWeekDayDate = WeekDay.getDateOfNearestWeekDay(i);
@@ -40,8 +40,8 @@ class Alarms {
   }
 
   static delete(schedule) {
-    for (let i = 0; i < schedule.days.length; i++) {
-      if (schedule.days[i] === 0) {
+    for (let i = 0; i < schedule.daysEnabled.length; i++) {
+      if (schedule.daysEnabled[i] === false) {
         continue;
       }
 

@@ -7,12 +7,13 @@ import Formatters from "../../helpers/Formatters";
 import ScheduleStorage from "../../controllers/ScheduleStorage";
 
 import "./ScheduleTile.css";
+import WeekDay from "../../helpers/WeekDay";
 
 const ScheduleTile = (props) => {
   const weekDay = props.weekDay;
   const schedule = props.schedule;
   const [checked, setChecked] = useState(
-    ScheduleStorage.getWeekDayEnabled(schedule.id, weekDay)
+    schedule.daysEnabled[WeekDay.weekDayToNumber(weekDay)]
   );
 
   const handleCheck = (toggle) => {

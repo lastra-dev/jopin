@@ -2,33 +2,27 @@ import Schedule from "../models/Schedule";
 import WeekDay from "../helpers/WeekDay";
 
 class ScheduleStorage {
-  static add(schedule) {
+  static set(schedule) {
     if (!(schedule instanceof Schedule)) {
       throw Error("Error: Expected an object instanceof Schedule.");
     }
 
     const jsonSchedule = JSON.stringify(schedule);
     localStorage.setItem(schedule.id, jsonSchedule);
-
-    return schedule.id;
   }
 
-  static addAll(schedules) {
+  static setAll(schedules) {
     schedules.forEach((schedule) => {
-      this.add(schedule);
+      this.set(schedule);
     });
   }
 
   static get(id) {
-    const jsonSchedule = localStorage.getItem(id);
-    if (!jsonSchedule) {
-      throw Error("Error: Fetched object with this ID does not exists.");
-    }
     try {
-      const schedule = Schedule.fromJson(jsonSchedule);
-      return schedule;
+      const jsonSchedule = localStorage.getItem(id);
+      return Schedule.fromJson(jsonSchedule);
     } catch {
-      throw Error("Error: Fetched object is not instanceof Schedule.");
+      throw Error("Received object is not a Schedule.");
     }
   }
 
@@ -36,12 +30,12 @@ class ScheduleStorage {
     let schedules = [];
     const keys = Object.keys(localStorage);
 
-    for (let i = 0; i < keys.length; i++) {
+    keys.forEach((key) => {
       try {
-        const schedule = this.get(keys[i]);
+        const schedule = this.get(key);
         schedules.push(schedule);
       } catch {}
-    }
+    });
 
     const result = this.sortByTime(schedules);
     return result;
@@ -81,36 +75,21 @@ class ScheduleStorage {
     localStorage.removeItem(id);
   }
 
-  static edit(schedule) {
-    this.get(schedule.id);
-    if (!(schedule instanceof Schedule)) {
-      throw Error("Error: Object given is not Schedule");
-    }
-
-    const jsonSchedule = JSON.stringify(schedule);
-    localStorage.setItem(schedule.id, jsonSchedule);
-  }
-
   static clear() {
     const keys = Object.keys(localStorage);
 
-    for (let i = 0; i < keys.length; i++) {
+    keys.forEach((key) => {
       try {
-        this.delete(keys[i]);
+        this.delete(key);
       } catch {}
-    }
+    });
   }
 
   static toggle(id, weekDay) {
     const schedule = this.get(id);
     const weekDayNumber = WeekDay.weekDayToNumber(weekDay);
-    schedule.days[weekDayNumber] = -schedule.days[weekDayNumber];
-    this.edit(schedule);
-  }
-
-  static getWeekDayEnabled(scheduleId, weekDay) {
-    const schedule = this.get(scheduleId);
-    return schedule.days[WeekDay.weekDayToNumber(weekDay)] == true;
+    schedule.daysEnabled[weekDayNumber] = !schedule.daysEnabled[weekDayNumber];
+    this.set(schedule);
   }
 }
 

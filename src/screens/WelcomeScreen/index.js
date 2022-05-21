@@ -26,7 +26,7 @@ const WelcomeScreen = () => {
     if (!localStorage.getItem("loggedIn")) {
       const schedules = await Database.getSchedules();
       ScheduleStorage.setAll(schedules);
-      // Alarms.createAll(schedules);
+      Alarms.createAll(schedules);
       localStorage.setItem("loggedIn", true);
     }
   };

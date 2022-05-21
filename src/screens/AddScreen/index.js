@@ -43,7 +43,7 @@ const AddScreen = () => {
       const id = await Database.createSchedule(newSchedule);
       newSchedule.id = id;
       ScheduleStorage.set(newSchedule);
-      // Alarms.create(newSchedule);
+      Alarms.create(newSchedule);
       navigate(-1);
     } catch (e) {
       console.log(e);
@@ -62,7 +62,7 @@ const AddScreen = () => {
       id: schedule.id,
     });
     Database.updateSchedule(newSchedule);
-    // Alarms.edit(schedule.id, newSchedule);
+    Alarms.edit(schedule.id, newSchedule);
     ScheduleStorage.set(newSchedule);
     navigate(-1);
   };

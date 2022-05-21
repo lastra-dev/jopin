@@ -21,9 +21,9 @@ const ScheduleTile = (props) => {
     ScheduleStorage.toggle(schedule.id, weekDay);
     Database.updateSchedule(ScheduleStorage.get(schedule.id));
     if (!toggle) {
-      // Alarms.deleteSingle(weekDay, schedule);
+      Alarms.deleteSingle(weekDay, schedule);
     } else {
-      // Alarms.createSingle(weekDay, schedule);
+      Alarms.createSingle(weekDay, schedule);
     }
   };
 

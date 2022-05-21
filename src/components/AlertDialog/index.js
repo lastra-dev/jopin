@@ -18,18 +18,21 @@ const AlertDialog = (props) => {
   return (
     <>
       <div className="backdrop" onClick={props.onClose} />
-      <form className="alert" onSubmit={(e) => props.onSubmit(e)}>
+      <div className="alert" onSubmit={props.onSubmit}>
         <p className="title">{props.title}</p>
         <label className="fs-500 text-center">{props.text}</label>
         <div className="center mt-16 flex">
           <SecondaryButton
-            className="dialog-buttons"
-            text="CANCELAR"
+            className="dialog-buttons pointer"
+            text="CANCEL"
             onClick={props.onClose}
           />
-          <PrimaryButton className="dialog-buttons" text={props.submitBtnMsg} />
+          <PrimaryButton
+            className="dialog-buttons pointer"
+            text={props.submitBtnMsg}
+          />
         </div>
-      </form>
+      </div>
     </>
   );
 };

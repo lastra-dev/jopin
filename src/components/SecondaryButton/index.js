@@ -4,7 +4,7 @@ import "./SecondaryButton.css";
 const SecondaryButton = (props) => {
   return (
     <button
-      className={`secondary-btn fs-500 ${props.className}`}
+      className={`hover-animation secondary-btn fs-500 ${props.className}`}
       onClick={props.onClick}
     >
       {props.text}

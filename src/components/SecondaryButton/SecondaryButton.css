@@ -1,8 +1,8 @@
 .secondary-btn {
   background: none;
-  outline: 1px solid hsl(var(--clr-orange));
+  outline: 1px solid hsl(var(--clr-ibiza));
   border-radius: var(--corner-radius);
-  color: hsl(var(--clr-orange));
+  color: hsl(var(--clr-ibiza));
   font-weight: 500;
 }
 

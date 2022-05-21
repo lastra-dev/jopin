@@ -1,4 +1,7 @@
-import Schedule, { createEnabledDays } from "../models/Schedule";
+import Schedule, {
+  createEnabledDays,
+  updateEnabledDays,
+} from "../models/Schedule";
 
 const testSchedule = new Schedule({
   name: "foo",
@@ -65,4 +68,14 @@ test("Expect [createEnabledDays] to return a list of enabled days from active da
     false,
     false,
   ]);
+});
+
+test("Expect [updateEnabledDays] to update the enabled days given the new added days", () => {
+  expect(
+    updateEnabledDays(
+      testSchedule.daysEnabled,
+      testSchedule.days,
+      [1, 0, 1, 1, 0, 0, 0]
+    )
+  ).toStrictEqual([true, false, false, true, false, false, false]); // Third element is false because it was disabled before.
 });

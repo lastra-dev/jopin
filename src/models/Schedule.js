@@ -45,4 +45,15 @@ export const createEnabledDays = (days) => {
   return result;
 };
 
+export const updateEnabledDays = (daysEnabled, oldDays, newDays) => {
+  for (let i = 0; i < daysEnabled.length; i++) {
+    if (oldDays[i] === 0 && newDays[i] === 1) {
+      daysEnabled[i] = true;
+    } else if (oldDays[i] === 1 && newDays[i] === 0) {
+      daysEnabled[i] = false;
+    }
+  }
+  return daysEnabled;
+};
+
 export default Schedule;

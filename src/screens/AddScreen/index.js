@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Auth from "../../services/Auth";
 import Back from "../../components/Back";
 import Input from "../../components/Input";
-import Schedule from "../../models/Schedule";
+import Schedule, { updateEnabledDays } from "../../models/Schedule";
 import Database from "../../models/Database";
 import Alarms from "../../controllers/Alarms";
 import { Title } from "../../components/Titles";
@@ -52,19 +52,29 @@ const AddScreen = () => {
   };
 
   const handleEdit = () => {
-    const newSchedule = new Schedule({
-      name: name,
-      url: url,
-      time: time,
-      days: days,
-      daysEnabled: schedule.daysEnabled,
-      ownerId: Auth.getUserId(),
-      id: schedule.id,
-    });
-    Database.updateSchedule(newSchedule);
-    Alarms.edit(schedule.id, newSchedule);
-    ScheduleStorage.set(newSchedule);
-    navigate(-1);
+    try {
+      const daysEnabled = updateEnabledDays(
+        schedule.daysEnabled,
+        schedule.days,
+        days
+      );
+      const newSchedule = new Schedule({
+        name: name,
+        url: url,
+        time: time,
+        days: days,
+        daysEnabled: daysEnabled,
+        ownerId: Auth.getUserId(),
+        id: schedule.id,
+      });
+      Database.updateSchedule(newSchedule);
+      Alarms.edit(schedule.id, newSchedule);
+      ScheduleStorage.set(newSchedule);
+      navigate(-1);
+    } catch (e) {
+      console.log(e);
+      setErrorMsg("Invalid Schedule, please fill all entries.");
+    }
   };
 
   return (

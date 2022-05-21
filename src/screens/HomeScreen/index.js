@@ -63,7 +63,9 @@ const HomeScreen = () => {
     <ScheduleTile
       weekDay={selectedWeekDay}
       schedule={schedule}
-      key={schedule.id}
+      // This should be unique for every weekDay of the schedule
+      // so that it can render a different toggle on each weekDay
+      key={`${schedule.id} ${selectedWeekDay}`}
       onClick={(e) => {
         showModal(e, schedule);
       }}

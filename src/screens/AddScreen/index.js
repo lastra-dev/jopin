@@ -52,18 +52,18 @@ const AddScreen = () => {
   };
 
   const handleEdit = () => {
-    const newSchedule = new Schedule(
-      name,
-      url,
-      time,
-      days,
-      schedule.ownerId,
-      schedule.enabled,
-      schedule.id
-    );
+    const newSchedule = new Schedule({
+      name: name,
+      url: url,
+      time: time,
+      days: days,
+      daysEnabled: schedule.daysEnabled,
+      ownerId: Auth.getUserId(),
+      id: schedule.id,
+    });
     Database.updateSchedule(newSchedule);
-    Alarms.edit(schedule.id, newSchedule);
-    ScheduleStorage.edit(newSchedule);
+    // Alarms.edit(schedule.id, newSchedule);
+    ScheduleStorage.set(newSchedule);
     navigate(-1);
   };
 

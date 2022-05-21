@@ -23,15 +23,15 @@ class Database {
     const data = await getDocs(q);
     return data.docs.map((doc) => {
       const data = doc.data();
-      return new Schedule(
-        data.name,
-        data.url,
-        data.time,
-        data.days,
-        data.ownerId,
-        data.enabled,
-        doc.id
-      );
+      return new Schedule({
+        name: data.name,
+        url: data.url,
+        time: data.time,
+        days: data.days,
+        daysEnabled: data.daysEnabled,
+        ownerId: data.ownerId,
+        id: doc.id,
+      });
     });
   };
 

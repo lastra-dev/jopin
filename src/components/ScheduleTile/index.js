@@ -7,12 +7,13 @@ import Formatters from "../../helpers/Formatters";
 import ScheduleStorage from "../../controllers/ScheduleStorage";
 
 import "./ScheduleTile.css";
+import WeekDay from "../../helpers/WeekDay";
 
 const ScheduleTile = (props) => {
   const weekDay = props.weekDay;
   const schedule = props.schedule;
   const [checked, setChecked] = useState(
-    ScheduleStorage.getWeekDayEnabled(schedule.id, weekDay)
+    schedule.daysEnabled[WeekDay.weekDayToNumber(weekDay)]
   );
 
   const handleCheck = (toggle) => {
@@ -20,9 +21,9 @@ const ScheduleTile = (props) => {
     ScheduleStorage.toggle(schedule.id, weekDay);
     Database.updateSchedule(ScheduleStorage.get(schedule.id));
     if (!toggle) {
-      Alarms.deleteSingle(weekDay, schedule);
+      // Alarms.deleteSingle(weekDay, schedule);
     } else {
-      Alarms.createSingle(weekDay, schedule);
+      // Alarms.createSingle(weekDay, schedule);
     }
   };
 

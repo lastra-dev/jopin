@@ -25,8 +25,8 @@ const WelcomeScreen = () => {
   const fetchAndSaveSchedules = async () => {
     if (!localStorage.getItem("loggedIn")) {
       const schedules = await Database.getSchedules();
-      ScheduleStorage.addAll(schedules);
-      Alarms.createAll(schedules);
+      ScheduleStorage.setAll(schedules);
+      // Alarms.createAll(schedules);
       localStorage.setItem("loggedIn", true);
     }
   };

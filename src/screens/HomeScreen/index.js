@@ -54,7 +54,7 @@ const HomeScreen = () => {
   const deleteSchedule = (schedule) => {
     Database.deleteSchedule(schedule.id);
     ScheduleStorage.delete(schedule.id);
-    Alarms.delete(schedule);
+    // Alarms.delete(schedule);
     fetchSchedules();
     hideModal();
   };

@@ -17,13 +17,15 @@ class Schedule {
     ) {
       throw Error("Missing properties");
     }
+
+    const daysEnabled = createEnabledDays(schedule.days);
+
     this.name = schedule.name;
     this.url = schedule.url;
     this.time = schedule.time;
     this.days = schedule.days;
-    this.daysEnabled = schedule.daysEnabled;
+    this.daysEnabled = schedule.daysEnabled || daysEnabled;
     this.ownerId = schedule.ownerId;
-    this.enabled = schedule.enabled;
     this.id = schedule.id;
   }
 
@@ -31,5 +33,16 @@ class Schedule {
     return new Schedule(JSON.parse(jsonSchedule));
   }
 }
+
+export const createEnabledDays = (days) => {
+  let result = [false, false, false, false, false, false, false];
+  for (let i = 0; i < days.length; i++) {
+    const day = days[i];
+    if (day === 1) {
+      result[i] = true;
+    }
+  }
+  return result;
+};
 
 export default Schedule;

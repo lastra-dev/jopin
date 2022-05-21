@@ -1,4 +1,4 @@
-import Schedule from "../models/Schedule";
+import Schedule, { createEnabledDays } from "../models/Schedule";
 
 const testSchedule = new Schedule({
   name: "foo",
@@ -53,4 +53,16 @@ test("Expect [Schedule] to throw Error when missing properties", () => {
       id: "id",
     });
   }).toThrow();
+});
+
+test("Expect [createEnabledDays] to return a list of enabled days from active days.", () => {
+  expect(createEnabledDays(testSchedule.days)).toStrictEqual([
+    true,
+    true,
+    true,
+    false,
+    false,
+    false,
+    false,
+  ]);
 });

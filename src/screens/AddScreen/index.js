@@ -33,13 +33,20 @@ const AddScreen = () => {
 
   const handleAdd = async () => {
     try {
-      const newSchedule = new Schedule(name, url, time, days, Auth.getUserId());
+      const newSchedule = new Schedule({
+        name: name,
+        url: url,
+        time: time,
+        days: days,
+        ownerId: Auth.getUserId(),
+      });
       const id = await Database.createSchedule(newSchedule);
       newSchedule.id = id;
-      ScheduleStorage.add(newSchedule);
-      Alarms.create(newSchedule);
+      ScheduleStorage.set(newSchedule);
+      // Alarms.create(newSchedule);
       navigate(-1);
     } catch (e) {
+      console.log(e);
       setErrorMsg("Invalid Schedule, please fill all entries.");
     }
   };

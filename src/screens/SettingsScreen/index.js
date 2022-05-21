@@ -13,7 +13,7 @@ import Database from "../../models/Database";
 const SettingsScreen = () => {
   const deleteSchedules = () => {
     Database.deleteAllSchedules();
-    Alarms.deleteAll();
+    // Alarms.deleteAll();
     ScheduleStorage.clear();
   };
 

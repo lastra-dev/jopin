@@ -43,7 +43,7 @@ class Auth {
 
   static async logout() {
     await signOut(auth);
-    Alarms.deleteAll();
+    // Alarms.deleteAll();
     ScheduleStorage.clear();
   }
 

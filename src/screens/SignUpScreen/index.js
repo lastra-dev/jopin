@@ -30,6 +30,7 @@ const SignUpScreen = () => {
     if (errMsg) {
       setErrorMsg(errMsg);
     }
+    Auth.sendVerificationEmail();
   };
 
   return (

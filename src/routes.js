@@ -7,6 +7,7 @@ import LoginScreen from "./screens/LoginScreen";
 import SignUpScreen from "./screens/SignUpScreen";
 import WelcomeScreen from "./screens/WelcomeScreen";
 import SettingsScreen from "./screens/SettingsScreen";
+import VerificationScreen from "./screens/VerificationScreen";
 
 export const AppRoutes = () => {
   return (
@@ -18,6 +19,7 @@ export const AppRoutes = () => {
         <Route path="/LoginScreen" element={<LoginScreen />} />
         <Route path="/SignUpScreen" element={<SignUpScreen />} />
         <Route path="/SettingsScreen" element={<SettingsScreen />} />
+        <Route path="/VerificationScreen" element={<VerificationScreen />} />
       </Routes>
     </MemoryRouter>
   );

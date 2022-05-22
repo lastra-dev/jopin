@@ -3,6 +3,7 @@ import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
+  sendEmailVerification,
 } from "firebase/auth";
 
 import { auth } from "./firebase-config";
@@ -30,15 +31,25 @@ class Auth {
     }
   }
 
-  static async monitorAuthState(onSignIn, onSignOut) {
+  static async monitorAuthState(onSignIn, onSignOut, onUnverifiedEmail) {
     onAuthStateChanged(auth, (user) => {
-      if (user) {
+      if (user && user.emailVerified) {
         onSignIn();
+      } else if (user) {
+        onUnverifiedEmail();
       } else {
         localStorage.removeItem("loggedIn");
         onSignOut();
       }
     });
+  }
+
+  static async sendVerificationEmail() {
+    try {
+      sendEmailVerification(auth.currentUser);
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   static async logout() {

@@ -42,13 +42,22 @@ const WelcomeScreen = () => {
     navigate("/", { replace: true });
   }, [navigate]);
 
+  const loadVerificationScreen = useCallback(() => {
+    setLoading(false);
+    navigate("/VerificationScreen", { replace: false });
+  }, [navigate]);
+
   const handleSubmit = () => {
     navigate("/LoginScreen", { replace: true });
   };
 
   useEffect(() => {
-    Auth.monitorAuthState(loadHomeScreen, loadWelcomeScreen);
-  }, [loadHomeScreen, loadWelcomeScreen]);
+    Auth.monitorAuthState(
+      loadHomeScreen,
+      loadWelcomeScreen,
+      loadVerificationScreen
+    );
+  }, [loadHomeScreen, loadWelcomeScreen, loadVerificationScreen]);
 
   return loading ? (
     <HashSpinner />

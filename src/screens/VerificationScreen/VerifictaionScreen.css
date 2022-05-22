@@ -1,0 +1,27 @@
+.verification-screen-navbar {
+  align-items: center;
+  margin: 0 24px;
+}
+
+.verification-app-title {
+  margin-left: 100px;
+}
+
+.verification-body {
+  margin-top: 32px;
+}
+
+.verification-img {
+  width: 228px;
+  margin-top: 8px;
+}
+
+.verification-btn {
+  margin: 0 48px;
+  padding: 8px;
+}
+
+.resend-section {
+  gap: 8px;
+  margin-top: 16px;
+}

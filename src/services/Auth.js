@@ -58,6 +58,10 @@ class Auth {
     ScheduleStorage.clear();
   }
 
+  static getUserEmail() {
+    return auth.currentUser.email;
+  }
+
   static getUserId() {
     return auth.currentUser.uid;
   }

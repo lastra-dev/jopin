@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import Auth from "../../services/Auth";
 import Back from "../../components/Back";
@@ -9,6 +9,12 @@ import "./VerifictaionScreen.css";
 import VerificationImg from "../../assets/images/verification-img.svg";
 
 const VerificationScreen = () => {
+  const [userEmail, setUserEmail] = useState("");
+
+  useEffect(() => {
+    setUserEmail(Auth.getUserEmail());
+  }, []);
+
   return (
     <>
       <div className="flex verification-screen-navbar">
@@ -20,7 +26,7 @@ const VerificationScreen = () => {
         <p className="subtitle text-gray">
           To continue using Jopin, please verify<br></br> your email address:
         </p>
-        <p className="subtitle fw-500">email@example.com</p>
+        <p className="subtitle fw-500">{userEmail}</p>
         <img
           alt="A lady receiving a package"
           className="center verification-img"

@@ -30,6 +30,10 @@ const AlertDialog = (props) => {
           <PrimaryButton
             className="dialog-buttons pointer"
             text={props.submitBtnMsg}
+            onClick={() => {
+              props.onSubmit();
+              props.onClose();
+            }}
           />
         </div>
       </div>

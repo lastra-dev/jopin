@@ -29,8 +29,9 @@ const SignUpScreen = () => {
     const errMsg = await Auth.createAccount(email, password, passwordConfirm);
     if (errMsg) {
       setErrorMsg(errMsg);
+    } else {
+      Auth.sendVerificationEmail();
     }
-    Auth.sendVerificationEmail();
   };
 
   return (

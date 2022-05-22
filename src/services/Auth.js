@@ -46,9 +46,9 @@ class Auth {
 
   static async sendVerificationEmail() {
     try {
-      sendEmailVerification(auth.currentUser);
-    } catch (e) {
-      console.log(e);
+      await sendEmailVerification(auth.currentUser);
+    } catch (error) {
+      return this.handleError(error.code);
     }
   }
 
@@ -83,6 +83,8 @@ class Auth {
         return "User disabled.";
       case "auth/missing-email":
         return "Please enter an email.";
+      case "auth/too-many-requests":
+        return "Please wait a bit before submitting again.";
       default:
         console.log(errorCode);
         return "Unknown error, please try again.";

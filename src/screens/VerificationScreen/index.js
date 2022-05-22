@@ -10,6 +10,16 @@ import VerificationImg from "../../assets/images/verification-img.svg";
 
 const VerificationScreen = () => {
   const [userEmail, setUserEmail] = useState("");
+  const [errorMsg, setErrorMsg] = useState("");
+
+  const verifyEmail = async () => {
+    const errorMsg = await Auth.sendVerificationEmail();
+    if (errorMsg) {
+      setErrorMsg(errorMsg);
+    } else {
+      setErrorMsg(null);
+    }
+  };
 
   useEffect(() => {
     setUserEmail(Auth.getUserEmail());
@@ -35,10 +45,11 @@ const VerificationScreen = () => {
         <div className="flex column resend-section">
           <p className="subtitle text-gray">Haven't received an email yet?</p>
           <SecondaryButton
-            onClick={Auth.sendVerificationEmail}
+            onClick={verifyEmail}
             className="verification-btn pointer"
             text="RESEND VERIFICATION EMAIL"
           />
+          {errorMsg && <p className="subtitle text-red">{errorMsg}</p>}
         </div>
       </div>
     </>

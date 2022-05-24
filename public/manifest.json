@@ -9,7 +9,10 @@
   "background": {
     "service_worker": "./background.js"
   },
-  "permissions": ["alarms", "notifications", "tabs"],
+  "permissions": [
+    "alarms",
+    "notifications"
+  ],
   "action": {
     "default_popup": "popup.html",
     "default_title": "Jopin",
